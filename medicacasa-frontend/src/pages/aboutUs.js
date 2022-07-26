@@ -24,7 +24,7 @@ export default (() => {
 				md-flex-direction="column"
 			>
 				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
-					Awesome Company
+					Doctors For You
 				</Text>
 				<Menu
 					display="flex"
@@ -46,7 +46,7 @@ export default (() => {
 				About Us
 			</Text>
 			<Text as="p" font="--lead" margin="20px 0 20px 0" text-align="center">
-				Hi! I'm a paragraph. Click here to add your own text and edit me. It’s a piece of cake. I’m a great space for you to tell a story and let your site visitors know more about you. Talk about your business and what products and services you offer. Share how you came up with the idea for your company and what makes you different from your competitors. Make your business stand out and show your visitors who you are.
+				Aici text despre cine suntem noi si ce facem
 			</Text>
 		</Section>
 		<Section padding="80px 0 80px 0">
@@ -70,7 +70,7 @@ export default (() => {
 					color="--darkL2"
 					lg-width="100%"
 				>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+					echipa noastra, ar fii fain sa luam din baza de date poate? Sa fie cei care sunt administratori sau ceva de genu
 				</Text>
 			</Box>
 			<Box
@@ -291,11 +291,9 @@ export default (() => {
 		</Section>
 		<Section padding="60px 0" sm-padding="40px 0">
 			<SocialMedia
-				facebook="https://www.facebook.com/quarklyapp/"
+				facebook="https://www.facebook.com/bogdi.lazar.5/"
 				twitter="https://twitter.com/quarklyapp"
 				youtube="https://www.youtube.com/channel/UCK5bXs2L0bbSMQ82BQ3hIkw"
-				vkontakte="https://vk.com/quarklyapp"
-				telegram="https://t.me/joinchat/DqSYDhS0R9nMRvOtFbIxrQ"
 			>
 				<Override
 					slot="link"

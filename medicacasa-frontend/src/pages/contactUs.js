@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component, useEffect, useState} from 'react';
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Icon, Input, Button } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -7,6 +7,7 @@ import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/compon
 import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 export default (() => {
+
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"contact-us"} />
 		<Helmet>
@@ -26,7 +27,7 @@ export default (() => {
 				md-flex-direction="column"
 			>
 				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
-					Awesome Company
+					Doctors For You
 				</Text>
 				<Menu
 					display="flex"
@@ -76,7 +77,7 @@ export default (() => {
 								Visit us
 							</Text>
 							<Text as="p" margin="6px 0" font="--headline3" sm-width="100%">
-								4998 Hanover Street, New York, 10011
+								street
 							</Text>
 						</Box>
 						<Box
@@ -103,13 +104,13 @@ export default (() => {
 							</Text>
 							<Text as="p" margin="6px 0" font="--headline3">
 								<Link
-									href="mailto:hello@company.com"
+									href="mailto:main1@gmail.com"
 									text-decoration="none"
 									hover-text-decoration="underline"
 									color="--light"
 									sm-width="100%"
 								>
-									hello@company.com
+									main1@gmail.com
 								</Link>
 							</Text>
 						</Box>
@@ -137,9 +138,9 @@ export default (() => {
 								Call us
 							</Text>
 							<Text as="p" margin="6px 0" font="--headline3" sm-width="100%">
-								+1 (234) 567-89-00
+								phone1
 								<br />
-								+1 (234) 567-89-00
+								phone2
 							</Text>
 						</Box>
 						<Box
@@ -242,11 +243,9 @@ export default (() => {
 		</Section>
 		<Section padding="60px 0" sm-padding="40px 0">
 			<SocialMedia
-				facebook="https://www.facebook.com/quarklyapp/"
+				facebook="https://www.facebook.com/bogdi.lazar.5/"
 				twitter="https://twitter.com/quarklyapp"
 				youtube="https://www.youtube.com/channel/UCK5bXs2L0bbSMQ82BQ3hIkw"
-				vkontakte="https://vk.com/quarklyapp"
-				telegram="https://t.me/joinchat/DqSYDhS0R9nMRvOtFbIxrQ"
 			>
 				<Override
 					slot="link"

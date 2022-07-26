@@ -25,7 +25,7 @@ export default (() => {
 				md-flex-direction="column"
 			>
 				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
-					Awesome Company
+					Doctors For You
 				</Text>
 				<Menu
 					display="flex"
@@ -43,7 +43,7 @@ export default (() => {
 		</Section>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section
-			background="linear-gradient(0deg,rgba(4, 8, 12, 0.6) 0%,rgba(4, 8, 12, 0.6) 100%),--color-darkL2 url(https://images.unsplash.com/photo-1510125594188-5afc74c8cc43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80) center/cover"
+			background="linear-gradient(0deg,rgba(4, 8, 12, 0.6) 0%,rgba(4, 8, 12, 0.6) 100%),--color-darkL2 url(https://www.scripps.org/sparkle-assets/seo_thumbnails/news_items/6473/facebook-437f97cdb8e096c0ce61654b167311f7.jpg) center/cover"
 			padding="64px 0"
 			sm-padding="40px 0"
 			color="--light"
@@ -91,10 +91,10 @@ export default (() => {
 						>
 							<Box display="flex" flex-direction="column">
 								<Text as="h3" font="--headline3" margin="12px 0">
-									Is there life on Mars?
+									Intrebare medicala 1
 								</Text>
 								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									It all begins with an idea. Maybe you want to launch a business. Maybe you want to turn a hobby into something more. Or maybe you have a creative project to share with the world. Whatever it is, the way you tell your story online can make all the difference.
+									Raspuns medical 1
 								</Text>
 							</Box>
 						</Box>
@@ -107,11 +107,11 @@ export default (() => {
 						>
 							<Box display="flex" flex-direction="column">
 								<Text as="h3" font="--headline3" margin="12px 0">
-									Why is the sky blue?
+									Intrebare medicala 2
 								</Text>
 							</Box>
 							<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-								It all begins with an idea. Maybe you want to launch a business. Maybe you want to turn a hobby into something more. Or maybe you have a creative project to share with the world. Whatever it is, the way you tell your story online can make all the difference.
+									Raspuns medical 2
 							</Text>
 						</Box>
 						<Box
@@ -123,10 +123,10 @@ export default (() => {
 						>
 							<Box display="flex" flex-direction="column">
 								<Text as="h3" font="--headline3" margin="12px 0">
-									When will we get there?
+									Intrebare medicala 3
 								</Text>
 								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									It all begins with an idea. Maybe you want to launch a business. Maybe you want to turn a hobby into something more. Or maybe you have a creative project to share with the world. Whatever it is, the way you tell your story online can make all the difference.
+									Raspuns medical 3							
 								</Text>
 							</Box>
 						</Box>
@@ -139,10 +139,10 @@ export default (() => {
 						>
 							<Box display="flex" flex-direction="column">
 								<Text as="h3" font="--headline3" margin="12px 0">
-									How much salt is in the ocean?
+									Intrebare medicala 4
 								</Text>
 								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									It all begins with an idea. Maybe you want to launch a business. Maybe you want to turn a hobby into something more. Or maybe you have a creative project to share with the world. Whatever it is, the way you tell your story online can make all the difference.
+									Raspuns medical 4
 								</Text>
 							</Box>
 						</Box>
@@ -170,7 +170,7 @@ export default (() => {
 					text-align="center"
 					sm-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
 				>
-					Our medici's opinions
+					Our Doctors opinions
 				</Text>
 				<Text margin="0px 0px 0px 0px" color="--grey" text-align="center" font="--lead">
 					Sign up with your email address to receive news and updates.
@@ -446,11 +446,9 @@ export default (() => {
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0">
 			<SocialMedia
-				facebook="https://www.facebook.com/quarklyapp/"
+				facebook="https://www.facebook.com/bogdi.lazar.5/"
 				twitter="https://twitter.com/quarklyapp"
 				youtube="https://www.youtube.com/channel/UCK5bXs2L0bbSMQ82BQ3hIkw"
-				vkontakte="https://vk.com/quarklyapp"
-				telegram="https://t.me/joinchat/DqSYDhS0R9nMRvOtFbIxrQ"
 			>
 				<Override
 					slot="link"

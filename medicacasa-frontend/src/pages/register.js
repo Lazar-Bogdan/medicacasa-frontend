@@ -6,10 +6,10 @@ import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/components";
 export default (() => {
 	return <Theme theme={theme}>
-		<GlobalQuarklyPageStyles pageUrl={"login"} />
+		<GlobalQuarklyPageStyles pageUrl={"register"} />
 		<Helmet>
 			<title>
-				Login
+				Register
 			</title>
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
@@ -26,18 +26,6 @@ export default (() => {
 				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
 					Doctors For You
 				</Text>
-				<Menu
-					display="flex"
-					justify-content="center"
-					font="--base"
-					font-weight="700"
-					md-flex-direction="column"
-					md-align-items="center"
-				>
-					<Override slot="link" text-decoration="none" color="--dark" padding="6px 12px" />
-					<Override slot="link-active" color="--primary" />
-					<Override slot="item" padding="6px" />
-				</Menu>
 			</Box>
 		</Section>
 		<Section background="--color-light" color="--dark" padding="64px 0 64px 0">
@@ -65,11 +53,11 @@ export default (() => {
 						</Formspree>
 					</Box>
 					<Button>
-						Login
+						Register
 					</Button>
-					<p></p>
-					<Link href="/register" color="#000000">
-						Don't you have an account ? Click here...
+                    <p></p>
+					<Link href="/login" color="#000000">
+						Already an account? Click here...
 					</Link>
 				</Box>
 			</Box>

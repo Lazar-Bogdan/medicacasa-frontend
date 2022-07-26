@@ -17,6 +17,9 @@ export default (() => {
 		<Text margin="0px 0px 0px 0px">
 			404 not found
 		</Text>
+		<Link href="/home" color="#000000">
+			Go back
+		</Link>
 		<RawHtml>
 			<style place={"endOfHead"} rawKey={"62de926f5e5c6e002154effc"}>
 				{":root {\n  box-sizing: border-box;\n}\n\n* {\n  box-sizing: inherit;\n}"}
