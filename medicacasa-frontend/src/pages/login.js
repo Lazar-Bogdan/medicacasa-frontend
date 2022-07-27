@@ -4,6 +4,7 @@ import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/wid
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/components";
+import history from "./history";
 export default (() => {
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"login"} />
@@ -64,7 +65,7 @@ export default (() => {
 							</Box>
 						</Formspree>
 					</Box>
-					<Button>
+					<Button variant="btn btn-success" onClick={() => history.push('/client')}>
 						Login
 					</Button>
 					<p></p>

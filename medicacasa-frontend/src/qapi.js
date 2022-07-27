@@ -24,12 +24,12 @@ export default {
 		},
 		"62de94e495861b00203a3529": {
 			"id": "62de94e495861b00203a3529",
-			"pageUrl": "about-us",
+			"pageUrl": "aboutus",
 			"name": "About us"
 		},
 		"62de9502fedca4001e343e4c": {
 			"id": "62de9502fedca4001e343e4c",
-			"pageUrl": "contact-us",
+			"pageUrl": "contactus",
 			"name": "Contact us"
 		},
 		"62de950c95861b00203a353f": {

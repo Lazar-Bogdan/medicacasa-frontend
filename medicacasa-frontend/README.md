@@ -19,3 +19,22 @@ INFO :
             - add "modify user" page
             - add "modify product" page
             - ?
+
+
+Date 27.07.2022
+INFO:
+    CLIENT INTERFACE MADE (not the best and not as I expted)
+    next:
+        Client interface
+            - modify tests style
+        Doctor interface
+            - When logged it, replace login button with logout
+            - Delete home + about + contact us page
+            - Add "my clients" page
+            - Add "Add a review about a medicament"
+        Administrator interface
+            - remove home/about/contact
+            - replace login with logout
+            - add "modify user" page
+            - add "modify product" page
+            - ?

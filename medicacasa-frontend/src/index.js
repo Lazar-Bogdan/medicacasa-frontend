@@ -4,4 +4,5 @@ import App from "./App";
 import QAPI from "qapi";
 
 window.QAPI = QAPI;
+
 ReactDOM.render(<App />, document.getElementById("root"));
