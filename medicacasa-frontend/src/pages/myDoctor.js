@@ -9,7 +9,7 @@ export default (() => {
 		<GlobalQuarklyPageStyles pageUrl={"my-doctor"} />
 		<Helmet>
 			<title>
-				Quarkly export
+				My Doctor
 			</title>
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
@@ -24,7 +24,7 @@ export default (() => {
 				md-flex-direction="column"
 			>
 				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
-					Awesome Company
+					Doctors For You
 				</Text>
                 <Link
                     href="/client"

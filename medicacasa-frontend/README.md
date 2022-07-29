@@ -38,3 +38,19 @@ INFO:
             - add "modify user" page
             - add "modify product" page
             - ?
+
+Date 29.07.2022
+INFO:
+    CLIENT INTERFACE MADE
+    DOCTOR INTERFACE MADE
+    next:
+        Client interface
+            - modify tests style
+        Doctor interface
+            - modify tests style
+        Administrator interface
+            - remove home/about/contact
+            - replace login with logout
+            - add "modify user" page
+            - add "modify product" page
+            - ?
