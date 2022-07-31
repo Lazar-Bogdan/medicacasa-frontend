@@ -54,3 +54,18 @@ INFO:
             - add "modify user" page
             - add "modify product" page
             - ?
+
+DATE 31.07.2022
+INFO:
+    CLIENT INTERFACE MADE
+    DOCTOR INTERFACE MADE
+    next:
+        Client interface
+            - modify tests style
+        Doctor interface
+            - modify tests style
+        Administrator interface
+            - add med nearly implemented
+            - add "modify user" page
+            - add "modify product" page
+            - ?

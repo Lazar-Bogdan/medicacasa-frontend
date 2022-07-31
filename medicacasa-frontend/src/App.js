@@ -12,6 +12,8 @@ import history from "pages/history";
 import doctorHomePage from "pages/doctorHomePage";
 import myClient from "pages/myClient";
 import addReview from "pages/addReview";
+import meds from "pages/admin/medList";
+import AddMeds from "pages/admin/addMeds";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
@@ -39,6 +41,8 @@ export default () => (
             <Route exact path='/doctor' component={doctorHomePage} />
             <Route exact path='/myclients' component={myClient} />
             <Route exact path='/review' component={addReview} />
+            <Route exact path='/medlist' component={meds} />
+            <Route exact path='/addmeds' component={AddMeds} />
 			<Route component={Page404}/>
         </Switch>
     </Router>
