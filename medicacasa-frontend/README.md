@@ -69,3 +69,16 @@ INFO:
             - add "modify user" page
             - add "modify product" page
             - ?
+
+DATE 01.08.2022
+INFO:
+    ADJUST ADMIN PAGE -> ALL PAGE WERE CREATED BUT THERE IS NO FUNCTIONALITY YET
+    Correcting some warnings about components that are not used.
+    next:
+        Client interface
+            - modify tests style
+        Doctor interface
+            - modify tests style
+        Administrator interface
+            - create functionality 
+            - !! time to start backend server !!

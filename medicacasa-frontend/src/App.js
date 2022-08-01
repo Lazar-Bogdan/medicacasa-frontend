@@ -14,6 +14,12 @@ import myClient from "pages/myClient";
 import addReview from "pages/addReview";
 import meds from "pages/admin/medList";
 import AddMeds from "pages/admin/addMeds";
+import adminMainPage from "pages/admin/adminMainPage";
+import reviews from "pages/admin/reviewList";
+import clients from "pages/admin/clientList";
+import forms from "pages/admin/formList";
+import AddReviewAdm from "pages/admin/addReview";
+import AddClient from "pages/admin/addClient";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
@@ -43,6 +49,12 @@ export default () => (
             <Route exact path='/review' component={addReview} />
             <Route exact path='/medlist' component={meds} />
             <Route exact path='/addmeds' component={AddMeds} />
+            <Route exact path='/adminpage' component={adminMainPage} />
+            <Route exact path='/reviews' component={reviews} />
+            <Route exact path='/clientlist' component={clients} />
+            <Route exact path='/forms' component={forms} />
+            <Route exact path='/addreviewadm' component={AddReviewAdm} />
+            <Route exact path='/addclient' component={AddClient} />
 			<Route component={Page404}/>
         </Switch>
     </Router>

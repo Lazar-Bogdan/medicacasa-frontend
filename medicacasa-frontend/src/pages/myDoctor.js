@@ -3,7 +3,7 @@ import theme from "theme";
 import { Theme, Link, Text, Box, Section, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
-import { RawHtml, Override, Menu, SocialMedia } from "@quarkly/components";
+import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 export default (() => {
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"my-doctor"} />

@@ -1,6 +1,6 @@
 import React from "react";
 import theme from "theme";
-import { Theme, Link, Text, Box, Section, Hr, Icon, Image } from "@quarkly/widgets";
+import { Theme, Text, Box, Section, Hr, Icon, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, StackItem, Stack, SocialMedia } from "@quarkly/components";

@@ -3,7 +3,7 @@ import theme from "theme";
 import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
-import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/components";
+import { RawHtml, Override, Formspree, SocialMedia } from "@quarkly/components";
 export default (() => {
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"register"} />

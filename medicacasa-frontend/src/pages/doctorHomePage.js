@@ -3,7 +3,7 @@ import theme from "theme";
 import { Theme, Link, Text, Box, Section,  Hr, Icon, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
-import { RawHtml, Override, Menu,StackItem, Stack, SocialMedia } from "@quarkly/components";
+import { RawHtml, Override,StackItem, Stack, SocialMedia } from "@quarkly/components";
 import { MdArrowDownward } from "react-icons/md";
 
 export default (() => {

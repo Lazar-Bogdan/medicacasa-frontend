@@ -4,7 +4,7 @@ import { Theme, Link, Text, Box, Section } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 
-const meds = () => {
+const forms = () => {
   return <Theme theme={theme}>
     <GlobalQuarklyPageStyles pageUrl={"index"} />
     <Helmet>
@@ -78,8 +78,8 @@ const meds = () => {
                 >Logout</Link>
           </Box>
         </Section>
-        <h2>Med lists</h2>
+        <h2>Form lists</h2>
         </Theme>
 };
 
-export default meds;
+export default forms;
