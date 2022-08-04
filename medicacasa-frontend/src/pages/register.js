@@ -4,7 +4,21 @@ import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/wid
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Formspree, SocialMedia } from "@quarkly/components";
+import AuthService from "./../services/AuthService";
+
 export default (() => {
+
+	async function handleSubmitRegister(){
+		const response = await AuthService.registerUser("Arianna", "Arianna@gmail.com","test",1011,12,[{email:"test"},{email:"test"},{email:"test"}]);
+		if(response){
+			console.log("user logged");
+			AuthService.handleLoginSucces(response._id);
+			// this.props.history.push("/home");
+		}else{
+			alert("please check your credentials");
+		}
+	}
+
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"register"} />
 		<Helmet>
@@ -52,7 +66,7 @@ export default (() => {
 							</Box>
 						</Formspree>
 					</Box>
-					<Button>
+					<Button variant="btn btn-success" type="submit" onClick={() => handleSubmitRegister()}>
 						Register
 					</Button>
                     <p></p>

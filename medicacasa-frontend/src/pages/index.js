@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import theme from "theme";
 import { Theme, Text, Box, Section, Hr, Icon, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, StackItem, Stack, SocialMedia } from "@quarkly/components";
 import { MdArrowDownward } from "react-icons/md";
+import product_card from "./product_data.js"
+
 export default (() => {
+	// to do remove this, was a test
+	const[visible, setVisible] = useState(4);
+    const showMoreItems = () => {
+        setVisible((prevValue) => prevValue + 3);
+    };
+	function FilterByCategory(cathegory) {
+        const Filtered = product_card.filter((item) => {
+            if(item.cathegory.toLowerCase()==cathegory) {
+                return item;
+            }
+        });
+        return Filtered;
+    }
+	const Books = product_card;
+	function MapBooks(List) {
+        if(!List){List=[];}
+        const Filtered = List.slice(0, visible).map((item) =>
+			<Box
+				display="flex"
+				flex-direction="column"
+				width="50%"
+				padding="16px 16px 16px 16px"
+				sm-width="100%"
+			>
+				<Box display="flex" flex-direction="column">
+					<Text as="h3" font="--headline3" margin="12px 0">
+						{item.product_name}
+					</Text>
+					<Text as="p" font="--base" margin="12px 0" color="--greyD2">
+						Raspuns medical 1
+					</Text>
+				</Box>
+			</Box>
+        );
+        return Filtered;
+    }
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"index"} />
 		<Helmet>
@@ -80,72 +118,9 @@ export default (() => {
 						</Text>
 					</Box>
 				</Box>
-				<Box padding="16px 16px 16px 16px" width="66.66%" md-width="100%">
+				<Box padding="16px 16px 16px 16px" width="66.66%">
 					<Box display="flex" flex-direction="row" flex-wrap="wrap">
-						<Box
-							display="flex"
-							flex-direction="column"
-							width="50%"
-							padding="16px 16px 16px 16px"
-							sm-width="100%"
-						>
-							<Box display="flex" flex-direction="column">
-								<Text as="h3" font="--headline3" margin="12px 0">
-									Intrebare medicala 1
-								</Text>
-								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									Raspuns medical 1
-								</Text>
-							</Box>
-						</Box>
-						<Box
-							display="flex"
-							flex-direction="column"
-							width="50%"
-							padding="16px 16px 16px 16px"
-							sm-width="100%"
-						>
-							<Box display="flex" flex-direction="column">
-								<Text as="h3" font="--headline3" margin="12px 0">
-									Intrebare medicala 2
-								</Text>
-							</Box>
-							<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									Raspuns medical 2
-							</Text>
-						</Box>
-						<Box
-							display="flex"
-							flex-direction="column"
-							width="50%"
-							padding="16px 16px 16px 16px"
-							sm-width="100%"
-						>
-							<Box display="flex" flex-direction="column">
-								<Text as="h3" font="--headline3" margin="12px 0">
-									Intrebare medicala 3
-								</Text>
-								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									Raspuns medical 3							
-								</Text>
-							</Box>
-						</Box>
-						<Box
-							display="flex"
-							flex-direction="column"
-							width="50%"
-							padding="16px 16px 16px 16px"
-							sm-width="100%"
-						>
-							<Box display="flex" flex-direction="column">
-								<Text as="h3" font="--headline3" margin="12px 0">
-									Intrebare medicala 4
-								</Text>
-								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									Raspuns medical 4
-								</Text>
-							</Box>
-						</Box>
+						{MapBooks(FilterByCategory("sf"))}
 					</Box>
 				</Box>
 			</Box>

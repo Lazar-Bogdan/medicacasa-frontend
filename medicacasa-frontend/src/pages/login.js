@@ -4,9 +4,23 @@ import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/wid
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/components";
-import history from "./history";
-export default (() => {
-	return <Theme theme={theme}>
+import AuthService from "./../services/AuthService";
+
+function Login() {
+
+	async function handleSubmitLogin(){
+		const response = await AuthService.doUserLogin("Bogdan12@gmail.com","test");
+		if(response){
+			console.log("user logged");
+			AuthService.handleLoginSucces("id");
+			// this.props.history.push("/home");
+		}else{
+			alert("please check your credentials");
+		}
+	}
+
+	return (
+		<Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"login"} />
 		<Helmet>
 			<title>
@@ -65,7 +79,7 @@ export default (() => {
 							</Box>
 						</Formspree>
 					</Box>
-					<Button variant="btn btn-success" onClick={() => history.push('/client')}>
+					<Button variant="btn btn-success" type="submit" onClick={() => handleSubmitLogin()}>
 						Login
 					</Button>
 					<p></p>
@@ -97,5 +111,8 @@ export default (() => {
 				{":root {\n  box-sizing: border-box;\n}\n\n* {\n  box-sizing: inherit;\n}"}
 			</style>
 		</RawHtml>
-	</Theme>;
-});
+	</Theme>
+	);
+}
+
+export default Login;
