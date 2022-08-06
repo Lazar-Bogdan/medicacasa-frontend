@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Icon, Input, Button } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -6,7 +6,24 @@ import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/components";
 import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+
+import ContactUsService from "./../services/ContactUsService";
+
 export default (() => {
+
+	const [name, setName] = useState(" ");
+	const [email, setEmail] = useState(" ");
+	const [message, setMessage] = useState(" ");
+
+	async function handleSubmitForm(){
+		const response = await ContactUsService.submitForm(name,email,message);
+		if(response){
+			console.log("form submitted");
+			alert("Form submited");
+		}else{
+			alert("something is wrong");
+		}
+	}
 
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"contact-us"} />
@@ -209,19 +226,19 @@ export default (() => {
 										<Text font="--base" margin="0 0 4px 0">
 											Name
 										</Text>
-										<Input width="100%" name="name" type="text" />
+										<Input width="100%" name="name" type="text" onChange={(event) => setName(event.target.value) } />
 									</Box>
 									<Box padding="8px 8px 8px 8px" width="100%" display="flex" flex-direction="column">
 										<Text font="--base" margin="0 0 4px 0">
 											Email
 										</Text>
-										<Input width="100%" type="email" name="email" />
+										<Input width="100%" type="email" name="email" onChange={(event) => setEmail(event.target.value) } />
 									</Box>
 									<Box padding="8px 8px 8px 8px" width="100%" display="flex" flex-direction="column">
 										<Text font="--base" margin="0 0 4px 0">
 											Message
 										</Text>
-										<Input as="textarea" rows="4" width="100%" name="message" />
+										<Input as="textarea" rows="4" width="100%" name="message" onChange={(event) => setMessage(event.target.value) } />
 									</Box>
 									<Box
 										padding="8px 8px 8px 8px"
@@ -230,7 +247,7 @@ export default (() => {
 										flex-direction="column"
 										align-items="flex-end"
 									>
-										<Button background="--color-dark">
+										<Button background="--color-dark" type="submit" onClick={() => handleSubmitForm()}>
 											Send
 										</Button>
 									</Box>

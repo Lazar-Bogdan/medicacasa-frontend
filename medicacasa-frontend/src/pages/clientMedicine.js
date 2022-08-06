@@ -1,10 +1,74 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, SocialMedia } from "@quarkly/components";
+import axios from "axios";
+
+import URL from "../services/BackEndURL";
+import { Button } from "@quarkly/widgets/build/cjs/prod";
+
 export default (() => {
+	const [medicine, setMedicine] = useState([]);
+	const[visible, setVisible] = useState(6);
+	const showMoreItems = () => {
+        setVisible((prevValue) => prevValue + 3);
+    };
+	useEffect( () =>{
+        getMedicine();
+    }, [])
+
+	async function getMedicine(){
+		await axios(URL + "meds/getAllMeds")
+			.then(response => {
+				setMedicine(response.data);
+			})
+			.catch(err => {
+				console.log("error on fetching meds");
+			})
+	}
+
+	function MapMeds(List){
+		if(!List){List=[];}
+		const Filtered = List.slice(0, visible).map((item) =>
+			<Box
+			padding="50px 55px 50px 55px"
+			sm-padding="55px 40px 50px 55px"
+			border-width="1px"
+			border-style="solid"
+			border-radius="24px"
+			border-color="--color-lightD2"
+			display="flex"
+			flex-direction="column"
+			align-items="flex-start"
+			>
+				<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" />
+				<Text
+					margin="0px 0px 35px 0px"
+					color="--dark"
+					font="--lead"
+					lg-margin="0px 0px 50px 0px"
+					sm-margin="0px 0px 30px 0px"
+					flex="1 0 auto"
+				>
+					{item.name}
+				</Text>
+				<Text
+					margin="0px 0px 35px 0px"
+					color="--dark"
+					font="--lead"
+					lg-margin="0px 0px 50px 0px"
+					sm-margin="0px 0px 30px 0px"
+					flex="1 0 auto"
+				>
+					{item.price} $
+				</Text>
+				<Button>More information</Button>
+			</Box>
+        );
+        return Filtered;
+	}
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"medicine"} />
 		<Helmet>
@@ -92,254 +156,7 @@ export default (() => {
 					Medicine
 				</Text>
 			</Box>
-			<Box
-				display="grid"
-				grid-template-columns="repeat(3, 1fr)"
-				grid-gap="16px"
-				lg-grid-template-columns="repeat(2, 1fr)"
-				md-grid-template-columns="1fr"
-			>
-				<Box
-					padding="50px 55px 50px 55px"
-					sm-padding="55px 40px 50px 55px"
-					border-width="1px"
-					border-style="solid"
-					border-radius="24px"
-					border-color="--color-lightD2"
-					display="flex"
-					flex-direction="column"
-					align-items="flex-start"
-				>
-					<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/favourite-31.png?v=2021-08-30T20:05:47.446Z" margin="0px 0px 33px 0px" />
-					<Text
-						margin="0px 0px 35px 0px"
-						color="--dark"
-						font="--lead"
-						lg-margin="0px 0px 50px 0px"
-						sm-margin="0px 0px 30px 0px"
-						flex="1 0 auto"
-					>
-						“Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.”
-					</Text>
-					<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
-						<Image
-							width="43px"
-							height="43px"
-							src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image6.png?v=2021-08-25T19:47:23.498Z"
-							border-radius="50зч"
-							margin="0px 15px 12px 0px"
-						/>
-						<Box>
-							<Text color="--dark" font="normal 600 16px/1.5 --fontFamily-googleSourceSansPro" margin="0px 0px 2px 0px">
-								Sam Smith
-							</Text>
-							<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-								Product Designer
-							</Text>
-						</Box>
-					</Box>
-				</Box>
-				<Box
-					padding="50px 55px 50px 55px"
-					sm-padding="55px 40px 50px 55px"
-					border-width="1px"
-					border-style="solid"
-					border-radius="24px"
-					border-color="--color-lightD2"
-					display="flex"
-					flex-direction="column"
-					align-items="flex-start"
-				>
-					<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/startfavorite.png?v=2021-08-30T20:09:22.144Z" margin="0px 0px 33px 0px" />
-					<Text
-						margin="0px 0px 35px 0px"
-						color="--dark"
-						font="--lead"
-						lg-margin="0px 0px 50px 0px"
-						sm-margin="0px 0px 30px 0px"
-						flex="1 0 auto"
-					>
-						“Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.”
-					</Text>
-					<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
-						<Image
-							width="43px"
-							height="43px"
-							src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image5.png?v=2021-08-25T19:47:16.297Z"
-							border-radius="50зч"
-							margin="0px 15px 12px 0px"
-						/>
-						<Box>
-							<Text color="--dark" font="normal 600 16px/1.5 --fontFamily-googleSourceSansPro" margin="0px 0px 2px 0px">
-								Mason Johnson
-							</Text>
-							<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-								Manager
-							</Text>
-						</Box>
-					</Box>
-				</Box>
-				<Box
-					padding="50px 55px 50px 55px"
-					sm-padding="55px 40px 50px 55px"
-					border-width="1px"
-					border-style="solid"
-					border-radius="24px"
-					border-color="--color-lightD2"
-					display="flex"
-					flex-direction="column"
-					align-items="flex-start"
-				>
-					<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/favourite-31.png?v=2021-08-30T20:05:47.446Z" margin="0px 0px 33px 0px" />
-					<Text
-						margin="0px 0px 35px 0px"
-						color="--dark"
-						font="--lead"
-						lg-margin="0px 0px 50px 0px"
-						sm-margin="0px 0px 30px 0px"
-						flex="1 0 auto"
-					>
-						Must have book for students, who want to be Product Designer, UX Designer, or Interaction Designer.
-					</Text>
-					<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
-						<Image
-							width="43px"
-							height="43px"
-							src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image4.png?v=2021-08-25T19:47:08.343Z"
-							border-radius="50зч"
-							margin="0px 15px 12px 0px"
-						/>
-						<Box>
-							<Text color="--dark" font="normal 600 16px/1.5 --fontFamily-googleSourceSansPro" margin="0px 0px 2px 0px">
-								Adriana Williams
-							</Text>
-							<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-								Product Designer
-							</Text>
-						</Box>
-					</Box>
-				</Box>
-				<Box
-					padding="50px 55px 50px 55px"
-					sm-padding="55px 40px 50px 55px"
-					border-width="1px"
-					border-style="solid"
-					border-radius="24px"
-					border-color="--color-lightD2"
-					display="flex"
-					flex-direction="column"
-					align-items="flex-start"
-				>
-					<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/favourite-31.png?v=2021-08-30T20:05:47.446Z" margin="0px 0px 33px 0px" />
-					<Text
-						margin="0px 0px 35px 0px"
-						color="--dark"
-						font="--lead"
-						lg-margin="0px 0px 50px 0px"
-						sm-margin="0px 0px 30px 0px"
-						flex="1 0 auto"
-					>
-						“You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the change and click save.”
-					</Text>
-					<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
-						<Image
-							width="43px"
-							height="43px"
-							src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image-3.png?v=2021-08-25T19:46:11.754Z"
-							border-radius="50зч"
-							margin="0px 15px 12px 0px"
-						/>
-						<Box>
-							<Text color="--dark" font="normal 600 16px/1.5 --fontFamily-googleSourceSansPro" margin="0px 0px 2px 0px">
-								Ethan Tremblay
-							</Text>
-							<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-								UI/UX Designer
-							</Text>
-						</Box>
-					</Box>
-				</Box>
-				<Box
-					padding="50px 55px 50px 55px"
-					sm-padding="55px 40px 50px 55px"
-					border-width="1px"
-					border-style="solid"
-					border-radius="24px"
-					border-color="--color-lightD2"
-					display="flex"
-					flex-direction="column"
-					align-items="flex-start"
-				>
-					<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/favourite-31.png?v=2021-08-30T20:05:47.446Z" margin="0px 0px 33px 0px" />
-					<Text
-						margin="0px 0px 35px 0px"
-						color="--dark"
-						font="--lead"
-						lg-margin="0px 0px 50px 0px"
-						sm-margin="0px 0px 30px 0px"
-						flex="1 0 auto"
-					>
-						Must have book for students, who want to be Product Designer, UX Designer, or Interaction Designer.
-					</Text>
-					<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
-						<Image
-							width="43px"
-							height="43px"
-							src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image4.png?v=2021-08-25T19:47:08.343Z"
-							border-radius="50зч"
-							margin="0px 15px 12px 0px"
-						/>
-						<Box>
-							<Text color="--dark" font="normal 600 16px/1.5 --fontFamily-googleSourceSansPro" margin="0px 0px 2px 0px">
-								Adriana Williams
-							</Text>
-							<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-								Product Designer
-							</Text>
-						</Box>
-					</Box>
-				</Box>
-				<Box
-					padding="50px 55px 50px 55px"
-					sm-padding="55px 40px 50px 55px"
-					border-width="1px"
-					border-style="solid"
-					border-radius="24px"
-					border-color="--color-lightD2"
-					display="flex"
-					flex-direction="column"
-					align-items="flex-start"
-				>
-					<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/startfavorite.png?v=2021-08-30T20:09:22.144Z" margin="0px 0px 33px 0px" />
-					<Text
-						margin="0px 0px 35px 0px"
-						color="--dark"
-						font="--lead"
-						lg-margin="0px 0px 50px 0px"
-						sm-margin="0px 0px 30px 0px"
-						flex="1 0 auto"
-					>
-						“Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.”
-					</Text>
-					<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
-						<Image
-							width="43px"
-							height="43px"
-							src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image4.png?v=2021-08-25T19:47:08.343Z"
-							border-radius="50зч"
-							margin="0px 15px 12px 0px"
-						/>
-						<Box>
-							<Text color="--dark" font="normal 600 16px/1.5 --fontFamily-googleSourceSansPro" margin="0px 0px 2px 0px">
-								Mason Johnson
-							</Text>
-							<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-								Manager
-							</Text>
-						</Box>
-					</Box>
-				</Box>
-			</Box>
+			{MapMeds(medicine)}
 		</Section>
 		<Section padding="60px 0" sm-padding="40px 0">
 				<SocialMedia

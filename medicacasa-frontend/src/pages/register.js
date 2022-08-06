@@ -7,9 +7,11 @@ import { RawHtml, Override, Formspree, SocialMedia } from "@quarkly/components";
 import AuthService from "./../services/AuthService";
 
 export default (() => {
+	// form la subscription
+	// [{email:"test"},{email:"test"},{email:"test"}]
 
 	async function handleSubmitRegister(){
-		const response = await AuthService.registerUser("Arianna", "Arianna@gmail.com","test",1011,12,[{email:"test"},{email:"test"},{email:"test"}]);
+		const response = await AuthService.registerUser("Arianna", "Arianna@gmail.com","test",1011);
 		if(response){
 			console.log("user logged");
 			AuthService.handleLoginSucces(response._id);

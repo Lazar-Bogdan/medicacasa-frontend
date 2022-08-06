@@ -1,10 +1,61 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, SocialMedia } from "@quarkly/components";
+
+import URL from "../services/BackEndURL";
+import axios from "axios";
+import { List } from "@quarkly/widgets/build/cjs/prod";
+
 export default (() => {
+	
+	// useEffect( () =>{
+    //     test();
+    // }, [])
+	// async function test(){
+	// 	try{
+    //         // de hardcodat link ul
+    //         const response = await axios.post(URL + "users/addClient", {username:"Bogdan",email:"Bogdan2000@gmail.com",password:"test",role:1011,age:21,subscription:[{email:"Amalia@gmail.com"}]});
+    //         return response.data;
+    //     }catch(err){
+    //         console.error("Error", err.response);
+    //         return false;
+    //     }
+	// }
+	const [currentUser,setCurrentUser] = useState(" ");
+	const [doctors,setDoctors] = useState([]);
+	const[visible, setVisible] = useState(6);
+
+	useEffect( () =>{
+		getCurentUser();
+        // getDoctors();
+    }, [])
+
+	async function getCurentUser(){
+		await axios.get(URL + "users/getUserUnderEmail", { headers: { email:"Bogdan2000@gmail.com" }})
+			.then(response => {
+				setCurrentUser(response.data[0].subscription);
+				console.log(response.data[0].subscription);
+			})
+			.catch(err => {
+				console.log("error on fetching user");
+			})
+	}
+	
+	// to be implemented
+
+	// async function getDoctors(){
+	// 	await axios(URL + "users/getDoctorUnderEmail",{subscription: currentUser.subscription})
+	// 		.then(response => {
+	// 			setDoctors(response.data);
+	// 		})
+	// 		.catch(err => {
+	// 			console.log("error on fetching doctors");
+	// 		})
+	// }
+
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"my-doctor"} />
 		<Helmet>

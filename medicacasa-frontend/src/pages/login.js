@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -7,9 +7,11 @@ import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/compon
 import AuthService from "./../services/AuthService";
 
 function Login() {
+	const [email, setEmail] = useState(" ");
+	const [password,setPassword] = useState(" ");
 
 	async function handleSubmitLogin(){
-		const response = await AuthService.doUserLogin("Bogdan12@gmail.com","test");
+		const response = await AuthService.doUserLogin(email,password);
 		if(response){
 			console.log("user logged");
 			AuthService.handleLoginSucces("id");
@@ -71,11 +73,11 @@ function Login() {
 								<Text font="--base" margin="0 0 4px 0">
 									Email
 								</Text>
-								<Input width="100%" type="email" name="email" />
+								<Input width="100%" type="email" name="email" onChange={(event) => setEmail(event.target.value) } />
 								<Text font="--base" margin="0 0 4px 0">
 									Password
 								</Text>
-								<Input width="100%" type="password" name="email" />
+								<Input width="100%" type="password" name="password" onChange={(event) => setPassword(event.target.value) }/>
 							</Box>
 						</Formspree>
 					</Box>
