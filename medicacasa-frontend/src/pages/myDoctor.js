@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from "react";
 import theme from "theme";
-import { Theme, Link, Text, Box, Section, Image } from "@quarkly/widgets";
+import { Theme, Link, Text, Box, Section, Image, Hr } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, SocialMedia } from "@quarkly/components";
@@ -17,27 +17,26 @@ export default (() => {
 	// async function test(){
 	// 	try{
     //         // de hardcodat link ul
-    //         const response = await axios.post(URL + "users/addClient", {username:"Bogdan",email:"Bogdan2000@gmail.com",password:"test",role:1011,age:21,subscription:[{email:"Amalia@gmail.com"}]});
+    //         const response = await axios.post(URL + "users/addClient", {username:"Bogdan",email:"Bogdan2000@gmail.com",password:"test",role:1011,age:21,subscription:[{email:"Amalia@gmail.com"},{email:"test@gmail.com"}]});
     //         return response.data;
     //     }catch(err){
     //         console.error("Error", err.response);
     //         return false;
     //     }
 	// }
-	const [currentUser,setCurrentUser] = useState(" ");
+	const [currentUser,setCurrentUser] = useState([{subscription:""}]);
 	const [doctors,setDoctors] = useState([]);
 	const[visible, setVisible] = useState(6);
 
 	useEffect( () =>{
 		getCurentUser();
-        // getDoctors();
     }, [])
 
 	async function getCurentUser(){
 		await axios.get(URL + "users/getUserUnderEmail", { headers: { email:"Bogdan2000@gmail.com" }})
 			.then(response => {
-				setCurrentUser(response.data[0].subscription);
-				console.log(response.data[0].subscription);
+				setCurrentUser(response.data);
+				// console.log(response.data[0].subscription[0]);
 			})
 			.catch(err => {
 				console.log("error on fetching user");
@@ -45,17 +44,73 @@ export default (() => {
 	}
 	
 	// to be implemented
+	
 
-	// async function getDoctors(){
-	// 	await axios(URL + "users/getDoctorUnderEmail",{subscription: currentUser.subscription})
-	// 		.then(response => {
-	// 			setDoctors(response.data);
-	// 		})
-	// 		.catch(err => {
-	// 			console.log("error on fetching doctors");
-	// 		})
-	// }
+	useEffect( () =>{
+		getDoctors();
+	}, [currentUser])
 
+
+	async function getDoctors(){
+		if(currentUser.length == 1){
+			const size = currentUser[0].subscription.length;
+			for(var i=0;i<size; i++){
+				await axios.get(URL + "users/getDoctorUnderEmail",{ headers: {subscription: currentUser[0].subscription[i].email}})
+				.then(response => {
+					setDoctors(doctors=>[...doctors,response.data]);
+				})
+				.catch(err => {
+					console.log("error on fetching doctors");
+				})
+			}
+		}
+
+		
+	}
+	
+	function MapDoc(List){
+		if(!List){List=[];}
+		const Filtered = List.slice(0, visible).map((item) =>
+			<Section padding="80px 0 80px 0" sm-padding="60px 0 60px 0">
+				<Override slot="SectionContent" flex-direction="row" md-flex-wrap="wrap" />
+				<Box
+					width="50%"
+					display="flex"
+					flex-direction="column"
+					justify-content="space-between"
+					md-width="100%"
+					padding="0px 0px 0px 0px"
+					lg-padding="0px 30px 0px 0px"
+					md-padding="0px 0px 0px 0px"
+					md-margin="0px 0px 30px 0px"
+				>
+					<Image max-width="340px" src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image%2052.png?v=2021-08-27T23:20:31.207Z" md-margin="0px 0px 20px 0px" />
+					<Text margin="0px 0px 0px 0px" color="--darkL2" font="--base">
+						
+					</Text>
+				</Box>
+				<Box
+					width="50%"
+					display="flex"
+					flex-direction="column"
+					justify-content="space-between"
+					md-width="100%"
+				>
+					<Text margin="0px 0px 40px 0px" color="--dark" font="--headline2" md-margin="0px 0px 30px 0px">
+						Name : {item[0].username}
+					</Text>
+					<Text margin="0px 0px 40px 0px" color="--darkL2" font="--base">
+						Description :{item[0].doctorFirstDescription}
+					</Text>
+					<Text margin="0px 0px 0px 0px" color="--darkL2" font="--base">
+						Description :{item[0].doctorSecondDescription}
+					</Text>
+				</Box>
+			</Section>
+        );
+        return Filtered;
+	}
+	
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"my-doctor"} />
 		<Helmet>
@@ -123,42 +178,9 @@ export default (() => {
                     
 			</Box>
 		</Section>
-		<Section padding="80px 0 80px 0" sm-padding="60px 0 60px 0">
-			<Override slot="SectionContent" flex-direction="row" md-flex-wrap="wrap" />
-			<Box
-				width="50%"
-				display="flex"
-				flex-direction="column"
-				justify-content="space-between"
-				md-width="100%"
-				padding="0px 0px 0px 0px"
-				lg-padding="0px 30px 0px 0px"
-				md-padding="0px 0px 0px 0px"
-				md-margin="0px 0px 30px 0px"
-			>
-				<Image max-width="340px" src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image%2052.png?v=2021-08-27T23:20:31.207Z" md-margin="0px 0px 20px 0px" />
-				<Text margin="0px 0px 0px 0px" color="--darkL2" font="--base">
-					Curabitur lobortis id lorem
-				</Text>
-			</Box>
-			<Box
-				width="50%"
-				display="flex"
-				flex-direction="column"
-				justify-content="space-between"
-				md-width="100%"
-			>
-				<Text margin="0px 0px 40px 0px" color="--dark" font="--headline2" md-margin="0px 0px 30px 0px">
-					name from database
-				</Text>
-				<Text margin="0px 0px 40px 0px" color="--darkL2" font="--base">
-                    first desc from database
-				</Text>
-				<Text margin="0px 0px 0px 0px" color="--darkL2" font="--base">
-                    second desc from database
-				</Text>
-			</Box>
-		</Section>
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+		{MapDoc(doctors)}
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0">
             <SocialMedia
 				facebook="https://www.facebook.com/bogdi.lazar.5/"
