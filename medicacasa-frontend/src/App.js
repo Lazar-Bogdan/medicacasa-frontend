@@ -20,6 +20,7 @@ import clients from "pages/admin/clientList";
 import forms from "pages/admin/formList";
 import AddReviewAdm from "pages/admin/addReview";
 import AddClient from "pages/admin/addClient";
+import reviewPage from "pages/reviewPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
@@ -47,6 +48,7 @@ export default () => (
             <Route exact path='/doctor' component={doctorHomePage} />
             <Route exact path='/myclients' component={myClient} />
             <Route exact path='/review' component={addReview} />
+            <Route exact path='/reviewpage' component={reviewPage} />
             <Route exact path='/medlist' component={meds} />
             <Route exact path='/addmeds' component={AddMeds} />
             <Route exact path='/adminpage' component={adminMainPage} />

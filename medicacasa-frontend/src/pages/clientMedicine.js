@@ -4,9 +4,7 @@ import { Theme, Link, Text, Box, Section, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, SocialMedia } from "@quarkly/components";
-import axios from "axios";
-
-import URL from "../services/BackEndURL";
+import GetMedicineService from "services/GetMedicineService";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
 export default (() => {
@@ -20,13 +18,11 @@ export default (() => {
     }, [])
 
 	async function getMedicine(){
-		await axios(URL + "meds/getAllMeds")
-			.then(response => {
-				setMedicine(response.data);
-			})
-			.catch(err => {
-				console.log("error on fetching meds");
-			})
+		const response = await GetMedicineService.getAllMedicine();
+		if(response){
+			console.log(response);
+			setMedicine(response);
+		}
 	}
 
 	function MapMeds(List){
