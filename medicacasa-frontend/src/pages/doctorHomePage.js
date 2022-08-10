@@ -39,6 +39,17 @@ export default (() => {
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
                 >Home</Link>
                 <Link
+                    href="/schedule"
+                    display="flex"
+                    justify-content="center"
+                    font="--base"
+                    font-weight="700"
+                    md-flex-direction="column"
+                    md-align-items="center"
+                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+                    
+                >My schedule</Link>
+				<Link
                     href="/myclients"
                     display="flex"
                     justify-content="center"
@@ -49,17 +60,6 @@ export default (() => {
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
                     
                 >My clients</Link>
-                <Link
-                    href="/review"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
-                >Add review</Link>
                 
                 <Link
                     display="flex"

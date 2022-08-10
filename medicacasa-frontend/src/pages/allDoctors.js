@@ -1,32 +1,99 @@
-import React, {useState} from "react";
+import React, {useEffect,useState} from "react";
 import theme from "theme";
-import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/widgets";
+import { Theme, Link,Text, Box, Section, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
-import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/components";
-import AuthService from "./../services/AuthService";
+import { RawHtml, Override, Menu, SocialMedia } from "@quarkly/components";
 
-function Login() {
-	const [email, setEmail] = useState(" ");
-	const [password,setPassword] = useState(" ");
+import DoctorService from "services/DoctorService";
+import { useHistory } from "react-router-dom";
 
-	async function handleSubmitLogin(){
-		const response = await AuthService.doUserLogin(email,password);
-		if(response){
-			console.log("user logged");
-			AuthService.handleLoginSucces("id");
-			// this.props.history.push("/home");
-		}else{
-			alert("please check your credentials");
-		}
+export default (() => {
+    const history = useHistory();
+
+    useEffect( () =>{
+		getDoctors();
+    }, [])
+
+    const[doctors,setDoctors] = useState([]);
+    const[visible, setVisible] = useState(9);
+
+    async function getDoctors(){
+        const response = await DoctorService.getAllDoctors();
+        if(response){
+            setDoctors(response);
+        }
+    }
+
+    function seeDetails(id){
+        history.push('/doctorinformation/'+id);
+    }
+
+    function MapDoctors(List){
+		if(!List){List=[];}
+		const Filtered = List.slice(0, visible).map((item) =>
+            <Box
+                position="relative"
+                display="flex"
+                flex-direction="column"
+                align-items="center"
+                justify-content="flex-start"
+                padding="24px 24px 0px 24px"
+            >
+                <Box
+                    width="100%"
+                    height="auto"
+                    overflow-x="hidden"
+                    overflow-y="hidden"
+                    position="relative"
+                    padding="100% 0px 0px 0px"
+                >
+                <button className="imgButton" height="0px" width="0px" type="submit" onClick={() => seeDetails(item._id)}>
+                    <Image
+                        border-radius="50%"
+                        src={item.img}
+                        object-fit="cover"
+                        position="absolute"
+                        top={0}
+                        left={0}
+                        bottom={0}
+                        right={0}
+                        display="block"
+                        width="100%"
+                        max-height="100%"
+                    />
+                </button>
+                </Box>
+                <Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
+                    <Text
+                        margin="21px 0px 0px 0px"
+                        font="--headline3"
+                        display="block"
+                        text-align="center"
+                        color="--darkL1"
+                    >
+                        {item.username}
+                    </Text>
+                    <Text
+                        margin="16px 0px 26px 0px"
+                        font="--base"
+                        display="block"
+                        text-align="center"
+                        color="--greyD2"
+                    >
+                        {item.doctorFirstDescription}
+                    </Text>
+                </Box>
+            </Box>
+		);
+		return Filtered;
 	}
 
-	return (
-		<Theme theme={theme}>
-		<GlobalQuarklyPageStyles pageUrl={"login"} />
+	return <Theme theme={theme}>
+		<GlobalQuarklyPageStyles pageUrl={"about-us"} />
 		<Helmet>
 			<title>
-				Login
+				About
 			</title>
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
@@ -96,38 +163,20 @@ function Login() {
                 >Login</Link>
 			</Box>
 		</Section>
-		<Section background="--color-light" color="--dark" padding="64px 0 64px 0">
-			<Box margin="-16px -16px -16px -16px" display="flex" flex-wrap="wrap">
-				<Box width="50%" padding="8px 8px 8px 8px" lg-width="100%">
-					<Box>
-						<Formspree endpoint="xeqpgrlv">
-							<Box
-								gap="16px"
-								display="grid"
-								flex-direction="row"
-								flex-wrap="wrap"
-								grid-template-columns="repeat(2, 1fr)"
-								grid-gap="16px"
-							>
-								<Text font="--base" margin="0 0 4px 0">
-									Email
-								</Text>
-								<Input width="100%" type="email" name="email" onChange={(event) => setEmail(event.target.value) } />
-								<Text font="--base" margin="0 0 4px 0">
-									Password
-								</Text>
-								<Input width="100%" type="password" name="password" onChange={(event) => setPassword(event.target.value) }/>
-							</Box>
-						</Formspree>
-					</Box>
-					<Button variant="btn btn-success" type="submit" onClick={() => handleSubmitLogin()}>
-						Login
-					</Button>
-					<p></p>
-					<Link href="/register" color="#000000">
-						Don't you have an account ? Click here...
-					</Link>
-				</Box>
+		<Section padding="80px 0 80px 0">
+			<Box
+				display="grid"
+				lg-flex-wrap="wrap"
+				align-items="stretch"
+				grid-template-columns="repeat(4, 1fr)"
+				grid-gap="16px"
+				lg-grid-template-columns="repeat(2, 1fr)"
+				sm-grid-template-columns="1fr"
+				width="100%"
+			>
+
+            {MapDoctors(doctors)}	
+
 			</Box>
 		</Section>
 		<Section padding="60px 0" sm-padding="40px 0">
@@ -146,14 +195,10 @@ function Login() {
 				/>
 			</SocialMedia>
 		</Section>
-		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<RawHtml>
 			<style place={"endOfHead"} rawKey={"62de926f5e5c6e002154effc"}>
 				{":root {\n  box-sizing: border-box;\n}\n\n* {\n  box-sizing: inherit;\n}"}
 			</style>
 		</RawHtml>
-	</Theme>
-	);
-}
-
-export default Login;
+	</Theme>;
+});

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import theme from "theme";
-import { Theme, Text, Box, Section, Hr, Icon, Image } from "@quarkly/widgets";
+import { Theme, Link, Text, Box, Section, Hr, Icon, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, StackItem, Stack, SocialMedia } from "@quarkly/components";
@@ -65,18 +65,57 @@ export default (() => {
 				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
 					Doctors For You
 				</Text>
-				<Menu
-					display="flex"
-					justify-content="center"
-					font="--base"
-					font-weight="700"
-					md-flex-direction="column"
-					md-align-items="center"
-				>
-					<Override slot="link" text-decoration="none" color="--dark" padding="6px 12px" />
-					<Override slot="link-active" color="--primary" />
-					<Override slot="item" padding="6px" />
-				</Menu>
+				<Link
+                    href="/"
+                    display="flex"
+                    justify-content="center"
+                    font="--base"
+                    font-weight="700"
+                    md-flex-direction="column"
+                    md-align-items="center"
+                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+                >Home</Link>
+                <Link
+                    href="/aboutus"
+                    display="flex"
+                    justify-content="center"
+                    font="--base"
+                    font-weight="700"
+                    md-flex-direction="column"
+                    md-align-items="center"
+                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+                >About us</Link>
+				<Link
+                    href="/alldoctors"
+                    display="flex"
+                    justify-content="center"
+                    font="--base"
+                    font-weight="700"
+                    md-flex-direction="column"
+                    md-align-items="center"
+                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+                >Doctors</Link>
+                <Link
+                    href="/contactus"
+                    display="flex"
+                    justify-content="center"
+                    font="--base"
+                    font-weight="700"
+                    md-flex-direction="column"
+                    md-align-items="center"
+                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+                >Contact us</Link>
+                <Link
+					href="/login"
+                    display="flex"
+                    justify-content="center"
+                    font="--base"
+                    font-weight="700"
+                    md-flex-direction="column"
+                    md-align-items="center"
+                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+                    
+                >Login</Link>
 			</Box>
 		</Section>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
