@@ -1,74 +1,101 @@
 import React, {useEffect,useState} from "react";
 import theme from "theme";
-import { Theme, Link, Text, Box, Section, Image, Structure } from "@quarkly/widgets";
+import { Theme, Link, Text, Box, Section, Image, Structure, Hr } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
 import UserService from "services/UserService";
-import { useHistory } from "react-router-dom";
 
-export default (() => {
-	const history = useHistory();
-
-	function review(){
-		history.push('/reviewpage');
-	}
-
-	const [clients, setClients] = useState([]);
-	const[visible, setVisible] = useState(6);
+export default(()=>{
+	const[client,setClient] = useState([]);
+	const[visible,setVisible] = useState(1);
 	useEffect( () =>{
-		getClients();
-    }, [])
+		getClient();
+	}, [])
 
-	async function getClients(){
-		const response = await UserService.getUserUnderDoctorEmail("bogdan21@gmail.com");
-		if(response){
-			//console.log(response);
-			setClients(response);
-		}
+	async function getClient(){
+		let url = window.location.href;
+        // console.log(url);
+        let first = url.split("/");
+		const response = await UserService.getUsersUnderId(first[4])
+        if(response){
+            setClient(response);
+        }
 	}
 
-	function seeMoreInfo(id){
-		history.push('/clientinfo/'+id);
-	}
-
-	function MapClients(List){
+	function MapClient(List){
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
-			<Structure cells-number-total="3" cells-number-group="3" position="relative">
-				<Override slot="Content" grid-template-columns="repeat(3, 4fr)" sm-grid-template-columns="12fr">
+			<Structure cells-number-total="9" cells-number-group="9">
+				<Override slot="Content" grid-template-columns="repeat(12, 1fr)" sm-grid-template-columns="12fr">
+					<Override slot="Cell 0th" grid-column="1 / span 6" md-grid-column="1 / span 12" sm-grid-column="auto" />
+					<Override slot="Cell 1st" grid-column="7 / span 6" md-grid-column="1 / span 12" sm-grid-column="auto" />
+					<Override
+						slot="Cell 2nd"
+						grid-column="1 / span 3"
+						md-grid-column="1 / span 6"
+						sm-grid-column="auto"
+						position="relative"
+					/>
+					<Override slot="Cell 3rd" grid-column="4 / span 3" md-grid-column="7 / span 6" sm-grid-column="auto" />
+					<Override slot="Cell 4th" grid-column="7 / span 3" md-grid-column="1 / span 6" sm-grid-column="auto" />
+					<Override slot="Cell 5th" grid-column="10 / span 3" md-grid-column="7 / span 6" sm-grid-column="auto" />
+					<Override slot="Cell 6th" grid-column="1 / span 4" sm-grid-column="auto" />
+					<Override slot="Cell 7th" grid-column="5 / span 4" sm-grid-column="auto" />
+					<Override slot="Cell 8th" grid-column="9 / span 4" sm-grid-column="auto" />
 					<Override slot="cell-0">
-						<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" />
+						<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" display="block" position="relative" right="-100px"/>
 					</Override>
 					<Override slot="cell-1">
-						<Text padding="0px 0px 0px 0px" position="relative" right="-100px">
-							{item.username}
-						</Text>
-						<Text
-							margin="0px 0px 0px 0px"
-							position="relative"
-							right="-100px"
-							top="20px"
-							transition="--transformOut"
-						>
-							{item.email}
+						<Text margin="0px 0px 0px 0px" position="relative" top="50px" right="-150px">
+							Name:{item.username}
 						</Text>
 					</Override>
 					<Override slot="cell-2">
-						<Button position="relative" right="-200px" top="40px" onClick={() => seeMoreInfo(item._id)} >
-							More information
-						</Button>
+						<Text margin="0px 0px 0px 0px" position="relative" right="px">
+							Email:{item.email}
+						</Text>
 					</Override>
-					<Override slot="Cell 0th" position="relative" right="-10p" />
+					<Override slot="cell-3">
+						<Text margin="0px 0px 0px 0px" position="relative" right="-40px">
+							Age:{item.age}
+						</Text>
+					</Override>
+					<Override slot="cell-4">
+						<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
+							Height:{item.height}
+						</Text>
+					</Override>
+					<Override slot="cell-5">
+						<Text margin="0px 0px 0px 0px" position="relative" right="-150px">
+							Weight:{item.weight}
+						</Text>
+					</Override>
+					<Override slot="cell-6">
+						<Text margin="0px 0px 0px 0px" position="relative" right="-150px">
+							No. Hearts beat:{item.numberHeart}
+						</Text>
+					</Override>
+					<Override slot="cell-7">
+						<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
+							Phone number:{item.phone}
+						</Text>
+					</Override>
+					<Override slot="cell-8">
+						<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
+							Other diseases: {item.diseases}
+						</Text>
+					</Override>
+																								
 				</Override>
 			</Structure>
-        );
-        return Filtered;
+		);
+		return Filtered;
 	}
 
-	return <Theme theme={theme}>
+    return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"add-review"} />
 		<Helmet>
 			<title>
@@ -134,9 +161,16 @@ export default (() => {
                 >Logout</Link>
 			</Box>
 		</Section>
-		<Section>
-			{MapClients(clients)}
-		</Section>
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+		<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
+			Last update:
+			<p></p>
+		</Text>
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+		{MapClient(client)}
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+			<p></p>
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0">
         <SocialMedia
 				facebook="https://www.facebook.com/bogdi.lazar.5/"

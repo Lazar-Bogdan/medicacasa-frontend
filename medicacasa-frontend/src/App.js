@@ -20,7 +20,7 @@ import clients from "pages/admin/clientList";
 import forms from "pages/admin/formList";
 import AddReviewAdm from "pages/admin/addReview";
 import AddClient from "pages/admin/addClient";
-import reviewPage from "pages/reviewPage";
+import reviewPage from "pages/seeMoreInfo";
 import allDoctors from "pages/allDoctors";
 import doctorInformation from "pages/doctorInformation";
 import mySchedule from "pages/mySchedule";
@@ -51,7 +51,7 @@ export default () => (
             <Route exact path='/doctor' component={doctorHomePage} />
             <Route exact path='/myclients' component={myClient} />
             <Route exact path='/review' component={addReview} />
-            <Route exact path='/reviewpage' component={reviewPage} />
+            <Route exact path='/clientinfo/:id' component={reviewPage} />
             <Route exact path='/medlist' component={meds} />
             <Route exact path='/addmeds' component={AddMeds} />
             <Route exact path='/adminpage' component={adminMainPage} />

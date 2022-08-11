@@ -8,7 +8,6 @@ import { RawHtml, Override, Menu, SocialMedia } from "@quarkly/components";
 import DoctorService from "services/DoctorService";
 
 export default (() => {
-    const params = new URLSearchParams(window.location.search);
     const[doctor,setDoctor] = useState([]);
     const[visible, setVisible] = useState(1);
     useEffect( () =>{

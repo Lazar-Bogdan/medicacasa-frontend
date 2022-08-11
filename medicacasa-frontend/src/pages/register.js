@@ -6,6 +6,10 @@ import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Formspree, SocialMedia } from "@quarkly/components";
 import AuthService from "./../services/AuthService";
 
+import FacebookLogin from 'react-facebook-login';
+
+import GoogleLogin from 'react-google-login';
+
 export default (() => {
 	// form la subscription
 	// [{email:"test"},{email:"test"},{email:"test"}]
@@ -19,6 +23,10 @@ export default (() => {
 		}else{
 			alert("please check your credentials");
 		}
+	}
+
+	const responseGoogle = (response) => {
+		console.log(response);
 	}
 
 	return <Theme theme={theme}>
@@ -75,6 +83,12 @@ export default (() => {
 					<Link href="/login" color="#000000">
 						Already an account? Click here...
 					</Link>
+					<GoogleLogin
+						clientId="201032838761-7a648ieib2j57nidim3bdt1n14bkhj3e.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+						buttonText="LOGIN WITH GOOGLE"
+						onSuccess={responseGoogle}
+						onFailure={responseGoogle}
+					/>
 				</Box>
 			</Box>
 		</Section>
