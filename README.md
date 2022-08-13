@@ -82,3 +82,60 @@ INFO:
         Administrator interface
             - create functionality 
             - !! time to start backend server !!
+
+DATE 04.08.2022
+INFO:
+    Loggin connected with database
+    Register connected with database
+    Tried to show different things on home (Worked)
+    NEXT:
+        - styling
+        - switching pages
+        - page permission
+        - admin page (TO DO)
+        - fullfill database
+        - bugs if found
+        - clint/doctor/adm connection with database + functionality
+        
+DATE 06.08.2022
+INFO:
+    Medicine page of user done
+    mydoctor should be take a look how toget info from that currentUser list
+    NEXT:
+        - styling
+        - switching pages
+        - page permission
+        - admin page (TO DO)
+        - fullfill database
+        - bugs if found
+        - clint/doctor/adm connection with database + functionalit
+
+DATE 08.08.2022:
+    myDoctor page nearly done (maybe more style should be added)
+    solved bug on myDoctor page
+    NEXT:
+        - styling
+        - switching pages
+        - page permission
+        - admin page (TO DO)
+        - fullfill database
+        - bugs if found
+        - clint/doctor/adm connection with database + functionalit
+
+
+admin page - crud to be done - review sa fie scos
+    - add / edit / delete / readt client-doctor done
+    - add / edit / delete / read meds done
+    - add / delete / read form done
+    - read / delete App done
+    next:
+        add App 
+        edit App
+        Solve problem with input
+de adaugat o pagina noua pt doctors - unde apar toti doctori - DONE
+in loc my clients -  sa fie my schedule - DONE
+in loc add review - sa fie clients in care doctorul poate adauga un medicament mai potriv pentru fiecare pacient. - De inlocuic cu baza de date useri + de facut reviewPage - DONE 
+    - de modificat user database sa aiba alti parametri
+sa se poata adauga cu email/facebook etc  - m am uitat, google este app implementat, 
+    de vazut unele chestii, facebook are cv cu public privacy url, vezi ma incolo
+la frontend de schimbat textele alea inutile

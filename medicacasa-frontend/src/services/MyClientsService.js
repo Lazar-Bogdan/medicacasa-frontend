@@ -12,6 +12,26 @@ class MyClientsService{
             return false;
         }
     }
+
+    async getAllApp(){
+        try{
+            const response = await axios.get(URL + "App/getAllApp");
+            return response.data;
+        }catch(err){
+            console.error("Error", err.response);
+            return false;
+        }
+    }
+
+    async deleteApp(id){
+        try{
+            const response = await axios.delete(URL + "App/deleteApp", {headers:{_id:id}});
+            return response.data;
+        }catch(err){
+            console.error("Error", err.response);
+            return false;
+        }
+    }
 }
 
-export default new MyClientsService();
+export default new MyClientsService;

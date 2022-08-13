@@ -41,6 +41,36 @@ class UserService{
             return false;
         }
     }
+
+    async addUser(username,email,password,role,age,img){
+        try{
+            const response = await axios.post(URL + "users/addClient", {username:username, email:email, password:password, role:role, age:age, img:img})
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
+
+    async deleteUser(id){
+        try{
+            const response = await axios.delete(URL + "users/deleteUser", {headers:{_id:id}});
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
+
+    async editUser(id,username,email,password,role,age,img){
+        try{
+            const response = await axios.put(URL + "users/updateUser", {_id:id,username:username,email:email,password:password,role:role,age:age,img:img})
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
 }
 
 export default new UserService

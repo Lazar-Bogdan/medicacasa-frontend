@@ -47,7 +47,7 @@ export default (() => {
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
                 >Meds</Link>
                 <Link
-                    href="/reviews"
+                    href="/appointments"
                     display="flex"
                     justify-content="center"
                     font="--base"
@@ -55,7 +55,7 @@ export default (() => {
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >Reviews</Link>
+                >Appointments</Link>
                 <Link
                     href="/forms"
                     display="flex"

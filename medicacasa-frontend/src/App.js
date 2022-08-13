@@ -15,15 +15,20 @@ import addReview from "pages/addReview";
 import meds from "pages/admin/medList";
 import AddMeds from "pages/admin/addMeds";
 import adminMainPage from "pages/admin/adminMainPage";
-import reviews from "pages/admin/reviewList";
 import clients from "pages/admin/clientList";
 import forms from "pages/admin/formList";
-import AddReviewAdm from "pages/admin/addReview";
 import AddClient from "pages/admin/addClient";
 import reviewPage from "pages/seeMoreInfo";
 import allDoctors from "pages/allDoctors";
 import doctorInformation from "pages/doctorInformation";
 import mySchedule from "pages/mySchedule";
+import addDoctor from "pages/admin/addDoctor";
+import editClient from "pages/admin/editClient";
+import editDoctor from "pages/admin/editDoctor";
+import editMeds from "pages/admin/editMeds";
+import AppointmentsList from "pages/admin/AppointmentsList";
+import editAppointment from "pages/admin/editAppointment";
+import addAppointment from "pages/admin/addAppointment";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
@@ -55,12 +60,17 @@ export default () => (
             <Route exact path='/medlist' component={meds} />
             <Route exact path='/addmeds' component={AddMeds} />
             <Route exact path='/adminpage' component={adminMainPage} />
-            <Route exact path='/reviews' component={reviews} />
             <Route exact path='/clientlist' component={clients} />
             <Route exact path='/forms' component={forms} />
-            <Route exact path='/addreviewadm' component={AddReviewAdm} />
-            <Route exact path='/addclient' component={AddClient} />
+            <Route exact path='/addnewclient' component={AddClient} />
+            <Route exact path='/addnewdoctor' component={addDoctor} />
+            <Route exact path='/editclient/:id' component={editClient} />
+            <Route exact path='/editdoctor/:id' component={editDoctor} />
+            <Route exact path='/editmeds/:id' component={editMeds} />
             <Route exact path='/alldoctors' component={allDoctors} />
+            <Route exact path='/appointments' component={AppointmentsList} />
+            <Route exact path='/addappointments' component={addAppointment} />
+            <Route exact path='/editappointments/:id' component={AppointmentsList} />
             <Route exact path='/doctorinformation/:id' component={doctorInformation} />
             <Route exact path='/schedule' component={mySchedule} />
 			<Route component={Page404}/>

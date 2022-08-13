@@ -6,9 +6,9 @@ import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
-import UserService from "services/UserService";
 import { useHistory } from "react-router-dom";
 
+import Dropdown from "./DropDown";
 
 export default (() => {
   const history = useHistory();
@@ -19,41 +19,17 @@ export default (() => {
   const[age,setAge]=useState(" ");
   const[img,setImg]=useState(" ");
 
-  async function handleAddClient(){
-    const response = await UserService.addUser(username,email,Password,Role,age,img);
-    if(response){
-      alert("user created");
-      history.push('/clientlist');
-    }else{
-      alert("check credentials");
+  const options = [
+    {
+        value:"Monday",
+        label:"Monday"      
     }
+  ];
+
+  async function handleAddClient(){
+
   }
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    switch (name) {
-      case 'username':
-        setUsername(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      case 'role':
-        setRole(value);
-        break;
-      case 'age':
-        setAge(value);
-        break;
-      case 'img':
-        setImg(value);
-        break;
-      default:
-        console.log("not set");
-    }
-  };
 
   return  <Theme theme={theme}>
   <GlobalQuarklyPageStyles pageUrl={"index"} />
@@ -131,43 +107,33 @@ export default (() => {
     <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
     <Section>
         <Box
-          display="flex"
-          padding="12px 0"
-          justify-content="space-between"
-          align-items="center"
-          flex-direction="row"
-          md-flex-direction="column"
+        display="flex"
+        padding="12px 0"
+        justify-content="space-between"
+        align-items="center"
+        flex-direction="row"
+        md-flex-direction="column"
         >
-              <Link
-                  href="/clientlist"
-                  display="flex"
-                  justify-content="center"
-                  font="--base"
-                  font-weight="700"
-                  md-flex-direction="column"
-                  md-align-items="center"
-                  slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-              >All type Users</Link>
-              <Link
-                  href="/addnewclient"
-                  display="flex"
-                  justify-content="center"
-                  font="--base"
-                  font-weight="700"
-                  md-flex-direction="column"
-                  md-align-items="center"
-                  slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-              >Add new Client</Link>
-              <Link
-                  href="/addnewdoctor"
-                  display="flex"
-                  justify-content="center"
-                  font="--base"
-                  font-weight="700"
-                  md-flex-direction="column"
-                  md-align-items="center"
-                  slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-              >Add new Doctor</Link>
+            <Link
+                href="/appointments"
+                display="flex"
+                justify-content="center"
+                font="--base"
+                font-weight="700"
+                md-flex-direction="column"
+                md-align-items="center"
+                slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+            >All Appointments</Link>
+            <Link
+                href="/addnewclient"
+                display="flex"
+                justify-content="center"
+                font="--base"
+                font-weight="700"
+                md-flex-direction="column"
+                md-align-items="center"
+                slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+            >Add new Appointment</Link>
         </Box>
     </Section>
     <Structure cells-number-total="1" cells-number-group="3">
@@ -193,8 +159,8 @@ export default (() => {
             right="-100px"
             placeholder='Name'
             name="username"
-            onChange={handleInputChange}
-          />
+
+            />
           <Input
             display="block"
             placeholder-color="LightGray"
@@ -206,63 +172,15 @@ export default (() => {
             value={email}
             onChange={(event) => setEmail(event.target.value) }
           />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="15px"
-            onChange={(event) => setPassword(event.target.value) }
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="20px"
-            type="number"
-            onChange={(event) => setRole(event.target.value) }
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="25px"
-            onChange={(event) => setAge(event.target.value) }
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="25px"
-            onChange={(event) => setImg(event.target.value) }
-          />
-          <Text margin="0px 0px 0px 0px" position="relative" top="-230px">
-            Username:
+         <Dropdown placeHolder="Select..." top="-50px" options={options}/>
+          <Text margin="0px 0px 0px 0px" position="relative" top="-70px">
+            Doctor Email:
           </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-207px">
-            Email:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-184px">
-            Password:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-162px">
-            Role:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-142px">
-            Age:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-125px">
-            Img URL:
+          <Text margin="0px 0px 0px 0px" position="relative" top="-45px">
+            Client Email:
           </Text>
           <Button position="relative" top="-210px" top="-225px" right="-500px" onClick={() => handleAddClient()}>
-            Add client
+            Add Appointment
           </Button>
         </Override>
                                     

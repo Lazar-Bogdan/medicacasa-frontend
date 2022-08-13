@@ -6,82 +6,86 @@ import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
-import GetMedicineService from "services/GetMedicineService";
+import MyClientsService from "services/MyClientsService";
+
 import { useHistory } from "react-router-dom";
+
 
 export default (() => {
   const history = useHistory();
   useEffect( () => {
-    getMeds();
+    getApps();
   },[]);
 
-  const[visible, setVisible] = useState(6);
-  const[meds,setMeds]=useState([]);
+  const[visible, setVisible] = useState(10);
+  const[apps,setApp] = useState([]);
 
-  async function getMeds(){
-    const response = await GetMedicineService.getAllMedicine();
+  async function getApps(){
+    const response = await MyClientsService.getAllApp();
     if(response){
-      setMeds(response);
+        setApp(response);
     }
   }
 
-  async function deleteMeds(id){
-    console.log(id);
-    const response = await GetMedicineService.deleteMeds(id);
+  async function handleEdit(id){
+    
+  }
+
+  async function handleRemove(id){
+    const response = await MyClientsService.deleteApp(id);
     if(response){
-      alert("meds deleted");
-      history.push('/adminpage');
+        alert("Appointment deleted");
+        history.push('/adminpage');
     }
   }
 
-  async function editMeds(id){
-    if(id){
-      history.push('/editmeds/'+id);
-    }
-  }
 
-  function MapMeds(List){
+  function MapApp(List){
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
-      <Structure cells-number-total="3" cells-number-group="3">
-          <Override slot="Content" grid-template-columns="9fr 3fr" md-grid-template-columns="repeat(6, 2fr)" sm-grid-template-columns="12fr">
-            <Override
-              slot="Cell 0th"
-              grid-column="1 / auto"
-              grid-row="auto / span 2"
-              md-grid-column="1 / span 6"
-              md-grid-row="span"
-              sm-grid-column="auto"
-              sm-grid-row="span"
-              position="relative"
-            />
-            <Override slot="Cell 1st" md-grid-column="1 / span 3" sm-grid-column="auto" />
-            <Override slot="Cell 2nd" md-grid-column="4 / span 3" sm-grid-column="auto" />
-            <Override slot="cell-0">
-              <Image src={item.img} display="block" position="relative" top="30px" margin="0px 0px 2px 0px" height="150px" width="150px" />
-              <Text margin="0px 0px 0px 0px" position="relative" right="-230px" top="-100px">
-                Name:{item.name}
-              </Text>
-              <Text margin="0px 0px 0px 0px" position="relative" right="-600px" top="-120px">
-                Price:{item.price}$
-              </Text>
-              <Text margin="0px 0px 0px 0px" position="relative" right="-230px" top="-30px">
-                Description:{item.description}
-              </Text>
-            </Override>
-            <Override slot="cell-1">
-              <Button position="relative" right="-90px" top="30px" onClick={() => editMeds(item._id)}>
-                Edit
-              </Button>
-            </Override>
-            <Override slot="cell-2">
-              <Button position="relative" right="-90px" onClick={() => deleteMeds(item._id)}>
-                Remove
-              </Button>
-            </Override>
-                                        
-          </Override>
-        </Structure>
+            <Structure cells-number-total="3" cells-number-group="3">
+                <Override slot="Content" grid-template-columns="9fr 3fr" md-grid-template-columns="repeat(6, 2fr)" sm-grid-template-columns="12fr">
+                <Override
+                    slot="Cell 0th"
+                    grid-column="1 / auto"
+                    grid-row="auto / span 2"
+                    md-grid-column="1 / span 6"
+                    md-grid-row="span"
+                    sm-grid-column="auto"
+                    sm-grid-row="span"
+                    position="relative"
+                />
+                <Override slot="Cell 1st" md-grid-column="1 / span 3" sm-grid-column="auto" />
+                <Override slot="Cell 2nd" md-grid-column="4 / span 3" sm-grid-column="auto" />
+                <Override slot="cell-0">
+                    <Text margin="0px 0px 0px 0px" position="relative" >
+                    Doctor Email : {item.doctoremail}
+                    </Text>
+                    <Text margin="0px 0px 0px 0px" position="relative" >
+                    Client Email : {item.clients}
+                    </Text>
+                    <Text margin="0px 0px 0px 0px" position="relative" >
+                    Day : {item.day}
+                    </Text>
+                    <Text margin="0px 0px 0px 0px" position="relative" >
+                    Hour : {item.hour}
+                    </Text>
+                </Override>
+                <Override slot="cell-1">
+                    <Button position="relative" right="40px" top="10px" onClick={() => handleEdit(item._id,item.role)}>
+                        Edit
+                    </Button>
+                </Override>
+                <Override slot="cell-2">
+                    <Button position="relative" right="40px" onClick={() => handleRemove(item._id)}>
+                    Remove
+                    </Button>
+                </Override>
+                <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+                        
+                </Override>
+            
+             </Structure>
       );
       return Filtered;
   }
@@ -171,7 +175,7 @@ export default (() => {
             md-flex-direction="column"
           >
                 <Link
-                    href="/medlist"
+                    href="/appointments"
                     display="flex"
                     justify-content="center"
                     font="--base"
@@ -179,9 +183,9 @@ export default (() => {
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >All Meds</Link>
+                >All Appointments</Link>
                 <Link
-                    href="/addmeds"
+                    href="/addappointments"
                     display="flex"
                     justify-content="center"
                     font="--base"
@@ -189,9 +193,13 @@ export default (() => {
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >Add new meds</Link>
+                >Add new Appointment</Link>
           </Box>
       </Section>  
-      {MapMeds(meds)}
+      <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+      <Section>
+
+        {MapApp(apps)}
+      </Section>
     </Theme>
 });

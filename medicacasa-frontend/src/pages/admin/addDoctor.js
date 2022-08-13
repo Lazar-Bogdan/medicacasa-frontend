@@ -6,9 +6,8 @@ import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
-import UserService from "services/UserService";
 import { useHistory } from "react-router-dom";
-
+import DoctorService from "services/DoctorService";
 
 export default (() => {
   const history = useHistory();
@@ -20,9 +19,9 @@ export default (() => {
   const[img,setImg]=useState(" ");
 
   async function handleAddClient(){
-    const response = await UserService.addUser(username,email,Password,Role,age,img);
+    const response = await DoctorService.addDoctor(username,email,Password,Role,age,img);
     if(response){
-      alert("user created");
+      alert("doctor created");
       history.push('/clientlist');
     }else{
       alert("check credentials");
@@ -262,7 +261,7 @@ export default (() => {
             Img URL:
           </Text>
           <Button position="relative" top="-210px" top="-225px" right="-500px" onClick={() => handleAddClient()}>
-            Add client
+            Add Doctor
           </Button>
         </Override>
                                     
