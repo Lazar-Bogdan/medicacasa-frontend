@@ -14,7 +14,7 @@ export default (() => {
   const[username,setUsername]=useState(false);
   const[email,setEmail]=useState(" ");
   const[Password,setPassword]=useState(" ");
-  const[Role,setRole]=useState(" ");
+  const[Role,setRole]=useState(2011);
   const[age,setAge]=useState(" ");
   const[img,setImg]=useState(" ");
 
@@ -202,7 +202,7 @@ export default (() => {
             right="-100px"
             top="10px"
             name="email"
-            value={email}
+            placeholder='Email'
             onChange={(event) => setEmail(event.target.value) }
           />
           <Input
@@ -212,6 +212,8 @@ export default (() => {
             position="relative"
             right="-100px"
             top="15px"
+            placeholder='Password'
+            type="password"
             onChange={(event) => setPassword(event.target.value) }
           />
           <Input
@@ -222,7 +224,8 @@ export default (() => {
             right="-100px"
             top="20px"
             type="number"
-            onChange={(event) => setRole(event.target.value) }
+            placeholder='Role'
+            value="2011"
           />
           <Input
             display="block"
@@ -231,6 +234,7 @@ export default (() => {
             position="relative"
             right="-100px"
             top="25px"
+            placeholder='Age'
             onChange={(event) => setAge(event.target.value) }
           />
           <Input
@@ -240,6 +244,7 @@ export default (() => {
             position="relative"
             right="-100px"
             top="25px"
+            placeholder='Img URL'
             onChange={(event) => setImg(event.target.value) }
           />
           <Text margin="0px 0px 0px 0px" position="relative" top="-230px">

@@ -168,6 +168,7 @@ export default (() => {
             top="10px"
             name="price"
             type="number"
+            placeholder='Price'
             onChange={(event) => setPrice(event.target.value) }
           />
           <Input
@@ -177,6 +178,7 @@ export default (() => {
             position="relative"
             right="-100px"
             top="15px"
+            placeholder='Description'
             onChange={(event) => setDescription(event.target.value) }
           />
           <Input
@@ -186,6 +188,7 @@ export default (() => {
             position="relative"
             right="-100px"
             top="20px"
+            placeholder='Img URL'
             onChange={(event) => setImg(event.target.value) }
           />
          

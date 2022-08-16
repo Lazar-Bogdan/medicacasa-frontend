@@ -27,7 +27,6 @@ import editClient from "pages/admin/editClient";
 import editDoctor from "pages/admin/editDoctor";
 import editMeds from "pages/admin/editMeds";
 import AppointmentsList from "pages/admin/AppointmentsList";
-import editAppointment from "pages/admin/editAppointment";
 import addAppointment from "pages/admin/addAppointment";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
@@ -70,7 +69,6 @@ export default () => (
             <Route exact path='/alldoctors' component={allDoctors} />
             <Route exact path='/appointments' component={AppointmentsList} />
             <Route exact path='/addappointments' component={addAppointment} />
-            <Route exact path='/editappointments/:id' component={AppointmentsList} />
             <Route exact path='/doctorinformation/:id' component={doctorInformation} />
             <Route exact path='/schedule' component={mySchedule} />
 			<Route component={Page404}/>

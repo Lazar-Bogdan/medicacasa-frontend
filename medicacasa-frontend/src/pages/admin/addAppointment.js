@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect,useState,useRef} from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section,Structure,Image, Hr, Input } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -6,30 +6,141 @@ import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
+import MyClientsService from "services/MyClientsService";
+
 import { useHistory } from "react-router-dom";
 
-import Dropdown from "./DropDown";
-
 export default (() => {
+  const [valueDay, setValueDay] = React.useState('Monday');
+  const [valueHour,setValueHour] = useState('');
   const history = useHistory();
-  const[username,setUsername]=useState(false);
-  const[email,setEmail]=useState(" ");
-  const[Password,setPassword]=useState(" ");
-  const[Role,setRole]=useState(" ");
-  const[age,setAge]=useState(" ");
-  const[img,setImg]=useState(" ");
+  const[doctoremail,setDoctorEmail]=useState();
+  const[clientEmail,setClientEmail]=useState();
+  const[AppList,setAppList]=useState([]);
 
-  const options = [
+  const app = [
     {
-        value:"Monday",
-        label:"Monday"      
+      "hour":"9:00-9:30",
+      "value":0
+    },
+    {
+      "hour":"9:30-10:00",
+      "value":0
+    },
+    {
+      "hour":"10:00-10:30",
+      "value":0
+    },
+    {
+      "hour":"10:30-11:00",
+      "value":0
+    },
+    {
+      "hour":"11:00-11:30",
+      "value":0
+    },
+    {
+      "hour":"11:30-12:00",
+      "value":0
+    },
+    {
+      "hour":"12:00-12:30",
+      "value":0
+    },
+    {
+      "hour":"12:30-13:00",
+      "value":0
+    },
+    {
+      "hour":"13:00-13:30",
+      "value":0
+    },
+    {
+      "hour":"13:30-14:00",
+      "value":0
+    },
+    {
+      "hour":"14:00-14:30",
+      "value":0
+    },
+    {
+      "hour":"14:30-15:00",
+      "value":0
+    },
+    {
+      "hour":"15:00-15:30",
+      "value":0
+    },
+    {
+      "hour":"15:30-16:00",
+      "value":0
+    },
+    {
+      "hour":"16:00-16:30",
+      "value":0
     }
-  ];
+  ]
 
-  async function handleAddClient(){
-
+  async function getAppUnderDoctor(doctoremail){
+    const response = await MyClientsService.getMyClientsUnderDoctorEmail(doctoremail);
+    if(response){
+      //console.log(response);
+      setAppList(response);
+    }
   }
 
+  async function handleAddClient(){
+    const response = await MyClientsService.addApp(doctoremail,clientEmail,valueDay,valueHour);
+    if(response){
+      alert("App added!");
+      history.push('/adminpage');
+    }
+  }
+
+  const ref = useRef(null);
+
+  function handleSeach(){
+      getAppUnderDoctor(doctoremail)
+  }
+
+  function handleChange(event){
+    setValueDay(event.target.value);
+  }
+  
+  function handleChangeHour(event){
+    setValueHour(event.target.value);
+  }
+
+  const handleChangeDoctorEmail = () =>{
+    setDoctorEmail(ref.target.value);
+  }
+
+  function handleChangeClientEmail(event){
+    setClientEmail(event.target.value);
+  }
+
+  const[visible, setVisible] = useState(20);
+  function Time(List){
+		if(!List){List=[];}
+    for (var i=0; i < AppList.length; i++) {
+      for(var y = 0; y<app.length; y++){
+        // console.log("app : " + app[y].hour + " AppList : " + AppList[i].hour + " ValueDay " + valueDay);
+        // console.log(app[y].hour == AppList[i].hour);
+        if(app[y].hour === AppList[i].hour && valueDay === AppList[i].day){
+          // console.log("aici");
+          app[y].value = 1;
+        }
+      }
+    } 
+		const Filtered = app.slice(0, visible).map((item) =>
+            { 
+                if(item.value != 1){
+                  return <option value={item.hour}>{item.hour}</option>
+                }
+            }
+      );
+      return Filtered;
+  }
 
   return  <Theme theme={theme}>
   <GlobalQuarklyPageStyles pageUrl={"index"} />
@@ -157,9 +268,11 @@ export default (() => {
             background="white"
             position="relative"
             right="-100px"
-            placeholder='Name'
+            placeholder='Doctor Email'
             name="username"
-
+            ref={ref}
+            value={doctoremail  }
+            onChange={(event)=> setDoctorEmail(event.target.value)}
             />
           <Input
             display="block"
@@ -167,19 +280,38 @@ export default (() => {
             background="white"
             position="relative"
             right="-100px"
-            top="10px"
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value) }
+            top="35px"
+            placeholder='Client Email'
+            onChange={handleChangeClientEmail}
           />
-         <Dropdown placeHolder="Select..." top="-50px" options={options}/>
           <Text margin="0px 0px 0px 0px" position="relative" top="-70px">
             Doctor Email:
           </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-45px">
+          <Button position="relative" right="-330px" top="-105px"onClick={() => handleSeach()}>
+            Search
+          </Button>
+          <Text margin="0px 0px 0px 0px" position="relative" top="-60px">
             Client Email:
           </Text>
-          <Button position="relative" top="-210px" top="-225px" right="-500px" onClick={() => handleAddClient()}>
+          <label>
+            Day:
+            <select value={valueDay} onChange={handleChange}>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+            </select>
+          </label>
+          <p></p>
+          <label>
+          Hour:
+            <select value={valueHour} onChange={handleChangeHour}>
+              <option></option>
+              {Time(AppList)}
+            </select>
+          </label>
+          <Button position="relative" top="50px"onClick={() => handleAddClient()}>
             Add Appointment
           </Button>
         </Override>

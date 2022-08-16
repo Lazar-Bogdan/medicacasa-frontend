@@ -27,10 +27,6 @@ export default (() => {
     }
   }
 
-  async function handleEdit(id){
-    
-  }
-
   async function handleRemove(id){
     const response = await MyClientsService.deleteApp(id);
     if(response){
@@ -70,11 +66,6 @@ export default (() => {
                     <Text margin="0px 0px 0px 0px" position="relative" >
                     Hour : {item.hour}
                     </Text>
-                </Override>
-                <Override slot="cell-1">
-                    <Button position="relative" right="40px" top="10px" onClick={() => handleEdit(item._id,item.role)}>
-                        Edit
-                    </Button>
                 </Override>
                 <Override slot="cell-2">
                     <Button position="relative" right="40px" onClick={() => handleRemove(item._id)}>

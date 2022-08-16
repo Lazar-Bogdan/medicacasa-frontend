@@ -127,15 +127,13 @@ admin page - crud to be done - review sa fie scos
     - add / edit / delete / readt client-doctor done
     - add / edit / delete / read meds done
     - add / delete / read form done
-    - read / delete App done
+    - add / read / delete App done
     next:
-        add App 
-        edit App
         Solve problem with input
 de adaugat o pagina noua pt doctors - unde apar toti doctori - DONE
 in loc my clients -  sa fie my schedule - DONE
 in loc add review - sa fie clients in care doctorul poate adauga un medicament mai potriv pentru fiecare pacient. - De inlocuic cu baza de date useri + de facut reviewPage - DONE 
     - de modificat user database sa aiba alti parametri
 sa se poata adauga cu email/facebook etc  - m am uitat, google este app implementat, 
-    de vazut unele chestii, facebook are cv cu public privacy url, vezi ma incolo
+    - de vazut unele chestii, facebook are cv cu public privacy url, vezi ma incolo
 la frontend de schimbat textele alea inutile

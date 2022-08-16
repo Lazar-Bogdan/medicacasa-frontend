@@ -32,6 +32,16 @@ class MyClientsService{
             return false;
         }
     }
+
+    async addApp(doctoremail,clients,day,hour){
+        try{
+            const response = await axios.post(URL + "App/addApp", {doctoremail:doctoremail,clients:clients,day:day,hour:hour})
+            return response.data;
+        }catch(err){
+            console.error("Error", err.response);
+            return false;
+        }
+    }
 }
 
 export default new MyClientsService;
