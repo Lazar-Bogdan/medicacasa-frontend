@@ -109,7 +109,7 @@ export default (() => {
 					color="--darkL2"
 					lg-width="100%"
 				>
-					echipa noastra, ar fii fain sa luam din baza de date poate? Sa fie cei care sunt administratori sau ceva de genu
+					echipa administrativa
 				</Text>
 			</Box>
 			<Box

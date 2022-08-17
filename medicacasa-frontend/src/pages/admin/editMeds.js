@@ -106,19 +106,19 @@ export default (() => {
                     value={item.img}
                     onChange={(event) => setImg(event.target.value) }
                 />
-                <Text margin="0px 0px 0px 0px" position="relative" top="-230px">
+                <Text margin="0px 0px 0px 0px" position="relative" top="-145px">
                     Name:
                 </Text>
-                <Text margin="0px 0px 0px 0px" position="relative" top="-207px">
+                <Text margin="0px 0px 0px 0px" position="relative" top="-125px">
                     Price:
                 </Text>
-                <Text margin="0px 0px 0px 0px" position="relative" top="-184px">
+                <Text margin="0px 0px 0px 0px" position="relative" top="-100px">
                     Description :
                 </Text>
-                <Text margin="0px 0px 0px 0px" position="relative" top="-162px">
+                <Text margin="0px 0px 0px 0px" position="relative" top="-80px">
                     Img URL:
                 </Text>
-                <Button position="relative" top="-210px" top="-225px" right="-500px" onClick={() => handleEditClient(item._id)}>
+                <Button position="relative" top="-210px" top="-120px" right="-500px" onClick={() => handleEditClient(item._id)}>
                     Edit client
                 </Button>
                 </Override>
