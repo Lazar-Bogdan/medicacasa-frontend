@@ -7,8 +7,26 @@ import { RawHtml, Override, Menu, StackItem, Stack, SocialMedia } from "@quarkly
 import { MdArrowDownward } from "react-icons/md";
 import product_card from "./product_data.js"
 
+import AuthService from "services/AuthService";
+import { useHistory } from "react-router-dom";
+
 export default (() => {
 	// to do remove this, was a test
+
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+
 	const[visible, setVisible] = useState(4);
     const showMoreItems = () => {
         setVisible((prevValue) => prevValue + 3);

@@ -8,12 +8,28 @@ import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 import ContactUsService from "./../services/ContactUsService";
+import AuthService from "services/AuthService";
+import { useHistory } from "react-router-dom";
 
 export default (() => {
 
 	const [name, setName] = useState(" ");
 	const [email, setEmail] = useState(" ");
 	const [message, setMessage] = useState(" ");
+
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
 
 	async function handleSubmitForm(){
 		const response = await ContactUsService.submitForm(name,email,message);

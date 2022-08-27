@@ -7,8 +7,23 @@ import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
 import UserService from "services/UserService";
+import { useHistory } from "react-router-dom";
+import AuthService from "./../services/AuthService";
 
 export default(()=>{
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+	if(!AuthService.handleGetLoginStatus()){
+		history.push("/");
+	}
+
 	const[client,setClient] = useState([]);
 	const[visible,setVisible] = useState(1);
 	useEffect( () =>{
@@ -157,7 +172,7 @@ export default(()=>{
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
+                    href="/logout"
                 >Logout</Link>
 			</Box>
 		</Section>

@@ -28,8 +28,11 @@ import editDoctor from "pages/admin/editDoctor";
 import editMeds from "pages/admin/editMeds";
 import AppointmentsList from "pages/admin/AppointmentsList";
 import addAppointment from "pages/admin/addAppointment";
+import logout from "pages/logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
+
+import CookieService from "./services/CookieService";
 
 const GlobalStyles = createGlobalStyle`
     body {
@@ -38,6 +41,8 @@ const GlobalStyles = createGlobalStyle`
         font-family: sans-serif;
     }
 `;
+
+//CookieService.set("login",false);
 
 export default () => (
     <Router history={history}>
@@ -54,7 +59,6 @@ export default () => (
             <Route exact path='/mydoctor' component={myDoctor} />
             <Route exact path='/doctor' component={doctorHomePage} />
             <Route exact path='/myclients' component={myClient} />
-            <Route exact path='/review' component={addReview} />
             <Route exact path='/clientinfo/:id' component={reviewPage} />
             <Route exact path='/medlist' component={meds} />
             <Route exact path='/addmeds' component={AddMeds} />
@@ -71,6 +75,7 @@ export default () => (
             <Route exact path='/addappointments' component={addAppointment} />
             <Route exact path='/doctorinformation/:id' component={doctorInformation} />
             <Route exact path='/schedule' component={mySchedule} />
+            <Route exact path="/logout" component={logout} />
 			<Route component={Page404}/>
         </Switch>
     </Router>

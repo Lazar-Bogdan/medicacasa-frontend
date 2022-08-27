@@ -5,7 +5,27 @@ import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Theme, Link, Text, Box, Section, Hr, Icon, Image } from "@quarkly/widgets";
 import { RawHtml, Override, StackItem, Stack, SocialMedia } from "@quarkly/components";
 import { MdArrowDownward } from "react-icons/md";
+
+
+import AuthService from "services/AuthService";
+import { useHistory } from "react-router-dom";
+
+
 export default (() => {
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+
+	if(!AuthService.handleGetLoginStatus()){
+		history.push("/");
+	}
+
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"index"} />
 		<Helmet>
@@ -61,6 +81,7 @@ export default (() => {
                 >My Doctor</Link>
                 
                 <Link
+					href="/logout"
                     display="flex"
                     justify-content="center"
                     font="--base"

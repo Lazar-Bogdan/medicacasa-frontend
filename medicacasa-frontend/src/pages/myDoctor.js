@@ -8,8 +8,22 @@ import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import URL from "../services/BackEndURL";
 import axios from "axios";
 import { List } from "@quarkly/widgets/build/cjs/prod";
+import { useHistory } from "react-router-dom";
+import AuthService from "./../services/AuthService";
 
 export default (() => {
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+	if(!AuthService.handleGetLoginStatus()){
+		history.push("/");
+	}
 	
 	// useEffect( () =>{
     //     test();
@@ -173,7 +187,7 @@ export default (() => {
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
+                    href="/logout"
                 >Logout</Link>
                     
 			</Box>

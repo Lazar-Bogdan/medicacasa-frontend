@@ -5,17 +5,43 @@ import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/components";
 import AuthService from "./../services/AuthService";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+
 	const [email, setEmail] = useState(" ");
 	const [password,setPassword] = useState(" ");
 
 	async function handleSubmitLogin(){
-		const response = await AuthService.doUserLogin(email,password);
+		let response = await AuthService.doUserLogin(email,password);
+		if(!response){
+			response = await AuthService.doDoctorLogin(email,password);
+		}
 		if(response){
-			console.log("user logged");
-			AuthService.handleLoginSucces("id");
+			AuthService.handleLoginSucces(response._id,response.role);
 			// this.props.history.push("/home");
+			if(response.role == 1011){
+				history.push("/client");
+			}
+			if(response.role == 2011){
+				history.push("/doctor")
+			}
+			if(response.role == 3011){
+				history.push("/adminpage")
+			}
 		}else{
 			alert("please check your credentials");
 		}

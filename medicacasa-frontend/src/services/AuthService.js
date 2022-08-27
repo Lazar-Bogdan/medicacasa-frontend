@@ -9,15 +9,42 @@ class AuthService {
             const response = await axios.post(URL + "auth/login", {email: email, password:password});
             return response.data;
         }catch(err){
-            console.error("Error", err.response);
+            //console.error("Error", err.response);
             return false;
         }
     }
 
-    handleLoginSucces(id){
+    async doDoctorLogin(email,password){
+        try{
+            const response = await axios.post(URL + "auth/doctorLogin", {email: email, password:password});
+            return response.data;
+        }catch(err){
+            //console.error("Error", err.response);
+            return false;
+        }
+    }
+
+    handleLoginSucces(id,role){
         const options = {path :"/"};
         CookieService.set("id", id,options);
+        CookieService.set("login",true,options);
+        CookieService.set("role",role,options);
         return true;
+    }
+
+
+    handleGetLoginStatus(){
+        return CookieService.get("login");
+    }
+
+    handleGetRole(){
+        return CookieService.get("role");
+    }
+
+    handleLogOut(){
+        CookieService.remove("id");
+        CookieService.remove("role");
+        CookieService.set("login",false);
     }
 
     async registerUser(username,email,password,role){

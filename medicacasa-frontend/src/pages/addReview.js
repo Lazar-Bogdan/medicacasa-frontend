@@ -137,6 +137,7 @@ export default (() => {
                 >Add review</Link>
                 
                 <Link
+					href="/logout"
                     display="flex"
                     justify-content="center"
                     font="--base"

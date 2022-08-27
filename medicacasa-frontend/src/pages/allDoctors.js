@@ -7,10 +7,23 @@ import { RawHtml, Override, Menu, SocialMedia } from "@quarkly/components";
 
 import DoctorService from "services/DoctorService";
 import { useHistory } from "react-router-dom";
+import AuthService from "services/AuthService";
 
 export default (() => {
     const history = useHistory();
 
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+    
     useEffect( () =>{
 		getDoctors();
     }, [])

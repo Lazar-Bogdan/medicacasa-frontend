@@ -133,7 +133,28 @@ admin page - crud to be done - review sa fie scos
 de adaugat o pagina noua pt doctors - unde apar toti doctori - DONE
 in loc my clients -  sa fie my schedule - DONE
 in loc add review - sa fie clients in care doctorul poate adauga un medicament mai potriv pentru fiecare pacient. - De inlocuic cu baza de date useri + de facut reviewPage - DONE 
-    - de modificat user database sa aiba alti parametri
+    - de modificat user database sa aiba alti parametri - DONE
 sa se poata adauga cu email/facebook etc  - m am uitat, google este app implementat, 
-    - de vazut unele chestii, facebook are cv cu public privacy url, vezi ma incolo
+    - google done, primesc inapoi google profile-ul - de intrebat cum as putea totusi sa l inregistrez, fara parola ? sa i dau register doar cu email + parola dupa ce google 
+        trimite inapoi success ? Sign in ar trebuii sa fie doar pe register? sau sa fie pus si pe login ?
+    - facebook done, dar avem ceva erori care nu afecteaza neaparat ( noi primim oricum credentialele de la facebook) -  aici aceasi intreabre ca la google, cum salvez 
+        ce trimite facebook ul inapoi ? primesc doar nume si cam atat, nici macar email :/ - Sa fie si la Login optiunea asta?
+
 la frontend de schimbat textele alea inutile
+
+poze - se salveaza pe un bucket aws, e 5GB free, dupa e contra cost (nu stiu cat) dar nu cred ca o sa folosesc mai mult de 5GB :)
+        - din 10 sept o sa activez contu si o sa fac setup (am un card separat, in care nu prea am sursa se venit, si sa nu mi intre automat in contra-cost)
+
+PROBLEME:
+    - Problema cand se incearca intrarea pe alta pagina (de ex daca esti admin nu ai voie sa mergi pe pagina de client, cand se intampla asta, te redirectioneaza pe pagina principala
+        a rolului care esti doar ca dupa se blocheaza, is revine la un refresh)
+    - Poze - Se rezolva
+    - input nu merge asa cum ar trebuii sa mearga
+    - Google / Facebook login cum sa salvez info urile
+
+next:
+    schedule de facut
+    frontend
+    chat btw doctor & client
+    pop-uri de erori (la login/logout - delete ceva sau add)
+    animations when changin pages/scrolling

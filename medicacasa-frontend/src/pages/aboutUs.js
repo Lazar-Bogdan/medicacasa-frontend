@@ -4,7 +4,25 @@ import { Theme, Link,Text, Box, Section, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, SocialMedia } from "@quarkly/components";
+
+import AuthService from "services/AuthService";
+import { useHistory } from "react-router-dom";
+
+
 export default (() => {
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"about-us"} />
 		<Helmet>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -9,10 +9,23 @@ import AuthService from "./../services/AuthService";
 import FacebookLogin from 'react-facebook-login';
 
 import GoogleLogin from 'react-google-login';
+import { gapi } from 'gapi-script';
+
+const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
 
 export default (() => {
 	// form la subscription
 	// [{email:"test"},{email:"test"},{email:"test"}]
+
+	useEffect(() =>{
+		const initClient = () => {
+			gapi.client.init({
+				clientId: clientId,
+				scope: ''
+			});
+		};
+		gapi.load('client:auth2', initClient);
+	});
 
 	async function handleSubmitRegister(){
 		const response = await AuthService.registerUser("Arianna", "Arianna@gmail.com","test",1011);
@@ -25,10 +38,20 @@ export default (() => {
 		}
 	}
 
-	const responseGoogle = (response) => {
+	const onSuccess = (res) => {
+		console.log('success:', res);
+		console.log('success:', res.profileObj.name);
+        console.log('success:', res.profileObj.email);
+    };
+    const onFailure = (err) => {
+        console.log('failed:', err);
+    };
+
+	const responseFacebook = (response) => {
+		console.log("Facebook ");
 		console.log(response);
 	}
-
+	
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"register"} />
 		<Helmet>
@@ -80,15 +103,26 @@ export default (() => {
 						Register
 					</Button>
                     <p></p>
+					<GoogleLogin
+						clientId={clientId}
+						buttonText="Sign in with Google"
+						onSuccess={onSuccess}
+						onFailure={onFailure}
+						cookiePolicy={'single_host_origin'}
+						isSignedIn={true}
+      				/>
+					<FacebookLogin
+						appId="756012255673248"
+						fields="name,email,picture"
+						scope="public_profile,user_friends"
+						callback={responseFacebook}
+						icon="fa-facebook"
+						size="small"
+					/>
+					<p></p>
 					<Link href="/login" color="#000000">
 						Already an account? Click here...
 					</Link>
-					<GoogleLogin
-						clientId="201032838761-7a648ieib2j57nidim3bdt1n14bkhj3e.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
-						buttonText="LOGIN WITH GOOGLE"
-						onSuccess={responseGoogle}
-						onFailure={responseGoogle}
-					/>
 				</Box>
 			</Box>
 		</Section>

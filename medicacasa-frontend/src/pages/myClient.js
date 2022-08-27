@@ -8,9 +8,22 @@ import { Button } from "@quarkly/widgets/build/cjs/prod";
 
 import UserService from "services/UserService";
 import { useHistory } from "react-router-dom";
+import AuthService from "./../services/AuthService";
+
 
 export default (() => {
 	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+	if(!AuthService.handleGetLoginStatus()){
+		history.push("/");
+	}
 
 	function review(){
 		history.push('/reviewpage');
@@ -23,7 +36,7 @@ export default (() => {
     }, [])
 
 	async function getClients(){
-		const response = await UserService.getUserUnderDoctorEmail("bogdan21@gmail.com");
+		const response = await UserService.getUserUnderDoctorEmail("Bogdan@gmail.com");
 		if(response){
 			//console.log(response);
 			setClients(response);

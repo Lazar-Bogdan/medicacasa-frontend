@@ -3,8 +3,24 @@ import theme from "theme";
 import { Theme, Link, Text, Box, Section } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
+import { useHistory } from "react-router-dom";
+import AuthService from "services/AuthService";
 
 export default (() => {
+    const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+    if(!AuthService.handleGetLoginStatus()){
+        history.push("/")
+    }
+  
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"index"} />
 		<Helmet>
@@ -74,9 +90,10 @@ export default (() => {
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
+                    href="/logout"
                 >Logout</Link>
 			</Box>
 		</Section>
+        <p>Here you can modify users,doctors,appointments,forms</p>
         </Theme>
 })

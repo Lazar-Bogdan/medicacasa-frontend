@@ -10,10 +10,23 @@ import UserService from "services/UserService";
 import DoctorService from "services/DoctorService";
 
 import { useHistory } from "react-router-dom";
+import AuthService from "services/AuthService";
 
 
 export default (() => {
   const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+  if(!AuthService.handleGetLoginStatus()){
+      history.push("/")
+  }
   useEffect( () => {
     getClients();
     getDoctors();
@@ -84,16 +97,16 @@ export default (() => {
             <Override slot="cell-0">
               <Image src={item.img} display="block" position="relative" top="30px" margin="0px 0px 2px 0px" height="150px" width="150px" />
               <Text margin="0px 0px 0px 0px" position="relative" right="-230px" top="-100px">
-                {item.username}
+                Username:{item.username}
               </Text>
               <Text margin="0px 0px 0px 0px" position="relative" right="-600px" top="-120px">
-                {item.email}
+                Email:{item.email}
               </Text>
               <Text margin="0px 0px 0px 0px" position="relative" right="-230px" top="-30px">
-                {item.password}
+                Password:{item.password}
               </Text>
-              <Text margin="0px 0px 0px 0px" position="relative" right="-600px" top="-50px">
-                {item.age}
+              <Text margin="0px 0px 0px 0px" position="relative" right="-600px" top="-60px">
+                Role:{item.role}
               </Text>
             </Override>
             <Override slot="cell-1">
@@ -183,7 +196,7 @@ export default (() => {
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
+                    href="/logout"
                 >Logout</Link>
           </Box>
       </Section>

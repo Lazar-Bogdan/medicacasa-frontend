@@ -5,8 +5,24 @@ import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override,StackItem, Stack, SocialMedia } from "@quarkly/components";
 import { MdArrowDownward } from "react-icons/md";
+import AuthService from "services/AuthService";
+import { useHistory } from "react-router-dom";
 
 export default (() => {
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+
+	if(!AuthService.handleGetLoginStatus()){
+		history.push("/");
+	}
+
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"index"} />
 		<Helmet>
@@ -69,7 +85,7 @@ export default (() => {
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
+                    href="/logout"
                 >Logout</Link>
 			</Box>
 		</Section>

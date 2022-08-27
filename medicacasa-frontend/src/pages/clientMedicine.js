@@ -7,7 +7,24 @@ import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import GetMedicineService from "services/GetMedicineService";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
+import AuthService from "services/AuthService";
+import { useHistory } from "react-router-dom";
+
 export default (() => {
+	const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
+		history.push("/doctor")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+
+	if(!AuthService.handleGetLoginStatus()){
+		history.push("/");
+	}
+
 	const [medicine, setMedicine] = useState([]);
 	const[visible, setVisible] = useState(6);
 	const showMoreItems = () => {
@@ -120,6 +137,7 @@ export default (() => {
                 >My Doctor</Link>
                 
                 <Link
+					href="/logout"
                     display="flex"
                     justify-content="center"
                     font="--base"

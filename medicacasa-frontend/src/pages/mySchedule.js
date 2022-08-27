@@ -6,9 +6,23 @@ import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 
 import MyClientsService from "services/MyClientsService";
+import { useHistory } from "react-router-dom";
+import AuthService from "./../services/AuthService";
 
 
 export default (() =>{
+    const history = useHistory();
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
+		history.push("/client")
+	}
+
+	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
+		history.push("/adminpage")
+	}
+	if(!AuthService.handleGetLoginStatus()){
+		history.push("/");
+	}
 
     useEffect( () =>{
         getClientsApp();
@@ -170,7 +184,7 @@ export default (() =>{
                     md-flex-direction="column"
                     md-align-items="center"
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
+                    href="/logout"
                 >Logout</Link>
             </Box>
         </Section>
