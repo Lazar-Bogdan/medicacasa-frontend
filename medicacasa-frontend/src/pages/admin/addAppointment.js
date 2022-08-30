@@ -8,6 +8,8 @@ import { Button } from "@quarkly/widgets/build/cjs/prod";
 
 import MyClientsService from "services/MyClientsService";
 
+import { getMonths } from "services/DateSettings";
+
 import { useHistory } from "react-router-dom";
 import AuthService from "services/AuthService";
 
@@ -28,6 +30,8 @@ export default (() => {
   
   const [valueDay, setValueDay] = React.useState('Monday');
   const [valueHour,setValueHour] = useState('');
+  const [valueMonth,setValueMonth] = useState('');
+  const [valueYear,setValueYear] = useState('');
   const[doctoremail,setDoctorEmail]=useState();
   const[clientEmail,setClientEmail]=useState();
   const[AppList,setAppList]=useState([]);
@@ -104,7 +108,7 @@ export default (() => {
   }
 
   async function handleAddClient(){
-    const response = await MyClientsService.addApp(doctoremail,clientEmail,valueDay,valueHour);
+    const response = await MyClientsService.addApp(doctoremail,clientEmail,valueDay,valueHour,valueMonth,valueYear);
     if(response){
       alert("App added!");
       history.push('/adminpage');
@@ -120,6 +124,14 @@ export default (() => {
   function handleChange(event){
     setValueDay(event.target.value);
   }
+
+  function handleChangeYear(event){
+    setValueYear(event.target.value);
+  }
+
+  function handleChangeMonth(event){
+    setValueMonth(event.target.value);
+  }
   
   function handleChangeHour(event){
     setValueHour(event.target.value);
@@ -131,6 +143,18 @@ export default (() => {
 
   function handleChangeClientEmail(event){
     setClientEmail(event.target.value);
+  }
+  let months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  function MonthFunction(){
+    const numberMonth = new Date().getMonth();
+    let newVar = getMonths(numberMonth);
+    const Filtered = newVar.slice(0, visible).map((item) =>
+            { 
+              return <option value={months[item]}>{months[item]}</option>
+            }
+    );
+    return Filtered;
   }
 
   const[visible, setVisible] = useState(20);
@@ -307,6 +331,19 @@ export default (() => {
           <Text margin="0px 0px 0px 0px" position="relative" top="-60px">
             Client Email:
           </Text>
+          <label>
+            Year:
+            <select value={valueDay} onChange={handleChangeYear}>
+              <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
+              <option value={new Date().getFullYear() + 1}>{new Date().getFullYear() + 1}</option>
+            </select>
+          </label>
+          <label>
+          Month:
+            <select value={valueDay} onChange={handleChangeMonth}>
+              {MonthFunction()}
+            </select>
+          </label>
           <label>
             Day:
             <select value={valueDay} onChange={handleChange}>

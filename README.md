@@ -140,21 +140,55 @@ sa se poata adauga cu email/facebook etc  - m am uitat, google este app implemen
     - facebook done, dar avem ceva erori care nu afecteaza neaparat ( noi primim oricum credentialele de la facebook) -  aici aceasi intreabre ca la google, cum salvez 
         ce trimite facebook ul inapoi ? primesc doar nume si cam atat, nici macar email :/ - Sa fie si la Login optiunea asta?
 
-la frontend de schimbat textele alea inutile
+la frontend de schimbat textele alea inutile - ND
 
 poze - se salveaza pe un bucket aws, e 5GB free, dupa e contra cost (nu stiu cat) dar nu cred ca o sa folosesc mai mult de 5GB :)
         - din 10 sept o sa activez contu si o sa fac setup (am un card separat, in care nu prea am sursa se venit, si sa nu mi intre automat in contra-cost)
 
 PROBLEME:
     - Problema cand se incearca intrarea pe alta pagina (de ex daca esti admin nu ai voie sa mergi pe pagina de client, cand se intampla asta, te redirectioneaza pe pagina principala
-        a rolului care esti doar ca dupa se blocheaza, is revine la un refresh)
-    - Poze - Se rezolva
-    - input nu merge asa cum ar trebuii sa mearga
-    - Google / Facebook login cum sa salvez info urile
+        a rolului care esti doar ca dupa se blocheaza, is revine la un refresh) - De scris maine
+    - Poze - Se rezolva - TO BE DONE
+    - input nu merge asa cum ar trebuii sa mearga - DONE 
+    - Google / Facebook login cum sa salvez info urile - DONE
 
-next:
+next 29.09.2022:
+    de adus aminte problema cu schimbarea paginii si se blocheaza
+    de scos afisarea parolei in crud
     schedule de facut
+        -la schedule sa fie un calendar in care poate sa vada ce program are maine/peste o sapt/ o luna etc
     frontend
+    la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii
     chat btw doctor & client
+    email la form
+    doctor info page
     pop-uri de erori (la login/logout - delete ceva sau add)
+    scheletu pentru mobile app - 
+        - profile
+        - add something 
+        - chat
+    animations when changin pages/scrolling
+
+Marti 30.08.2022:
+    de scos afisarea parolei in crud
+    schedule de facut
+        -la schedule sa fie un calendar in care poate sa vada ce program are maine/peste o sapt/ o luna etc
+Miercuri 31.08.2022:
+    de continuat cu calendarul ala de vazut de ce raspunde asa greu la comenzi (daca reusesti daca nu lasa ca improvment)
+    de mai vazut de ce nu se pune zilele cum trebuie (poate de gasit un nou algoritm)
+
+Joi 01.09.2022
+    la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii
+    chat btw doctor & client
+    email la form
+    de mai vazut faza cu input
+Vineri 02.09.2022
+    doctor info page
+    pop-uri de erori (la login/logout - delete ceva sau add)
+    de mai vazut faza cu freeze la pagina
+Sambata 03.09.2022 - 12.09.2022 
+    scheletu pentru mobile app - 
+        - profile
+        - add something 
+        - chat
     animations when changin pages/scrolling

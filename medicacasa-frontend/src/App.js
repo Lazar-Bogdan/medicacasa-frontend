@@ -21,7 +21,7 @@ import AddClient from "pages/admin/addClient";
 import reviewPage from "pages/seeMoreInfo";
 import allDoctors from "pages/allDoctors";
 import doctorInformation from "pages/doctorInformation";
-import mySchedule from "pages/mySchedule";
+import MySchedule from "pages/mySchedule"
 import addDoctor from "pages/admin/addDoctor";
 import editClient from "pages/admin/editClient";
 import editDoctor from "pages/admin/editDoctor";
@@ -74,7 +74,7 @@ export default () => (
             <Route exact path='/appointments' component={AppointmentsList} />
             <Route exact path='/addappointments' component={addAppointment} />
             <Route exact path='/doctorinformation/:id' component={doctorInformation} />
-            <Route exact path='/schedule' component={mySchedule} />
+            <Route exact path='/schedule' component={MySchedule} />
             <Route exact path="/logout" component={logout} />
 			<Route component={Page404}/>
         </Switch>

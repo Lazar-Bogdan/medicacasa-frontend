@@ -102,9 +102,6 @@ export default (() => {
               <Text margin="0px 0px 0px 0px" position="relative" right="-600px" top="-120px">
                 Email:{item.email}
               </Text>
-              <Text margin="0px 0px 0px 0px" position="relative" right="-230px" top="-30px">
-                Password:{item.password}
-              </Text>
               <Text margin="0px 0px 0px 0px" position="relative" right="-600px" top="-60px">
                 Role:{item.role}
               </Text>

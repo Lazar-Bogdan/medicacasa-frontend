@@ -3,9 +3,9 @@ import axios from "axios";
 import URL from "./BackEndURL";
 
 class MyClientsService{
-    async getMyClientsUnderDoctorEmail(email){
+    async getMyClientsUnderDoctorEmail(email,month,year,day){
         try{
-            const response = await axios.get(URL + "App/getAppUnderEmail", { headers: {doctoremail:email}});
+            const response = await axios.get(URL + "App/getAppUnderEmail", { headers: {doctoremail:email, month:month, year:year, day:day}});
             return response.data;
         }catch(err){
             console.error("Error", err.response);
@@ -33,9 +33,9 @@ class MyClientsService{
         }
     }
 
-    async addApp(doctoremail,clients,day,hour){
+    async addApp(doctoremail,clients,day,hour,month,year){
         try{
-            const response = await axios.post(URL + "App/addApp", {doctoremail:doctoremail,clients:clients,day:day,hour:hour})
+            const response = await axios.post(URL + "App/addApp", {doctoremail:doctoremail,clients:clients,day:day,hour:hour, month:month, year:year})
             return response.data;
         }catch(err){
             console.error("Error", err.response);
