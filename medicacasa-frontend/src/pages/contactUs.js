@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Icon, Input, Button } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -10,6 +10,8 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import ContactUsService from "./../services/ContactUsService";
 import AuthService from "services/AuthService";
 import { useHistory } from "react-router-dom";
+
+import emailjs from '@emailjs/browser';
 
 export default (() => {
 
@@ -29,6 +31,21 @@ export default (() => {
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 3011){
 		history.push("/adminpage")
+	}
+	var template = {
+        user_name: name,
+        user_email: email,
+		message:message
+    };
+	function sendEmail(){
+		console.log('functie');
+        emailjs.send('service_Doctor','template_uf2z90m',template,'BdViCNIaBzilCPp0o')
+            .then(function(res){
+                console.log("success !");
+            }, function(error){
+                console.log("failed .. ");
+            });
+
 	}
 
 	async function handleSubmitForm(){
@@ -302,7 +319,7 @@ export default (() => {
 										flex-direction="column"
 										align-items="flex-end"
 									>
-										<Button background="--color-dark" type="submit" onClick={() => handleSubmitForm()}>
+										<Button background="--color-dark" type="submit"onClick={() => { handleSubmitForm(); sendEmail();}} >
 											Send
 										</Button>
 									</Box>

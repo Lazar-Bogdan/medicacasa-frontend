@@ -21,7 +21,7 @@ const MySchedule = () => {
     const [numberDays, setNumberDays] = useState([]);
     const [numberOfTimeMonthPressed, setNumberOfTimeMonthPressed] = useState(0);
     const [currentMoth, setCurrentMonth] = useState([]);
-    const CurrentYear = new Date().getFullYear();
+    const [CurrentYear, setCurrentYear] = useState(new Date().getFullYear());
     const numberMonth = new Date().getMonth();
     const[dayNames,setDayNames] = useState([]); 
     useEffect( () => {
@@ -29,6 +29,8 @@ const MySchedule = () => {
         let y = getDays(numberMonth);
         setNumberDays(arangeDays(y));
         setDayNames(getCurrentDayName());
+        getClientsApp(months[numberMonth],CurrentYear,arangeDays(y)[0]);
+        setCurrentYear(new Date().getFullYear());
     },[]);
     let year = [];
     year[0] = CurrentYear;
@@ -56,8 +58,8 @@ const MySchedule = () => {
     const [clientsApp,setClientsApp] = useState([]);
     const[visible, setVisible] = useState(9);
     
-    async function getClientsApp(){
-        const response = await MyClientsService.getMyClientsUnderDoctorEmail("Bogdan@gmail.com",months[currentMoth[MonthArray]],year[yearArray], numberDays[DayNumberArray+1]);
+    async function getClientsApp(months,year,numberDays){
+        const response = await MyClientsService.getMyClientsUnderDoctorEmail("Bogdan@gmail.com",months,year,numberDays);
         if(response){
             //console.log(response);
             setClientsApp(response);
@@ -70,29 +72,32 @@ const MySchedule = () => {
     //     MonthSubOnClickFunction();
     // }, []);
     function NumberNameSubOnClickFunction(){
+
         if((DayNumberArray) > 0){
             setDayNumberArray(DayNumberArray - 1);
-             
-
+            getClientsApp(months[currentMoth[MonthArray]],CurrentYear,numberDays[DayNumberArray-1]);
         }
-        if((DayNameArray) == 0 && DayNumberArray == 0){
-            // fa ceva
-        }
-        if(DayNameArray == 0 && DayNumberArray > 0){
-            setDayNameArray(7);
-             
+        if(DayNumberArray == 0 && MonthArray == 0){
+            
+        }else if(DayNameArray == 0 && DayNumberArray == 0){
+            setDayNameArray(6);
+            let x = getDays(currentMoth[MonthArray-1]);
+            setNumberDays(getDays(currentMoth[MonthArray-1]));
+            setDayNumberArray(x.length-1);
+            getClientsApp(months[currentMoth[MonthArray-1]],CurrentYear,x[x.length - 1]);
+            setMonthArray(MonthArray - 1);
         }
 
         if(DayNameArray > 0){
             setDayNameArray(DayNameArray - 1);
-             
+            getClientsApp(months[currentMoth[MonthArray]],CurrentYear,numberDays[DayNumberArray-1]);             
         }
     }
 
     function NumberNameAddOnClickFunction(){
         if((DayNumberArray) + 1 != numberDays.length){
             setDayNumberArray(DayNumberArray + 1);
-             
+            getClientsApp(months[currentMoth[MonthArray]],CurrentYear,numberDays[DayNumberArray+1]);
         }
         if(DayNameArray + 1 != dayNames.length){
             setDayNameArray(DayNameArray + 1);
@@ -102,15 +107,15 @@ const MySchedule = () => {
              
         }
         if((DayNumberArray) + 1 == numberDays.length){
-            
             setMonthArray(MonthArray + 1);
             setDayNumberArray(0);
             setDayNameArray(0);
             let test = MonthDone(currentMoth[MonthArray],numberOfTimeMonthPressed);
             setNumberDays(test[0]);
             setDayNames(test[1]);
+            getClientsApp(months[currentMoth[MonthArray+1]],CurrentYear,test[0][0]);
         }
-
+        
     }
     
     function MonthAddOnClickFunction(){
@@ -129,6 +134,7 @@ const MySchedule = () => {
             setDayNameArray(0);
             let test = MonthDone(currentMoth[MonthArray+1],numberOfTimeMonthPressed);
             setNumberDays(test[0]);
+            console.log(test[1]);
             setDayNames(test[1]);
         }
         if((MonthArray) + 1 == x){
@@ -145,6 +151,9 @@ const MySchedule = () => {
     function yearAddOnClickFunction(){
         if((yearArray + 1)!=year.length){
             setYearArray(yearArray+1);
+            let ThisYear = new Date().getFullYear();
+            setCurrentYear(new Date().getFullYear()+1);
+            getClientsApp(months[currentMoth[MonthArray]],ThisYear+1,numberDays[DayNumberArray]);
         }
     }
 
@@ -158,13 +167,16 @@ const MySchedule = () => {
             setDayNumberArray(0);
             setDayNameArray(0);
             setMonthArray(0);
+            let ThisYear = new Date().getFullYear();
+            setCurrentYear(new Date().getFullYear() );
+            getClientsApp(months[getMonths(numberMonth)[0]],ThisYear,arangeDays(y)[0]);
         }
     }
 
 
     function ArrayYear(){
         return (<Text margin="0px 0px 0px 0px" font="--headline3" color="--darkL2" text-align="center">
-            {year[yearArray]}
+            {CurrentYear}
         </Text>);
     }
 
@@ -350,14 +362,14 @@ const MySchedule = () => {
                 {ArrayYear()}
                 <Button position="relative" top="-35px" right="-640px" onClick={() => yearAddOnClickFunction()}></Button>
                 <p></p>
-                <Button position="relative" top="25px" right="-490px" onClick={() => {MonthSubOnClickFunction(); getClientsApp();}}></Button>
+                <Button position="relative" top="25px" right="-490px" onClick={() => {MonthSubOnClickFunction();}}></Button>
                 {MonthFunctionArray()}
-                <Button position="relative" top="-35px" right="-650px" onClick={() => {MonthAddOnClickFunction(); getClientsApp();}}></Button>
-                <Button position="relative" top="50px" right="-420px" onClick={() => {NumberNameSubOnClickFunction(); getClientsApp();}}></Button>
+                <Button position="relative" top="-35px" right="-650px" onClick={() => {MonthAddOnClickFunction(); }}></Button>
+                <Button position="relative" top="50px" right="-420px" onClick={() => {NumberNameSubOnClickFunction();}}></Button>
                 {NameFunctionArray()}
                 <p></p>
                 {NumberFunctionArray()}
-                <Button position="relative" top="-60px" right="-670px" onClick={() => {NumberNameAddOnClickFunction(); getClientsApp();}}></Button>
+                <Button position="relative" top="-60px" right="-670px" onClick={() => {NumberNameAddOnClickFunction();}}></Button>
             </Box>
         </Section>
         {MapApp(clientsApp)}

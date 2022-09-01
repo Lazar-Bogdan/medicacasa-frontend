@@ -11,12 +11,15 @@ import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import { gapi } from 'gapi-script';
 
+import { useHistory } from "react-router-dom";
+
+
 const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
 
 export default (() => {
 	// form la subscription
 	// [{email:"test"},{email:"test"},{email:"test"}]
-
+	const history = useHistory();
 	useEffect(() =>{
 		const initClient = () => {
 			gapi.client.init({
@@ -32,24 +35,43 @@ export default (() => {
 		if(response){
 			console.log("user logged");
 			AuthService.handleLoginSucces(response._id);
-			// this.props.history.push("/home");
+			history.push("/client");
 		}else{
 			alert("please check your credentials");
 		}
 	}
 
-	const onSuccess = (res) => {
-		console.log('success:', res);
-		console.log('success:', res.profileObj.name);
-        console.log('success:', res.profileObj.email);
-    };
-    const onFailure = (err) => {
-        console.log('failed:', err);
+	const responseGoogle = async (res) => {
+		const responseUserExistOnDataBase = await AuthService.doLoginFacebookGoogle(res.profileObj.email);
+		if(responseUserExistOnDataBase){
+			console.log("user logged");
+			AuthService.handleLoginSucces(res._id,res.role);
+			history.push("/client");
+		}else{
+			const response = await AuthService.registerUser(res.profileObj.name, res.profileObj.email,"test",1011);
+			console.log(response);
+			if(response){
+				console.log("user logged");
+				AuthService.handleLoginSucces(response._id,response.role);
+				history.push("/client");
+			}
+		}
     };
 
-	const responseFacebook = (response) => {
-		console.log("Facebook ");
-		console.log(response);
+	const responseFacebook = async (response) => {
+		const responseUserExistOnDataBase = await AuthService.doLoginFacebookGoogle(response.id);
+		if(responseUserExistOnDataBase){
+			console.log("user logged");
+			AuthService.handleLoginSucces(response._id,response.role);
+			history.push("/client");
+		}else{
+			const res = await AuthService.registerUser(response.name, response.id,"test",1011);
+			if(res){
+				console.log("user logged");
+				AuthService.handleLoginSucces(res._id,res.role);
+				history.push("/client");
+			}
+		}
 	}
 	
 	return <Theme theme={theme}>
@@ -106,10 +128,8 @@ export default (() => {
 					<GoogleLogin
 						clientId={clientId}
 						buttonText="Sign in with Google"
-						onSuccess={onSuccess}
-						onFailure={onFailure}
+						onSuccess={responseGoogle}
 						cookiePolicy={'single_host_origin'}
-						isSignedIn={true}
       				/>
 					<FacebookLogin
 						appId="756012255673248"

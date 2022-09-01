@@ -14,6 +14,17 @@ class AuthService {
         }
     }
 
+    async doLoginFacebookGoogle(email){
+        try{
+            // de hardcodat link ul
+            const response = await axios.post(URL + "auth/loginFacebookGoogle", {email: email});
+            return response.data;
+        }catch(err){
+            //console.error("Error", err.response);
+            return false;
+        }
+    }
+
     async doDoctorLogin(email,password){
         try{
             const response = await axios.post(URL + "auth/doctorLogin", {email: email, password:password});

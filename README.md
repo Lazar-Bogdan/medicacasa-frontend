@@ -158,7 +158,7 @@ next 29.09.2022:
     schedule de facut
         -la schedule sa fie un calendar in care poate sa vada ce program are maine/peste o sapt/ o luna etc
     frontend
-    la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii
+la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii
     chat btw doctor & client
     email la form
     doctor info page
@@ -174,13 +174,14 @@ Marti 30.08.2022:
     schedule de facut
         -la schedule sa fie un calendar in care poate sa vada ce program are maine/peste o sapt/ o luna etc
 Miercuri 31.08.2022:
-    de continuat cu calendarul ala de vazut de ce raspunde asa greu la comenzi (daca reusesti daca nu lasa ca improvment)
-    de mai vazut de ce nu se pune zilele cum trebuie (poate de gasit un nou algoritm)
+    de continuat cu calendarul ala de vazut de ce raspunde asa greu la comenzi (daca reusesti daca nu lasa ca improvment) - DONE
+    de mai vazut de ce nu se pune zilele cum trebuie (poate de gasit un nou algoritm) - NOTDONE, de gasit un algoritm mai bun pt numele zilelor
 
 Joi 01.09.2022
-    la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii
+    la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii - DONE
+    fix la my doctor + added oportunity to add new subscription btw doctor & client - DONE
     chat btw doctor & client
-    email la form
+    email la form - DONE
     de mai vazut faza cu input
 Vineri 02.09.2022
     doctor info page
@@ -192,3 +193,28 @@ Sambata 03.09.2022 - 12.09.2022
         - add something 
         - chat
     animations when changin pages/scrolling
+
+recapitulare 01.09.2022
+
+    DONE :
+        - de scos afisarea parolei in crud - DONE
+        - schedule de facut - DONE
+        - la schedule sa fie un calendar in care poate sa vada ce program are maine/peste o sapt/ o luna etc - DONE
+        - de continuat cu calendarul ala de vazut de ce raspunde asa greu la comenzi (daca reusesti daca nu lasa ca improvment) - DONE
+        - la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii - DONE
+
+
+    not DONE:
+    din cauza support masiv la lucru am ramas cu astea de facut: (in ordine de importanta)
+        -chat btw doctor & client
+        -de mai vazut faza cu input
+        -Poze - Se rezolva - aws cloud
+        -pop-uri de erori (la login/logout - delete ceva sau add)
+        -de mai vazut faza cu freeze la pagina
+        -scheletu pentru mobile app - 
+            - profile
+            - add something 
+            - chat
+        -de mai vazut de ce nu se pune zilele cum trebuie (poate de gasit un nou algoritm) , de gasit un algoritm mai bun pt numele zilelor
+        -animations when changin pages/scrolling
+        -doctor info page

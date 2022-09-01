@@ -25,48 +25,18 @@ export default (() => {
     history.push("/")
   }
   
-  const[username,setUsername]=useState(false);
-  const[email,setEmail]=useState(" ");
-  const[Password,setPassword]=useState(" ");
-  const[Role,setRole]=useState(1011);
-  const[age,setAge]=useState(" ");
-  const[img,setImg]=useState(" ");
+  const [userEmail,setUserEmail] = useState();
+  const [doctorEmal,setDoctorEmail] = useState();
 
-  async function handleAddClient(){
-    const response = await UserService.addUser(username,email,Password,Role,age,img);
+  async function handleAddSub(){
+    const response = await UserService.addSub(userEmail,doctorEmal);
     if(response){
-      alert("user created");
-      history.push('/clientlist');
+        alert("subscription created");
+        history.push('/clientlist');
     }else{
-      alert("check credentials");
-    }
+        alert("check credentials");
+      }
   }
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    switch (name) {
-      case 'username':
-        setUsername(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      case 'role':
-        setRole(value);
-        break;
-      case 'age':
-        setAge(value);
-        break;
-      case 'img':
-        setImg(value);
-        break;
-      default:
-        console.log("not set");
-    }
-  };
 
   return  <Theme theme={theme}>
   <GlobalQuarklyPageStyles pageUrl={"index"} />
@@ -213,85 +183,30 @@ export default (() => {
             placeholder-color="LightGray"
             background="white"
             position="relative"
-            right="-100px"
-            placeholder='Name'
+            right="-140px"
+            placeholder='User email'
             name="username"
             type="text"
-            onChange={handleInputChange}
+            
           />
           <Input
             display="block"
             placeholder-color="LightGray"
             background="white"
             position="relative"
-            right="-100px"
+            right="-140px"
             top="10px"
             name="email"
-            placeholder='Email'
-            onChange={(event) => setEmail(event.target.value) }
+            placeholder='Doctor email'
           />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="15px"
-            type="password"
-            placeholder='Password'
-            onChange={(event) => setPassword(event.target.value) }
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="20px"
-            type="number"
-            placeholder='Role'
-            value="1011"
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="25px"
-            placeholder='Age'
-            onChange={(event) => setAge(event.target.value) }
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="25px"
-            placeholder='Img URL'
-            onChange={(event) => setImg(event.target.value) }
-          />
-          <Text margin="0px 0px 0px 0px" position="relative" top="-230px">
-            Username:
+          <Text margin="0px 0px 0px 0px" position="relative" top="-75px">
+            User Email:
           </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-207px">
-            Email:
+          <Text margin="0px 0px 0px 0px" position="relative" top="-50px">
+            Doctor Email:
           </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-184px">
-            Password:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-162px">
-            Role:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-142px">
-            Age:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-125px">
-            Img URL:
-          </Text>
-          <Button position="relative" top="-210px" top="-225px" right="-500px" onClick={() => handleAddClient()}>
-            Add client
+          <Button position="relative" top="-210px" top="-110px" right="-500px" onClick={() => handleAddSub()}>
+            Add Subscription
           </Button>
         </Override>
                                     

@@ -81,12 +81,13 @@ export function getCurrentDayName(){
     return vectorDay;
 }
 
-function getCurrentDayNameUnderCond(dayName){
-    let day = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday","Friday","Saturday"];
-    let vectorDay = [day[dayName]];
+function getCurrentDayNameUnderCond(current,dayName){
+    console.log(dayName);
+    let day = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday","Friday","Saturday"];    
+    let vectorDay = [day[current]];
     let x = 0;
     for(var i = 0; i<day.length; i++){
-        if(day[dayName] === day[i]){
+        if(day[current] === day[i]){
             x = i;
             break;
         }
@@ -97,7 +98,29 @@ function getCurrentDayNameUnderCond(dayName){
     for(var i = 0; i<x; i++){
         vectorDay.push(day[i]);
     }
-    return vectorDay;
+    let y = 0;
+    while(dayName !=0){
+        if(y==6){
+            y=0;
+        }
+        y++;
+        dayName--;
+    }
+    y=y+1;
+    let vectorDay2 = [day[y]];
+    for(var i = 0; i<day.length; i++){
+        if(day[y] === day[i]){
+            x = i;
+            break;
+        }
+    }
+    for(var i = x + 1; i<day.length; i++){
+        vectorDay2.push(day[i]);
+    }
+    for(var i = 0; i<x; i++){
+        vectorDay2.push(day[i]);
+    }
+    return vectorDay2;
 }
 
 export function arangeDays(days){
@@ -116,7 +139,7 @@ export function arangeDays(days){
     // for(var i = 0; i<x; i++){
     //     VectorDay.push(days[i]);
     // }
-    console.log(VectorDay);
+    //console.log(VectorDay);
     return VectorDay;
 }
 
@@ -129,7 +152,7 @@ export function MonthDone(currentMonth,numberOfTimeMonthPressed){
     currentDays = arangeDays(currentDays);
     let newDayName = new Date().getDay() + currentDays.length;
     let newDays = getDays(currentMonth);
-    return [newDays, getCurrentDayNameUnderCond(newDayName)];
+    return [newDays, getCurrentDayNameUnderCond(new Date().getDay(),newDayName)];
 }
 
 export default {getDays, getCurrentDayName, getMonths, DaysDone,MonthDone};

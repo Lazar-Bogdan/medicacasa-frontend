@@ -7,6 +7,12 @@ import { RawHtml, Override, Menu, Formspree, SocialMedia } from "@quarkly/compon
 import AuthService from "./../services/AuthService";
 import { useHistory } from "react-router-dom";
 
+import FacebookLogin from 'react-facebook-login';
+
+import GoogleLogin from 'react-google-login';
+
+const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
+
 function Login() {
 	const history = useHistory();
 
@@ -44,6 +50,39 @@ function Login() {
 			}
 		}else{
 			alert("please check your credentials");
+		}
+	}
+
+	const responseGoogle = async (res) => {
+		const responseUserExistOnDataBase = await AuthService.doLoginFacebookGoogle(res.profileObj.email);
+		if(responseUserExistOnDataBase){
+			console.log("user logged");
+			AuthService.handleLoginSucces(res._id,res.role);
+			history.push("/client");
+		}else{
+			const response = await AuthService.registerUser(res.profileObj.name, res.profileObj.email,"test",1011);
+			console.log(response);
+			if(response){
+				console.log("user logged");
+				AuthService.handleLoginSucces(response._id,response.role);
+				history.push("/client");
+			}
+		}
+    };
+
+	const responseFacebook = async (response) => {
+		const responseUserExistOnDataBase = await AuthService.doLoginFacebookGoogle(response.id);
+		if(responseUserExistOnDataBase){
+			console.log("user logged");
+			AuthService.handleLoginSucces(response._id,response.role);
+			history.push("/client");
+		}else{
+			const res = await AuthService.registerUser(response.name, response.id,"test",1011);
+			if(res){
+				console.log("user logged");
+				AuthService.handleLoginSucces(res._id,res.role);
+				history.push("/client");
+			}
 		}
 	}
 
@@ -149,6 +188,21 @@ function Login() {
 					<Button variant="btn btn-success" type="submit" onClick={() => handleSubmitLogin()}>
 						Login
 					</Button>
+					<p></p>
+					<GoogleLogin
+						clientId={clientId}
+						buttonText="Sign in with Google"
+						onSuccess={responseGoogle}
+						cookiePolicy={'single_host_origin'}
+      				/>
+					<FacebookLogin
+						appId="756012255673248"
+						fields="name,email,picture"
+						scope="public_profile,user_friends"
+						callback={responseFacebook}
+						icon="fa-facebook"
+						size="small"
+					/>
 					<p></p>
 					<Link href="/register" color="#000000">
 						Don't you have an account ? Click here...

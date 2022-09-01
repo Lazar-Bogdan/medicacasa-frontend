@@ -37,7 +37,7 @@ export default (() => {
         // console.log(url);
         let first = url.split("/");
         // console.log(first[4]);
-        const response = await DoctorService.getDoctorAfterEmail(first[4])
+        const response = await DoctorService.getDoctorAfterId(first[4])
         if(response){
             setDoctor(response);
         }

@@ -47,7 +47,7 @@ export default (() => {
     }, [])
 
 	async function getCurentUser(){
-		await axios.get(URL + "users/getUserUnderEmail", { headers: { email:"Bogdan2000@gmail.com" }})
+		await axios.get(URL + "users/getUserUnderEmail", { headers: { email:"bogdilazar5@gmail.com" }})
 			.then(response => {
 				setCurrentUser(response.data);
 				// console.log(response.data[0].subscription[0]);
@@ -66,10 +66,11 @@ export default (() => {
 
 
 	async function getDoctors(){
+		console.log(currentUser);
 		if(currentUser.length == 1){
 			const size = currentUser[0].subscription.length;
 			for(var i=0;i<size; i++){
-				await axios.get(URL + "users/getDoctorUnderEmail",{ headers: {subscription: currentUser[0].subscription[i].email}})
+				await axios.get(URL + "doctor/getDoctorUnderEmail",{ headers: {email: currentUser[0].subscription[i].email}})
 				.then(response => {
 					setDoctors(doctors=>[...doctors,response.data]);
 				})
@@ -83,6 +84,7 @@ export default (() => {
 	}
 	
 	function MapDoc(List){
+		console.log(List);
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
 			<Section padding="80px 0 80px 0" sm-padding="60px 0 60px 0">

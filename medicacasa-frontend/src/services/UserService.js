@@ -71,6 +71,16 @@ class UserService{
             return false;
         }
     }
+
+    async addSub(userEmail,DoctorEmail){
+        try{
+            const response = await axios.post(URL + "users/AddSub", {userEmail:userEmail, DoctorEmail:DoctorEmail})
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
 }
 
 export default new UserService

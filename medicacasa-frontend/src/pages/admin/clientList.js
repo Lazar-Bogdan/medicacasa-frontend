@@ -228,6 +228,16 @@ export default (() => {
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
                 >Add new Client</Link>
                 <Link
+                    href="/addsubscription"
+                    display="flex"
+                    justify-content="center"
+                    font="--base"
+                    font-weight="700"
+                    md-flex-direction="column"
+                    md-align-items="center"
+                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+                >Add new Subscription</Link>
+                <Link
                     href="/addnewdoctor"
                     display="flex"
                     justify-content="center"
