@@ -35,11 +35,12 @@ class AuthService {
         }
     }
 
-    handleLoginSucces(id,role){
+    handleLoginSucces(id,role,uid){
         const options = {path :"/"};
         CookieService.set("id", id,options);
         CookieService.set("login",true,options);
         CookieService.set("role",role,options);
+        CookieService.set("uid",uid,options);
         return true;
     }
 
@@ -52,16 +53,20 @@ class AuthService {
         return CookieService.get("role");
     }
 
+    handleGetUid(){
+        return CookieService.get("uid");
+    }
+
     handleLogOut(){
         CookieService.remove("id");
         CookieService.remove("role");
         CookieService.set("login",false);
     }
 
-    async registerUser(username,email,password,role){
+    async registerUser(username,email,password,role,age,img,uid){
         try{
             // de hardcodat link ul
-            const response = await axios.post(URL + "auth/register", {username:username, email:email, password:password, role:role});
+            const response = await axios.post(URL + "auth/register", {username:username, email:email, password:password, role:role, age:age, img:img, uid:uid});
             return response;
         }catch(err){
             console.error("Error", err.response);

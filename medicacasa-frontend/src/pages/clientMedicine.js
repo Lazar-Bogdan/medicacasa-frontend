@@ -9,6 +9,7 @@ import { Button } from "@quarkly/widgets/build/cjs/prod";
 
 import AuthService from "services/AuthService";
 import { useHistory } from "react-router-dom";
+import CometChat from "services/CometChat";
 
 export default (() => {
 	const history = useHistory();

@@ -31,10 +31,12 @@ export default (() => {
 	});
 
 	async function handleSubmitRegister(){
-		const response = await AuthService.registerUser("Arianna", "Arianna@gmail.com","test",1011);
+		const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
+		console.log(uid);
+		const response = await AuthService.registerUser("Arianna", "Arianna0@gmail.com","test",1011, 12,"img",uid);
 		if(response){
 			console.log("user logged");
-			AuthService.handleLoginSucces(response._id);
+			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			history.push("/client");
 		}else{
 			alert("please check your credentials");
@@ -45,14 +47,14 @@ export default (() => {
 		const responseUserExistOnDataBase = await AuthService.doLoginFacebookGoogle(res.profileObj.email);
 		if(responseUserExistOnDataBase){
 			console.log("user logged");
-			AuthService.handleLoginSucces(res._id,res.role);
+			AuthService.handleLoginSucces(res._id,res.role,res.uid);
 			history.push("/client");
 		}else{
 			const response = await AuthService.registerUser(res.profileObj.name, res.profileObj.email,"test",1011);
 			console.log(response);
 			if(response){
 				console.log("user logged");
-				AuthService.handleLoginSucces(response._id,response.role);
+				AuthService.handleLoginSucces(response._id,response.role,response.uid);
 				history.push("/client");
 			}
 		}
@@ -62,13 +64,13 @@ export default (() => {
 		const responseUserExistOnDataBase = await AuthService.doLoginFacebookGoogle(response.id);
 		if(responseUserExistOnDataBase){
 			console.log("user logged");
-			AuthService.handleLoginSucces(response._id,response.role);
+			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			history.push("/client");
 		}else{
 			const res = await AuthService.registerUser(response.name, response.id,"test",1011);
 			if(res){
 				console.log("user logged");
-				AuthService.handleLoginSucces(res._id,res.role);
+				AuthService.handleLoginSucces(res._id,res.role,res.uid);
 				history.push("/client");
 			}
 		}

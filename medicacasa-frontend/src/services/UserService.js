@@ -42,9 +42,9 @@ class UserService{
         }
     }
 
-    async addUser(username,email,password,role,age,img){
+    async addUser(username,email,password,role,age,img,uid){
         try{
-            const response = await axios.post(URL + "users/addClient", {username:username, email:email, password:password, role:role, age:age, img:img})
+            const response = await axios.post(URL + "users/addClient", {username:username, email:email, password:password, role:role, age:age, img:img,uid:uid})
             return response.data;
         }catch(err){
             console.log("err",err.response);

@@ -33,7 +33,8 @@ export default (() => {
   const[img,setImg]=useState(" ");
 
   async function handleAddClient(){
-    const response = await UserService.addUser(username,email,Password,Role,age,img);
+    const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
+    const response = await UserService.addUser(username,email,Password,Role,age,img,uid);
     if(response){
       alert("user created");
       history.push('/clientlist');

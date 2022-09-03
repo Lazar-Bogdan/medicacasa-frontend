@@ -10,6 +10,7 @@ import axios from "axios";
 import { List } from "@quarkly/widgets/build/cjs/prod";
 import { useHistory } from "react-router-dom";
 import AuthService from "./../services/AuthService";
+import CometChat from "services/CometChat";
 
 export default (() => {
 	const history = useHistory();

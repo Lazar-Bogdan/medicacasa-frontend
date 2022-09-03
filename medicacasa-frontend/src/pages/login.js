@@ -32,12 +32,12 @@ function Login() {
 	const [password,setPassword] = useState(" ");
 
 	async function handleSubmitLogin(){
-		let response = await AuthService.doUserLogin(email,password);
+		let response = await AuthService.doUserLogin(email,password,);
 		if(!response){
 			response = await AuthService.doDoctorLogin(email,password);
 		}
 		if(response){
-			AuthService.handleLoginSucces(response._id,response.role);
+			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			// this.props.history.push("/home");
 			if(response.role == 1011){
 				history.push("/client");
@@ -57,14 +57,14 @@ function Login() {
 		const responseUserExistOnDataBase = await AuthService.doLoginFacebookGoogle(res.profileObj.email);
 		if(responseUserExistOnDataBase){
 			console.log("user logged");
-			AuthService.handleLoginSucces(res._id,res.role);
+			AuthService.handleLoginSucces(res._id,res.role,res.uid);
 			history.push("/client");
 		}else{
 			const response = await AuthService.registerUser(res.profileObj.name, res.profileObj.email,"test",1011);
 			console.log(response);
 			if(response){
 				console.log("user logged");
-				AuthService.handleLoginSucces(response._id,response.role);
+				AuthService.handleLoginSucces(response._id,response.role,response.uid);
 				history.push("/client");
 			}
 		}
@@ -74,13 +74,13 @@ function Login() {
 		const responseUserExistOnDataBase = await AuthService.doLoginFacebookGoogle(response.id);
 		if(responseUserExistOnDataBase){
 			console.log("user logged");
-			AuthService.handleLoginSucces(response._id,response.role);
+			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			history.push("/client");
 		}else{
 			const res = await AuthService.registerUser(response.name, response.id,"test",1011);
 			if(res){
 				console.log("user logged");
-				AuthService.handleLoginSucces(res._id,res.role);
+				AuthService.handleLoginSucces(res._id,res.role,res.uid);
 				history.push("/client");
 			}
 		}
