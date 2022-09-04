@@ -8,6 +8,8 @@ import { MdArrowDownward } from "react-icons/md";
 import AuthService from "services/AuthService";
 import { useHistory } from "react-router-dom";
 
+import CometChat from "services/CometChat";
+
 export default (() => {
 	const history = useHistory();
 
@@ -507,6 +509,7 @@ export default (() => {
 					hover-background="--color-greyD1"
 				/>
 			</SocialMedia>
+			<CometChat />
 		</Section>
 		<RawHtml>
 			<style place={"endOfHead"} rawKey={"62de926f5e5c6e002154effc"}>

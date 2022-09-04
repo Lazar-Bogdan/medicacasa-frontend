@@ -11,6 +11,8 @@ import AuthService from "./../services/AuthService";
 import {getDays, getMonths, getCurrentDayName, arangeDays,DaysDone, MonthDone} from "./../services/DateSettings";
 import { B, Button } from "@quarkly/widgets/build/cjs/prod";
 
+import CometChat from "services/CometChat";
+
 let months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const MySchedule = () => {
@@ -389,6 +391,7 @@ const MySchedule = () => {
                     hover-background="--color-greyD1"
                 />
             </SocialMedia>
+            <CometChat />
         </Section>
         <RawHtml>
             <style place={"endOfHead"} rawKey={"62e38af0f913c500201c13a2"}>

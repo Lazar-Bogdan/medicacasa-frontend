@@ -202,12 +202,13 @@ recapitulare 01.09.2022
         - la schedule sa fie un calendar in care poate sa vada ce program are maine/peste o sapt/ o luna etc - DONE
         - de continuat cu calendarul ala de vazut de ce raspunde asa greu la comenzi (daca reusesti daca nu lasa ca improvment) - DONE
         - la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii - DONE
-        - implement client chat
+        - implement client chat - DONE
+        - doctor part chat - DONE
 
     not DONE:
     din cauza support masiv la lucru am ramas cu astea de facut: (in ordine de importanta)
         -de vazut cum adaugi prieteni pe cometChat
-        -doctor part char
+        -ceva probleme in addDoctor, nu stiu de ce nu vrea sa dea add in cometchat ( poate aceasi chestie se intampla si pt addClient)
         -de mai vazut faza cu input
         -Poze - Se rezolva - aws cloud
         -pop-uri de erori (la login/logout - delete ceva sau add)
