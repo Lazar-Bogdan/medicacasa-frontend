@@ -2,16 +2,17 @@ import React,{useEffect,useState,useRef} from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section,Structure,Image, Hr, Input } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
-import { RawHtml, Override, SocialMedia } from "@quarkly/components";
+import { RawHtml, Override, SocialMedia, Formspree } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
 import MyClientsService from "services/MyClientsService";
 
-import { getMonths } from "services/DateSettings";
+import { arangeDays,getDays,getMonths } from "services/DateSettings";
 
 import { useHistory } from "react-router-dom";
 import AuthService from "services/AuthService";
+
 
 export default (() => {
   const history = useHistory();
@@ -28,13 +29,18 @@ export default (() => {
     history.push("/")
   }
   
-  const [valueDay, setValueDay] = React.useState('Monday');
+  const [valueDay, setValueDay] = (' ');
   const [valueHour,setValueHour] = useState('');
   const [valueMonth,setValueMonth] = useState('');
   const [valueYear,setValueYear] = useState('');
   const[doctoremail,setDoctorEmail]=useState();
   const[clientEmail,setClientEmail]=useState();
   const[AppList,setAppList]=useState([]);
+
+  useEffect(() => {
+    let y = getDays(new Date().getMonth());
+    setValueDay(arangeDays(y));
+  },[]);
 
   const app = [
     {
@@ -102,7 +108,7 @@ export default (() => {
   async function getAppUnderDoctor(doctoremail){
     const response = await MyClientsService.getMyClientsUnderDoctorEmail(doctoremail);
     if(response){
-      //console.log(response);
+      console.log(response);
       setAppList(response);
     }
   }
@@ -119,6 +125,7 @@ export default (() => {
 
   function handleSeach(){
       getAppUnderDoctor(doctoremail)
+      return true;
   }
 
   function handleChange(event){
@@ -162,10 +169,10 @@ export default (() => {
 		if(!List){List=[];}
     for (var i=0; i < AppList.length; i++) {
       for(var y = 0; y<app.length; y++){
-        // console.log("app : " + app[y].hour + " AppList : " + AppList[i].hour + " ValueDay " + valueDay);
-        // console.log(app[y].hour == AppList[i].hour);
+        console.log("app : " + app[y].hour + " AppList : " + AppList[i].hour + " ValueDay " + valueDay);
+        console.log(app[y].hour == AppList[i].hour);
         if(app[y].hour === AppList[i].hour && valueDay === AppList[i].day){
-          // console.log("aici");
+          console.log("aici");
           app[y].value = 1;
         }
       }
@@ -285,90 +292,112 @@ export default (() => {
             >Add new Appointment</Link>
         </Box>
     </Section>
-    <Structure cells-number-total="1" cells-number-group="3">
-      <Override slot="Content" grid-template-columns="9fr 3fr" md-grid-template-columns="repeat(6, 2fr)" sm-grid-template-columns="12fr">
-        <Override
-          slot="Cell 0th"
-          grid-column="1 / auto"
-          grid-row="auto / span 2"
-          md-grid-column="1 / span 6"
-          md-grid-row="span"
-          sm-grid-column="auto"
-          sm-grid-row="span"
-          position="relative"
-        />
-        <Override slot="Cell 1st" md-grid-column="1 / span 3" sm-grid-column="auto" />
-        <Override slot="Cell 2nd" md-grid-column="4 / span 3" sm-grid-column="auto" />
-        <Override slot="cell-0">
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            placeholder='Doctor Email'
-            name="username"
-            ref={ref}
-            value={doctoremail  }
-            onChange={(event)=> setDoctorEmail(event.target.value)}
-            />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="35px"
-            placeholder='Client Email'
-            onChange={handleChangeClientEmail}
-          />
-          <Text margin="0px 0px 0px 0px" position="relative" top="-70px">
-            Doctor Email:
-          </Text>
-          <Button position="relative" right="-330px" top="-105px"onClick={() => handleSeach()}>
-            Search
-          </Button>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-60px">
-            Client Email:
-          </Text>
-          <label>
-            Year:
-            <select value={valueDay} onChange={handleChangeYear}>
-              <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
-              <option value={new Date().getFullYear() + 1}>{new Date().getFullYear() + 1}</option>
-            </select>
-          </label>
-          <label>
-          Month:
-            <select value={valueDay} onChange={handleChangeMonth}>
-              {MonthFunction()}
-            </select>
-          </label>
-          <label>
-            Day:
-            <select value={valueDay} onChange={handleChange}>
-              <option value="Monday">Monday</option>
-              <option value="Tuesday">Tuesday</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
-            </select>
-          </label>
-          <p></p>
-          <label>
-          Hour:
-            <select value={valueHour} onChange={handleChangeHour}>
-              <option></option>
-              {Time(AppList)}
-            </select>
-          </label>
-          <Button position="relative" top="50px"onClick={() => handleAddClient()}>
-            Add Appointment
-          </Button>
-        </Override>
-                                    
-      </Override>
-    </Structure>  
+    <Section>
+        <Box margin="-16px -16px -16px -16px" display="flex" flex-wrap="wrap">
+            <Box width="50%" padding="8px 8px 8px 8px" lg-width="100%">
+              <Box>
+                  <Box
+                    gap="16px"
+                    display="grid"
+                    flex-direction="row"
+                    flex-wrap="wrap"
+                    grid-template-columns="repeat(2, 1fr)"
+                    grid-gap="16px"
+                  >
+                    <Box
+                    gap="16px"
+                    display="grid"
+                    flex-direction="row"
+                    flex-wrap="wrap"
+                    grid-template-columns="repeat(2, 1fr)"
+                    grid-gap="16px"
+                  >
+                      <Text margin="0px 0px 0px 0px" position="relative" >
+                        Doctor Email:
+                      </Text>
+                      <Input
+                        display="block"
+                        placeholder-color="LightGray"
+                        background="white"
+                        position="relative"
+                        placeholder='Doctor Email'
+                        name="DoctorEmail"
+                        onChange={(event)=> setDoctorEmail(event.target.value)}
+                        />
+                      <Button variant="btn btn-success" type="submit"  position="relative" onClick={() => handleSeach()}>
+                        Search
+                      </Button>
+                    </Box>
+                    <p></p>
+                    <Box
+                    gap="16px"
+                    display="grid"
+                    flex-direction="row"
+                    flex-wrap="wrap"
+                    grid-template-columns="repeat(2, 1fr)"
+                    grid-gap="16px"
+                   >
+                      <Text margin="0px 0px 0px 0px" position="relative">
+                        Client Email:
+                      </Text>
+                      <Input
+                        display="block"
+                        placeholder-color="LightGray"
+                        background="white"
+                        position="relative"
+                        placeholder='Client Email'
+                        onChange={handleChangeClientEmail}
+                      />
+                    </Box>
+                    <p></p>
+                    <Box
+                    gap="16px"
+                    display="grid"
+                    flex-direction="row"
+                    flex-wrap="wrap"
+                    grid-template-columns="repeat(2, 1fr)"
+                    grid-gap="16px"
+                   >
+                      <label>
+                        Year:
+                        <select value={valueDay} onChange={handleChangeYear}>
+                          <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
+                          <option value={new Date().getFullYear() + 1}>{new Date().getFullYear() + 1}</option>
+                        </select>
+                      </label>
+                      <label>
+                      Month:
+                        <select value={valueDay} onChange={handleChangeMonth}>
+                          {MonthFunction()}
+                        </select>
+                      </label>
+                      <label>
+                        Day:
+                        <select value={valueDay[0]} onChange={handleChange}>
+                          <option value="Monday">Monday</option>
+                          <option value="Tuesday">Tuesday</option>
+                          <option value="Wednesday">Wednesday</option>
+                          <option value="Thursday">Thursday</option>
+                          <option value="Friday">Friday</option>
+                        </select>
+                      </label>
+                      <p></p>
+                      <label>
+                      Hour:
+                        <select value={valueHour} onChange={handleChangeHour}>
+                          <option></option>
+                          {Time(AppList)}
+                        </select>
+                      </label>
+                      <Button position="relative" onClick={() => handleAddClient()}>
+                        Add Appointment
+                      </Button>
+                    </Box>
+                  </Box>
+					</Box>
+				</Box>
+			</Box>
+    </Section>  
   </Theme>
 
 });

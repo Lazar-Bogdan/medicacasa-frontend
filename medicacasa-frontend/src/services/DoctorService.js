@@ -23,9 +23,9 @@ class DoctorService{
         }
     }
 
-    async addDoctor(username,email,password,role,age,img){
+    async addDoctor(username,email,password,role,age,img,FirstDesc,SecondDesc){
         try{
-            const response = await axios.post(URL + "doctor/addDoctor", {username:username,email:email,password:password,role:role,age:age,img:img})
+            const response = await axios.post(URL + "doctor/addDoctor", {username:username,email:email,password:password,role:role,age:age,img:img, doctorFirstDescription:FirstDesc, doctorSecondDescription:SecondDesc})
             return response.data;
         }catch(err){
             console.log("err",err.response);
@@ -53,9 +53,9 @@ class DoctorService{
         }
     }
 
-    async editDoctor(id,username,email,password,role,age,img){
+    async editDoctor(id,username,email,password,role,age,img,FirstDesc,SecondDesc){
         try{
-            const response = await axios.put(URL + "doctor/editDoctor", {_id:id,username:username,email:email,password:password,role:role,age:age,img:img});
+            const response = await axios.put(URL + "doctor/editDoctor", {_id:id,username:username,email:email,password:password,role:role,age:age,img:img, doctorFirstDescription:FirstDesc, doctorSecondDescription:SecondDesc});
             return response.data;
         }catch(err){
             console.log("err",err.response);

@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section,Structure,Image, Hr, Input } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
-import { RawHtml, Override, SocialMedia } from "@quarkly/components";
+import { RawHtml, Override, SocialMedia, Formspree } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
@@ -163,55 +163,36 @@ export default (() => {
               >Add new Doctor</Link>
         </Box>
     </Section>
-    <Structure cells-number-total="1" cells-number-group="3">
-      <Override slot="Content" grid-template-columns="9fr 3fr" md-grid-template-columns="repeat(6, 2fr)" sm-grid-template-columns="12fr">
-        <Override
-          slot="Cell 0th"
-          grid-column="1 / auto"
-          grid-row="auto / span 2"
-          md-grid-column="1 / span 6"
-          md-grid-row="span"
-          sm-grid-column="auto"
-          sm-grid-row="span"
-          position="relative"
-        />
-        <Override slot="Cell 1st" md-grid-column="1 / span 3" sm-grid-column="auto" />
-        <Override slot="Cell 2nd" md-grid-column="4 / span 3" sm-grid-column="auto" />
-        <Override slot="cell-0">
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-140px"
-            placeholder='User email'
-            name="username"
-            type="text"
-            
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-140px"
-            top="10px"
-            name="email"
-            placeholder='Doctor email'
-          />
-          <Text margin="0px 0px 0px 0px" position="relative" top="-75px">
-            User Email:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-50px">
-            Doctor Email:
-          </Text>
-          <Button position="relative" top="-210px" top="-110px" right="-500px" onClick={() => handleAddSub()}>
-            Add Subscription
-          </Button>
-        </Override>
-                                    
-      </Override>
-    </Structure>  
+    <Section background="--color-light" color="--dark" padding="64px 0 64px 0">
+			<Box margin="-16px -16px -16px -16px" display="flex" flex-wrap="wrap">
+				<Box width="50%" padding="8px 8px 8px 8px" lg-width="100%">
+					<Box>
+						<Formspree endpoint="xeqpgrlv">
+							<Box
+								gap="16px"
+								display="grid"
+								flex-direction="row"
+								flex-wrap="wrap"
+								grid-template-columns="repeat(2, 1fr)"
+								grid-gap="16px"
+							>
+								<Text margin="0px 0px 0px 0px" position="relative">
+                  User Email:
+                </Text>
+                <Input width="100%" type="email" name="userEmail" placeHolder="User Email" onChange={(event) => setUserEmail(event.target.value) } />
+                <Text margin="0px 0px 0px 0px" position="relative">
+                  Doctor Email:
+                </Text>
+                <Input width="100%" type="email" name="DoctorEmail" placeHolder="Doctor Email" onChange={(event) => setDoctorEmail(event.target.value) } />
+                <Button position="relative" onClick={() => handleAddSub()}>
+                  Add Subscription
+                </Button>
+							</Box>
+						</Formspree>
+					</Box>
+				</Box>
+			</Box>
+		</Section>
   </Theme>
 
 });

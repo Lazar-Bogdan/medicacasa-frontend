@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section,Structure,Image, Hr, Input } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
-import { RawHtml, Override, SocialMedia } from "@quarkly/components";
+import { RawHtml, Override, SocialMedia, Formspree } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
@@ -25,15 +25,17 @@ export default (() => {
     history.push("/")
   }
   
-  const[username,setUsername]=useState(false);
+  const[username,setUsername]=useState(" ");
   const[email,setEmail]=useState(" ");
   const[Password,setPassword]=useState(" ");
   const[Role,setRole]=useState(2011);
   const[age,setAge]=useState(" ");
   const[img,setImg]=useState(" ");
+  const[FirstDesc,set1Desc]=useState(" ");
+  const[SecondDesc, set2Desc]=useState(" ");
 
   async function handleAddClient(){
-    const response = await DoctorService.addDoctor(username,email,Password,Role,age,img);
+    const response = await DoctorService.addDoctor(username,email,Password,Role,age,img,FirstDesc,SecondDesc);
     if(response){
       alert("doctor created");
       history.push('/clientlist');
@@ -193,135 +195,60 @@ export default (() => {
               >Add new Doctor</Link>
         </Box>
     </Section>
-    <Structure cells-number-total="1" cells-number-group="3">
-      <Override slot="Content" grid-template-columns="9fr 3fr" md-grid-template-columns="repeat(6, 2fr)" sm-grid-template-columns="12fr">
-        <Override
-          slot="Cell 0th"
-          grid-column="1 / auto"
-          grid-row="auto / span 2"
-          md-grid-column="1 / span 6"
-          md-grid-row="span"
-          sm-grid-column="auto"
-          sm-grid-row="span"
-          position="relative"
-        />
-        <Override slot="Cell 1st" md-grid-column="1 / span 3" sm-grid-column="auto" />
-        <Override slot="Cell 2nd" md-grid-column="4 / span 3" sm-grid-column="auto" />
-        <Override slot="cell-0">
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            placeholder='Name'
-            name="username"
-            onChange={(event) => setUsername(event.target.value) }
-        />
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="10px"
-            name="email"
-            placeholder='email'
-            onChange={(event) => setEmail(event.target.value) }
-        />
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="15px"
-            placeholder='Password'
-            onChange={(event) => setPassword(event.target.value) }
-        />
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="20px"
-            type="number"
-            readOny="true"
-            value="2011"
-            onChange={(event) => setRole(event.target.value) }
-        />
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="25px"
-            placeholder='Age'
-            onChange={(event) => setAge(event.target.value) }
-        />
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="25px"
-            placeholder='Img URL'
-            onChange={(event) => setImg(event.target.value) }
-        />
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="25px"
-            placeholder='Img URL'
-            onChange={(event) => setImg(event.target.value) }
-        />
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="25px"
-            placeholder='Img URL'
-            onChange={(event) => setImg(event.target.value) }
-        />
-        <Text margin="0px 0px 0px 0px" position="relative" top="-310px">
-            Username:
-        </Text>
-        <Text margin="0px 0px 0px 0px" position="relative" top="-285px">
-            Email:
-        </Text>
-        <Text margin="0px 0px 0px 0px" position="relative" top="-265px">
-            Password:
-        </Text>
-        <Text margin="0px 0px 0px 0px" position="relative" top="-245px">
-            Role:
-        </Text>
-        <Text margin="0px 0px 0px 0px" position="relative" top="-225px">
-            Age:
-        </Text>
-        <Text margin="0px 0px 0px 0px" position="relative" top="-205px">
-            1.description:
-        </Text>
-        <Text margin="0px 0px 0px 0px" position="relative" top="-190px">
-            2.description:
-        </Text>
-        <Text margin="0px 0px 0px 0px" position="relative" top="-175px">
-            Img URL:
-        </Text>
-          <Button position="relative" top="-210px" top="-225px" right="-500px" onClick={() => handleAddClient()}>
-            Add Doctor
-          </Button>
-        </Override>
-                                    
-      </Override>
-    </Structure>  
+    <Section background="--color-light" color="--dark" padding="64px 0 64px 0">
+			<Box margin="-16px -16px -16px -16px" display="flex" flex-wrap="wrap">
+				<Box width="50%" padding="8px 8px 8px 8px" lg-width="100%">
+					<Box>
+						<Formspree endpoint="xeqpgrlv">
+							<Box
+								gap="16px"
+								display="grid"
+								flex-direction="row"
+								flex-wrap="wrap"
+								grid-template-columns="repeat(2, 1fr)"
+								grid-gap="16px"
+							>
+								<Text margin="0px 0px 0px 0px" position="relative" >
+                  Username:
+                </Text>
+                <Input width="100%" type="text" name="username" placeHolder="Username" onChange={(event) => setUsername(event.target.value) } />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Email:
+                </Text>
+                <Input width="100%" type="email" name="email" placeHolder="Email" onChange={(event) => setEmail(event.target.value) } />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Password:
+                </Text>
+                <Input width="100%" type="password" name="password" placeHolder="Password" onChange={(event) => setPassword(event.target.value) } />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Role:
+                </Text>
+                <Input width="100%" type="text" name="Role" value="2011"/>
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Age:
+                </Text>
+                <Input width="100%" type="text" name="age" placeHolder="Age" onChange={(event) => setAge(event.target.value) } />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                1. Description:
+                </Text>
+                <Input width="100%" type="text" name="1Desc" placeHolder="1. Description" onChange={(event) => set1Desc(event.target.value) } />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                2. Description:
+                </Text>
+                <Input width="100%" type="text" name="2Desc" placeHolder="2. Description" onChange={(event) => set2Desc(event.target.value) } />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Img URL:
+                </Text>
+                <Input width="100%" type="text" name="img" placeHolder="IMG URL" onChange={(event) => setImg(event.target.value) } />
+                <Button variant="btn btn-success" type="submit" onClick={() => handleAddClient()}>
+                  Add Doctor
+                </Button>
+							</Box>
+						</Formspree>
+					</Box>
+				</Box>
+			</Box>
+		</Section>
   </Theme>
 
 });

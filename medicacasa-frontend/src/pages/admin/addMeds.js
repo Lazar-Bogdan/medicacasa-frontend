@@ -49,8 +49,6 @@ export default (() => {
     <title>
       ADM
     </title>
-    <meta name={"description"} content={"Web site created using quarkly.io"} />
-    <link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
   </Helmet>
   <Section>
         <Box
@@ -148,83 +146,74 @@ export default (() => {
                 >Add new meds</Link>
           </Box>
       </Section>  
-    <Structure cells-number-total="1" cells-number-group="3">
-      <Override slot="Content" grid-template-columns="9fr 3fr" md-grid-template-columns="repeat(6, 2fr)" sm-grid-template-columns="12fr">
-        <Override
-          slot="Cell 0th"
-          grid-column="1 / auto"
-          grid-row="auto / span 2"
-          md-grid-column="1 / span 6"
-          md-grid-row="span"
-          sm-grid-column="auto"
-          sm-grid-row="span"
-          position="relative"
-        />
-        <Override slot="Cell 1st" md-grid-column="1 / span 3" sm-grid-column="auto" />
-        <Override slot="Cell 2nd" md-grid-column="4 / span 3" sm-grid-column="auto" />
-        <Override slot="cell-0">
-        <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            placeholder='Name'
-            name="name"
-            onChange={(event) => setName(event.target.value) }
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="10px"
-            name="price"
-            type="number"
-            placeholder='Price'
-            onChange={(event) => setPrice(event.target.value) }
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="15px"
-            placeholder='Description'
-            onChange={(event) => setDescription(event.target.value) }
-          />
-          <Input
-            display="block"
-            placeholder-color="LightGray"
-            background="white"
-            position="relative"
-            right="-100px"
-            top="20px"
-            placeholder='Img URL'
-            onChange={(event) => setImg(event.target.value) }
-          />
-         
-          <Text margin="0px 0px 0px 0px" position="relative" top="-150px">
-            Name:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-125px">
-            Price:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-105px">
-            Description:
-          </Text>
-          <Text margin="0px 0px 0px 0px" position="relative" top="-85px">
-            Img URL:
-          </Text>
-          <Button position="relative" top="-210px" top="-225px" right="-500px" onClick={() => handleAddMeds()}>
-            Add Meds
-          </Button>
-        </Override>
-                                    
-      </Override>
-    </Structure>  
+    <Section background="--color-light" color="--dark" padding="64px 0 64px 0">
+			<Box margin="-16px -16px -16px -16px" display="flex" flex-wrap="wrap">
+				<Box width="50%" padding="8px 8px 8px 8px" lg-width="100%">
+					<Box>
+							<Box
+								gap="16px"
+								display="grid"
+								flex-direction="row"
+								flex-wrap="wrap"
+								grid-template-columns="repeat(2, 1fr)"
+								grid-gap="16px"
+							>
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Name:
+                </Text>
+                <Input
+                  display="block"
+                  placeholder-color="LightGray"
+                  background="white"
+                  position="relative"
+                  placeholder='Name'
+                  name="name"
+                  onChange={(event) => setName(event.target.value) }
+                />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Price:
+                </Text>
+                <Input
+                  display="block"
+                  placeholder-color="LightGray"
+                  background="white"
+                  position="relative"
+                  name="price"
+                  type="number"
+                  placeholder='Price'
+                  onChange={(event) => setPrice(event.target.value) }
+                />
+                <Text margin="0px 0px 0px 0px" position="relative">
+                  Description:
+                </Text>
+                <Input
+                  display="block"
+                  placeholder-color="LightGray"
+                  background="white"
+                  position="relative"
+                  placeholder='Description'
+                  onChange={(event) => setDescription(event.target.value) }
+                />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Img URL:
+                </Text>
+                <Input
+                  display="block"
+                  placeholder-color="LightGray"
+                  background="white"
+                  position="relative"
+
+                  placeholder='Img URL'
+                  onChange={(event) => setImg(event.target.value) }
+                />
+                <Button position="relative" onClick={() => handleAddMeds()}>
+                  Add Meds
+                </Button>
+							</Box>
+					</Box>
+				</Box>
+			</Box>
+		</Section>
   </Theme>
 
 });

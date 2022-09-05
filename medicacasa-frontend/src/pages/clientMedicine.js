@@ -188,6 +188,7 @@ export default (() => {
 						hover-background="--color-greyD1"
 					/>
 				</SocialMedia>
+				<CometChat />
 		</Section>
 		<RawHtml>
 			<style place={"endOfHead"} rawKey={"62def10d21e43d0020976a62"}>

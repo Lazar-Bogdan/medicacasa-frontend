@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -11,9 +11,12 @@ import FacebookLogin from 'react-facebook-login';
 
 import GoogleLogin from 'react-google-login';
 
+import Modal from "./popups/model"
+
 const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
 
 function Login() {
+	const [loginFalse,setLoginFalse] = useState(true);
 	const history = useHistory();
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
@@ -35,7 +38,10 @@ function Login() {
 		let response = await AuthService.doUserLogin(email,password,);
 		if(!response){
 			response = await AuthService.doDoctorLogin(email,password);
+		}else{
+			setLoginFalse(false);
 		}
+		console.log(response);
 		if(response){
 			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			// this.props.history.push("/home");
@@ -48,8 +54,6 @@ function Login() {
 			if(response.role == 3011){
 				history.push("/adminpage")
 			}
-		}else{
-			alert("please check your credentials");
 		}
 	}
 
@@ -89,6 +93,7 @@ function Login() {
 	return (
 		<Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"login"} />
+		{loginFalse && <Modal>Hello worlds</Modal>}
 		<Helmet>
 			<title>
 				Login
@@ -185,7 +190,7 @@ function Login() {
 							</Box>
 						</Formspree>
 					</Box>
-					<Button variant="btn btn-success" type="submit" onClick={() => handleSubmitLogin()}>
+					<Button variant="btn btn-success" type="submit" onClick={() => {handleSubmitLogin();}}>
 						Login
 					</Button>
 					<p></p>
@@ -232,6 +237,7 @@ function Login() {
 				{":root {\n  box-sizing: border-box;\n}\n\n* {\n  box-sizing: inherit;\n}"}
 			</style>
 		</RawHtml>
+		
 	</Theme>
 	);
 }

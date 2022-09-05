@@ -204,19 +204,24 @@ recapitulare 01.09.2022
         - la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii - DONE
         - implement client chat - DONE
         - doctor part chat - DONE
+        - ceva probleme in addDoctor, nu stiu de ce nu vrea sa dea add in cometchat ( poate aceasi chestie se intampla si pt addClient) - DONE
+        - de mai vazut faza cu input - DONE
+
 
     not DONE:
     din cauza support masiv la lucru am ramas cu astea de facut: (in ordine de importanta)
-        -de vazut cum adaugi prieteni pe cometChat
-        -ceva probleme in addDoctor, nu stiu de ce nu vrea sa dea add in cometchat ( poate aceasi chestie se intampla si pt addClient)
-        -de mai vazut faza cu input
         -Poze - Se rezolva - aws cloud
-        -pop-uri de erori (la login/logout - delete ceva sau add)
+        -pop-uri de erori (la login/logout - delete ceva sau add) - inceput de mai modificat la style + de adaugare onClick sau ceva de genu la el
         -de mai vazut faza cu freeze la pagina
         -scheletu pentru mobile app - 
             - profile
             - add something 
             - chat
+        -de refactorizat  + rezolvat probleme la add app ( s a schimbat zilele + luniile) un algoritm nou ceva
         -de mai vazut de ce nu se pune zilele cum trebuie (poate de gasit un nou algoritm) , de gasit un algoritm mai bun pt numele zilelor
         -animations when changin pages/scrolling
         -doctor info page
+    
+    IMPROVMENT:
+        -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri)
+        -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)

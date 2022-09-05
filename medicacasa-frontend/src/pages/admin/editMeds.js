@@ -46,7 +46,7 @@ export default (() => {
         }
     }
 
-    async function handleEditClient(id){
+    async function handleEditMed(id){
         const response = await GetMedicineService.editMed(id,name,price,description,img);
         if(response){
             alert("med edited");
@@ -57,86 +57,73 @@ export default (() => {
     function MapMeds(List){
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
-            <Structure cells-number-total="1" cells-number-group="3">
-            <Override slot="Content" grid-template-columns="9fr 3fr" md-grid-template-columns="repeat(6, 2fr)" sm-grid-template-columns="12fr">
-                <Override
-                slot="Cell 0th"
-                grid-column="1 / auto"
-                grid-row="auto / span 2"
-                md-grid-column="1 / span 6"
-                md-grid-row="span"
-                sm-grid-column="auto"
-                sm-grid-row="span"
-                position="relative"
-                />
-                <Override slot="Cell 1st" md-grid-column="1 / span 3" sm-grid-column="auto" />
-                <Override slot="Cell 2nd" md-grid-column="4 / span 3" sm-grid-column="auto" />
-                <Override slot="cell-0">
-                <Input
+            <Section background="--color-light" color="--dark" padding="64px 0 64px 0">
+                <Box margin="-16px -16px -16px -16px" display="flex" flex-wrap="wrap">
+                    <Box width="50%" padding="8px 8px 8px 8px" lg-width="100%">
+                        <Box>
+                                <Box
+                                    gap="16px"
+                                    display="grid"
+                                    flex-direction="row"
+                                    flex-wrap="wrap"
+                                    grid-template-columns="repeat(2, 1fr)"
+                                    grid-gap="16px"
+                                >
+                    <Text margin="0px 0px 0px 0px" position="relative" >
+                    Name:
+                    </Text>
+                    <Input
                     display="block"
                     placeholder-color="LightGray"
                     background="white"
                     position="relative"
-                    right="-100px"
                     placeholder='Name'
                     name="name"
-                    value={item.name}
                     onChange={(event) => setName(event.target.value) }
-                />
-                <Input
+                    />
+                    <Text margin="0px 0px 0px 0px" position="relative" >
+                    Price:
+                    </Text>
+                    <Input
                     display="block"
                     placeholder-color="LightGray"
                     background="white"
                     position="relative"
-                    right="-100px"
-                    top="10px"
                     name="price"
                     type="number"
-                    placeholder='price'
-                    value={item.price}
+                    placeholder='Price'
                     onChange={(event) => setPrice(event.target.value) }
-                />
-                <Input
+                    />
+                    <Text margin="0px 0px 0px 0px" position="relative">
+                    Description:
+                    </Text>
+                    <Input
                     display="block"
                     placeholder-color="LightGray"
                     background="white"
                     position="relative"
-                    right="-100px"
-                    top="15px"
-                    placeholder='description'
-                    value={item.description}
+                    placeholder='Description'
                     onChange={(event) => setDescription(event.target.value) }
-                />
-                <Input
+                    />
+                    <Text margin="0px 0px 0px 0px" position="relative" >
+                    Img URL:
+                    </Text>
+                    <Input
                     display="block"
                     placeholder-color="LightGray"
                     background="white"
                     position="relative"
-                    right="-100px"
-                    top="20px"
-                    readOny="true"
-                    value={item.img}
+                    placeholder='Img URL'
                     onChange={(event) => setImg(event.target.value) }
-                />
-                <Text margin="0px 0px 0px 0px" position="relative" top="-145px">
-                    Name:
-                </Text>
-                <Text margin="0px 0px 0px 0px" position="relative" top="-125px">
-                    Price:
-                </Text>
-                <Text margin="0px 0px 0px 0px" position="relative" top="-100px">
-                    Description :
-                </Text>
-                <Text margin="0px 0px 0px 0px" position="relative" top="-80px">
-                    Img URL:
-                </Text>
-                <Button position="relative" top="-210px" top="-120px" right="-500px" onClick={() => handleEditClient(item._id)}>
-                    Edit client
-                </Button>
-                </Override>
-                                            
-            </Override>
-            </Structure> 
+                    />
+                    <Button position="relative" onClick={() => handleEditMed()}>
+                    Add Meds
+                    </Button>
+                                </Box>
+                        </Box>
+                    </Box>
+                </Box>
+            </Section>
         );
 		return Filtered;
 	}
