@@ -7,4 +7,5 @@ export default (() => {
 	AuthService.handleLogOut();
     const history = useHistory();
     history.push("/");
+    return (<div></div>);
 });

@@ -8,7 +8,7 @@ import Register from "pages/register";
 import clientHome from "pages/clientHome";
 import clientMedicine from "pages/clientMedicine";
 import myDoctor from "pages/myDoctor";
-import history from "pages/history";
+// import history from "pages/history";
 import doctorHomePage from "pages/doctorHomePage";
 import myClient from "pages/myClient";
 import addReview from "pages/addReview";
@@ -32,6 +32,7 @@ import addNewSubscription from "pages/admin/addNewSubscription";
 import logout from "pages/logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
+import { createBrowserHistory  as createHistory} from 'history';
 
 import CookieService from "./services/CookieService";
 
@@ -44,6 +45,8 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 //CookieService.set("login",false);
+
+const history = createHistory(); 
 
 export default () => (
     <Router history={history}>
