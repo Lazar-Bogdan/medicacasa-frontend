@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -13,12 +13,14 @@ import { gapi } from 'gapi-script';
 
 import { useHistory } from "react-router-dom";
 
+import Modal from "./popups/model"
 
 const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
 
 export default (() => {
 	// form la subscription
 	// [{email:"test"},{email:"test"},{email:"test"}]
+	const [loginFalse, setLoginFalse] = useState(false);
 	const history = useHistory();
 	useEffect(() =>{
 		const initClient = () => {
@@ -28,7 +30,7 @@ export default (() => {
 			});
 		};
 		gapi.load('client:auth2', initClient);
-	});
+	},[loginFalse]);
 
 	async function handleSubmitRegister(){
 		const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
@@ -39,7 +41,12 @@ export default (() => {
 			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			history.push("/client");
 		}else{
-			alert("please check your credentials");
+			if(loginFalse == true && response == false){
+				setLoginFalse(false);
+				setLoginFalse(true);
+			}else{
+				setLoginFalse(true);
+			}
 		}
 	}
 
@@ -85,6 +92,7 @@ export default (() => {
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
 		</Helmet>
+		<Modal>Test</Modal>
 		<Section>
 			<Box
 				display="flex"

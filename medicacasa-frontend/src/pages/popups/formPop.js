@@ -5,9 +5,9 @@ import theme from "theme";
 import { Theme, Link, Text, Box, Section, Input, Button, Hr } from "@quarkly/widgets";
 
 
-const Modal = forwardRef((props, ref) => {
+const SubmitForm = forwardRef((props, refs) => {
     const [open, setOpen] = useState(true);
-    useImperativeHandle(ref,() =>{
+    useImperativeHandle(refs,() =>{
         return{
             open: () => setOpen(true),
             close: () => setOpen(false)
@@ -106,7 +106,7 @@ const Modal = forwardRef((props, ref) => {
                                         grid-gap="16px"
                                     >
                                         <Text font="--base" margin="0 0 4px 0">
-                                            Something went wrong, please recheck email & password
+                                            Something went wrong, please try again.
                                         </Text>
                                         <p></p>
                                         <Text font="--base" margin="0 0 4px 0">
@@ -125,4 +125,4 @@ const Modal = forwardRef((props, ref) => {
 });
 
 
-export default Modal;
+export default SubmitForm;

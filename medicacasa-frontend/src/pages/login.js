@@ -16,8 +16,14 @@ import Modal from "./popups/model"
 const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
 
 function Login() {
-	const [loginFalse,setLoginFalse] = useState(true);
+	const [loginFalse,setLoginFalse] = useState(false);
 	const history = useHistory();
+
+	useEffect(() =>{
+		console.log(loginFalse);
+	},[loginFalse]);
+
+	const modalRef = useRef();
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
 		history.push("/client")
@@ -38,10 +44,7 @@ function Login() {
 		let response = await AuthService.doUserLogin(email,password,);
 		if(!response){
 			response = await AuthService.doDoctorLogin(email,password);
-		}else{
-			setLoginFalse(false);
 		}
-		console.log(response);
 		if(response){
 			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			// this.props.history.push("/home");
@@ -53,6 +56,13 @@ function Login() {
 			}
 			if(response.role == 3011){
 				history.push("/adminpage")
+			}
+		}else{
+			if(loginFalse == true && response == false){
+				setLoginFalse(false);
+				setLoginFalse(true);
+			}else{
+				setLoginFalse(true);
 			}
 		}
 	}
@@ -89,11 +99,9 @@ function Login() {
 			}
 		}
 	}
-
 	return (
 		<Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"login"} />
-		{loginFalse && <Modal>Hello worlds</Modal>}
 		<Helmet>
 			<title>
 				Login
@@ -237,7 +245,7 @@ function Login() {
 				{":root {\n  box-sizing: border-box;\n}\n\n* {\n  box-sizing: inherit;\n}"}
 			</style>
 		</RawHtml>
-		
+		{ loginFalse && <Modal>Hello worlds</Modal>}
 	</Theme>
 	);
 }

@@ -13,13 +13,20 @@ import { useHistory } from "react-router-dom";
 
 import emailjs from '@emailjs/browser';
 
+import SubmitForm from './popups/formPop';
+
 export default (() => {
 
 	const [name, setName] = useState(" ");
 	const [email, setEmail] = useState(" ");
 	const [message, setMessage] = useState(" ");
+	const [loginFalse,setLoginFalse] = useState(false);
 
 	const history = useHistory();
+
+	useEffect(()=>{
+
+	},[loginFalse]);
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
 		history.push("/client")
@@ -54,7 +61,12 @@ export default (() => {
 			console.log("form submitted");
 			alert("Form submited");
 		}else{
-			alert("something is wrong");
+			if(loginFalse == true && response == false){
+				setLoginFalse(false);
+				setLoginFalse(true);
+			}else{
+				setLoginFalse(true);
+			}
 		}
 	}
 
@@ -67,7 +79,10 @@ export default (() => {
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
 		</Helmet>
+
 		<Section>
+			{loginFalse && <SubmitForm></SubmitForm>}
+
 			<Box
 				display="flex"
 				padding="12px 0"
