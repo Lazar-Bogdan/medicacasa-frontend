@@ -215,9 +215,15 @@ recapitulare 01.09.2022
     not DONE:
         -Poze - Se rezolva - aws cloud
         -scheletu pentru mobile app - 
-            - profile
-            - add something 
-            - chat
+            - login
+            - doua tab-uri jos cu chat / profile
+            - la tab ul dechat sa fie chat ul efectiv (cometchat ? streamchat.io ?)
+            - tab de profile
+                -edit profile
+                -add info
+                    -add pulse
+                    -greutate
+                    -inaltime
         -poate un pop-ul la momentul intrarii in site / logout ?
         -animations when changin pages/scrolling
         -style popups
@@ -232,3 +238,4 @@ recapitulare 01.09.2022
     INTREBARI:
         -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita?
         -intrebari legat de solve freeze - nu mai e nevoie, s-a rezolvat - DONE
+        -ceva informatii legat de react-native ? cum sa dau switch pe screen-uri. (nu am exp cu react-native si inca invat)
