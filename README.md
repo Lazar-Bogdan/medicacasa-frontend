@@ -209,7 +209,7 @@ recapitulare 01.09.2022
         - pop-uri de erori (la login/logout - delete ceva sau add) - inceput de mai modificat la style + de adaugare onClick sau ceva de genu la el - DONE
         - de mai vazut faza cu freeze la pagina - DONE (daca mai apar probleme pe viitor (n ar mai trebuii))
         - de refactorizat  + rezolvat probleme la add appointment ( s a schimbat zilele + luniile) un algoritm nou ceva - DONE
-
+        - myschedule, ultima oara nu a mers, de revizuit - DONE
 
 
     not DONE:
@@ -218,8 +218,6 @@ recapitulare 01.09.2022
             - profile
             - add something 
             - chat
-        -myschedule, ultima oara nu a mers, de revizuit
-        -de mai vazut de ce nu se pune zilele cum trebuie (poate de gasit un nou algoritm) , de gasit un algoritm mai bun pt numele zilelor
         -poate un pop-ul la momentul intrarii in site / logout ?
         -animations when changin pages/scrolling
         -style popups
@@ -229,7 +227,8 @@ recapitulare 01.09.2022
         -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri)
         -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)
         -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server
+        -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
 
     INTREBARI:
         -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita?
-        -intrebari legat de solve freeze
+        -intrebari legat de solve freeze - nu mai e nevoie, s-a rezolvat - DONE

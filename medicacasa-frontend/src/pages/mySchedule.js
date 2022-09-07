@@ -63,7 +63,7 @@ const MySchedule = () => {
     async function getClientsApp(months,year,numberDays){
         const response = await MyClientsService.getMyClientsUnderDoctorEmail("Bogdan@gmail.com",months,year,numberDays);
         if(response){
-            //console.log(response);
+            console.log(response);
             setClientsApp(response);
         }
     }
