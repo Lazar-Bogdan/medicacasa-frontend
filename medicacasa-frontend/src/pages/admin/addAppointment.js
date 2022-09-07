@@ -4,7 +4,7 @@ import { Theme, Link, Text, Box, Section,Structure,Image, Hr, Input } from "@qua
 import { Helmet } from "react-helmet";
 import { RawHtml, Override, SocialMedia, Formspree } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
-import { Button } from "@quarkly/widgets/build/cjs/prod";
+import { Button, I } from "@quarkly/widgets/build/cjs/prod";
 
 import MyClientsService from "services/MyClientsService";
 
@@ -12,9 +12,12 @@ import { arangeDays,getDays,getMonths } from "services/DateSettings";
 
 import { useHistory } from "react-router-dom";
 import AuthService from "services/AuthService";
+import App from "App";
+
 
 
 export default (() => {
+
   const history = useHistory();
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
@@ -29,19 +32,20 @@ export default (() => {
     history.push("/")
   }
   
-  const [valueDay, setValueDay] = (' ');
+  const [valueDay, setValueDay] = useState([]);
   const [valueHour,setValueHour] = useState('');
   const [valueMonth,setValueMonth] = useState('');
   const [valueYear,setValueYear] = useState('');
   const[doctoremail,setDoctorEmail]=useState();
   const[clientEmail,setClientEmail]=useState();
+  const [finalValueDay, setFinalValueDay] = useState();
+  const [finalYearValue, setFinalValueYear] = useState();
+  const [finalMonthValue, setFinalValueMonth] = useState();
   const[AppList,setAppList]=useState([]);
 
   useEffect(() => {
-    let y = getDays(new Date().getMonth());
-    setValueDay(arangeDays(y));
-  },[]);
-
+ 
+  },[AppList,valueDay]);
   const app = [
     {
       "hour":"9:00-9:30",
@@ -106,15 +110,16 @@ export default (() => {
   ]
 
   async function getAppUnderDoctor(doctoremail){
-    const response = await MyClientsService.getMyClientsUnderDoctorEmail(doctoremail);
+    const response = await MyClientsService.getDoctorAppUnderAddAppAdmin(doctoremail,finalYearValue,finalMonthValue,finalValueDay);
     if(response){
-      console.log(response);
       setAppList(response);
+    }else{
+      alert("please check all fields should be modified once");
     }
   }
 
   async function handleAddClient(){
-    const response = await MyClientsService.addApp(doctoremail,clientEmail,valueDay,valueHour,valueMonth,valueYear);
+    const response = await MyClientsService.addApp(doctoremail,clientEmail,finalValueDay,valueHour,finalMonthValue,finalYearValue);
     if(response){
       alert("App added!");
       history.push('/adminpage');
@@ -129,15 +134,30 @@ export default (() => {
   }
 
   function handleChange(event){
-    setValueDay(event.target.value);
+    setFinalValueDay(event.target.value);
   }
 
   function handleChangeYear(event){
-    setValueYear(event.target.value);
+    // console.log(event.target.value);
+    setFinalValueYear(event.target.value);
   }
 
   function handleChangeMonth(event){
-    setValueMonth(event.target.value);
+    let month = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let x = 0;
+    for(var i=0; i<month.length; i++){
+      if(month[i] === event.target.value){
+        x = i;
+      }
+    }
+    let y = getDays(x);
+    if(month[x] === month[new Date().getMonth()]){
+      setValueDay(arangeDays(y));
+    }else{
+      setValueDay(y);
+    }
+
+    setFinalValueMonth(event.target.value);
   }
   
   function handleChangeHour(event){
@@ -164,15 +184,24 @@ export default (() => {
     return Filtered;
   }
 
-  const[visible, setVisible] = useState(20);
+  function dayFunction(List){
+    console.log(List);
+    const Filtered = List.slice(0, visible).map((item) =>
+      {
+        return <option value={item}>{item}</option>
+      }
+    );
+    return Filtered;
+  }
+
+  const[visible, setVisible] = useState(40);
   function Time(List){
 		if(!List){List=[];}
     for (var i=0; i < AppList.length; i++) {
       for(var y = 0; y<app.length; y++){
-        console.log("app : " + app[y].hour + " AppList : " + AppList[i].hour + " ValueDay " + valueDay);
-        console.log(app[y].hour == AppList[i].hour);
-        if(app[y].hour === AppList[i].hour && valueDay === AppList[i].day){
-          console.log("aici");
+        if(app[y].hour === AppList[i].hour){
+          // console.log("app : " + app[y].hour + " AppList : " + AppList[i].hour);
+          // console.log(app[y].hour == AppList[i].hour);
           app[y].value = 1;
         }
       }
@@ -280,16 +309,6 @@ export default (() => {
                 md-align-items="center"
                 slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
             >All Appointments</Link>
-            <Link
-                href="/addnewclient"
-                display="flex"
-                justify-content="center"
-                font="--base"
-                font-weight="700"
-                md-flex-direction="column"
-                md-align-items="center"
-                slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-            >Add new Appointment</Link>
         </Box>
     </Section>
     <Section>
@@ -324,6 +343,26 @@ export default (() => {
                         name="DoctorEmail"
                         onChange={(event)=> setDoctorEmail(event.target.value)}
                         />
+                        <label>
+                            Year:
+                            <select onChange={handleChangeYear}>
+                              <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
+                              <option value={new Date().getFullYear() + 1}>{new Date().getFullYear() + 1}</option>
+                            </select>
+                          </label>
+                          <label>
+                          Month:
+                            <select  onChange={handleChangeMonth}>
+                              {MonthFunction()}
+                            </select>
+                          </label>
+                          <label>
+                            Day:
+                            <select onChange={handleChange}>
+                              {dayFunction(valueDay)}
+                            </select>
+                        </label>
+                        <p></p>
                       <Button variant="btn btn-success" type="submit"  position="relative" onClick={() => handleSeach()}>
                         Search
                       </Button>
@@ -358,30 +397,6 @@ export default (() => {
                     grid-template-columns="repeat(2, 1fr)"
                     grid-gap="16px"
                    >
-                      <label>
-                        Year:
-                        <select value={valueDay} onChange={handleChangeYear}>
-                          <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
-                          <option value={new Date().getFullYear() + 1}>{new Date().getFullYear() + 1}</option>
-                        </select>
-                      </label>
-                      <label>
-                      Month:
-                        <select value={valueDay} onChange={handleChangeMonth}>
-                          {MonthFunction()}
-                        </select>
-                      </label>
-                      <label>
-                        Day:
-                        <select value={valueDay[0]} onChange={handleChange}>
-                          <option value="Monday">Monday</option>
-                          <option value="Tuesday">Tuesday</option>
-                          <option value="Wednesday">Wednesday</option>
-                          <option value="Thursday">Thursday</option>
-                          <option value="Friday">Friday</option>
-                        </select>
-                      </label>
-                      <p></p>
                       <label>
                       Hour:
                         <select value={valueHour} onChange={handleChangeHour}>

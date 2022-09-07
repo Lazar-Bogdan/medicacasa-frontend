@@ -13,6 +13,16 @@ class MyClientsService{
         }
     }
 
+    async getDoctorAppUnderAddAppAdmin(doctoremail,year,month,day){
+        try{
+            const response = await axios.get(URL + "App/getDoctorApp", { headers: {doctoremail:doctoremail, month:month, year:year, day:day}});
+            return response.data;
+        }catch(err){
+            console.error("Error", err.response);
+            return false;
+        } 
+    }
+
     async getAllApp(){
         try{
             const response = await axios.get(URL + "App/getAllApp");

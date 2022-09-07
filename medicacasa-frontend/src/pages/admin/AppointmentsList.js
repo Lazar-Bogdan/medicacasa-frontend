@@ -30,7 +30,7 @@ export default (() => {
     getApps();
   },[]);
 
-  const[visible, setVisible] = useState(10);
+  const[visible, setVisible] = useState(100);
   const[apps,setApp] = useState([]);
 
   async function getApps(){
@@ -72,6 +72,9 @@ export default (() => {
                     </Text>
                     <Text margin="0px 0px 0px 0px" position="relative" >
                     Client Email : {item.clients}
+                    </Text>
+                    <Text margin="0px 0px 0px 0px" position="relative" >
+                    Month : {item.month}
                     </Text>
                     <Text margin="0px 0px 0px 0px" position="relative" >
                     Day : {item.day}
