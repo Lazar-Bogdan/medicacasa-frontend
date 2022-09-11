@@ -29,6 +29,7 @@ import editMeds from "pages/admin/editMeds";
 import AppointmentsList from "pages/admin/AppointmentsList";
 import addAppointment from "pages/admin/addAppointment";
 import addNewSubscription from "pages/admin/addNewSubscription";
+import UploadImageToS3WithNativeSdk from "services/UploadImageToS3WithNativeSdk";
 import logout from "pages/logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
@@ -79,6 +80,7 @@ export default () => (
             <Route exact path='/addappointments' component={addAppointment} />
             <Route exact path='/addsubscription' component={addNewSubscription} />
             <Route exact path='/doctorinformation/:id' component={doctorInformation} />
+            <Route exact path='/uploadSDK' component={UploadImageToS3WithNativeSdk} />
             <Route exact path='/schedule' component={MySchedule} />
             <Route exact path="/logout" component={logout} />
 			<Route component={Page404}/>

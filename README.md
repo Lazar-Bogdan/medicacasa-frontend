@@ -213,7 +213,7 @@ recapitulare 01.09.2022
 
 
     not DONE:
-        -Poze - Se rezolva - aws cloud
+        -Poze - Se rezolva - aws cloud - ceva access forbidden - ONGOING
         -scheletu pentru mobile app - 
             - login
             - doua tab-uri jos cu chat / profile
