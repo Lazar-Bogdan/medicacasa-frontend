@@ -391,7 +391,6 @@ const MySchedule = () => {
                     hover-background="--color-greyD1"
                 />
             </SocialMedia>
-            <CometChat />
         </Section>
         <RawHtml>
             <style place={"endOfHead"} rawKey={"62e38af0f913c500201c13a2"}>

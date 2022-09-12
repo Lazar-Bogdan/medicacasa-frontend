@@ -202,6 +202,7 @@ recapitulare 01.09.2022
         - la schedule sa fie un calendar in care poate sa vada ce program are maine/peste o sapt/ o luna etc - DONE
         - de continuat cu calendarul ala de vazut de ce raspunde asa greu la comenzi (daca reusesti daca nu lasa ca improvment) - DONE
         - la google/facebook, se trimite direct pe site, nu salvezi parola sau ceva, daca ai nevoie poti sa iei informatii - DONE
+        - trimite email la from cu emailjs - DONE
         - implement client chat - DONE
         - doctor part chat - DONE
         - ceva probleme in addDoctor, nu stiu de ce nu vrea sa dea add in cometchat ( poate aceasi chestie se intampla si pt addClient) - DONE
@@ -214,7 +215,7 @@ recapitulare 01.09.2022
 
     not DONE:
         -Poze - Se rezolva - aws cloud - ceva access forbidden - ONGOING
-        -scheletu pentru mobile app - 
+        -scheletu pentru mobile app - ONGOING
             - login
             - doua tab-uri jos cu chat / profile
             - la tab ul dechat sa fie chat ul efectiv (cometchat ? streamchat.io ?)
@@ -234,6 +235,7 @@ recapitulare 01.09.2022
         -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)
         -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server
         -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
+        -de modificat mesajul la emailjs cand se trimite catre user
 
     INTREBARI:
         -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita?
