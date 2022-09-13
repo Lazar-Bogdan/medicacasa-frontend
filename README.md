@@ -216,28 +216,31 @@ recapitulare 01.09.2022
     not DONE:
         -Poze - Se rezolva - aws cloud - ceva access forbidden - ONGOING
         -scheletu pentru mobile app - ONGOING
-            - login
+            - login - DONE
             - doua tab-uri jos cu chat / profile
-            - la tab ul dechat sa fie chat ul efectiv (cometchat ? streamchat.io ?)
+            - la tab ul dechat sa fie chat ul efectiv (cometchat ? streamchat.io ?) - ideal ar fii sa ti faci mecanism de chat si sa   fie bagat in mongodb -
             - tab de profile
-                -edit profile
-                -add info
+                -edit profile - implementat doar asa crud, inca nu e functional - ONGOING
+                -add info - ar fii frumos sa se poata adauga si la google "health" - de vazut - pagina create - ONGOING
                     -add pulse
                     -greutate
                     -inaltime
-        -poate un pop-ul la momentul intrarii in site / logout ?
+            - pop up de eroare la log
+        -poate un pop-ul la momentul intrarii in site / logout 
         -animations when changin pages/scrolling
         -style popups
         -doctor info page
     
-    IMPROVMENT:
-        -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri)
-        -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)
-        -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server
-        -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
-        -de modificat mesajul la emailjs cand se trimite catre user
+        - IMPROVMENT:
+            -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri)
+            -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)
+            -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server (alert mai bine)
+            -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
+            -de modificat mesajul la emailjs cand se trimite catre user
+            
+        - HARDWARE IMPLEMENTATION - ONGOING
 
     INTREBARI:
-        -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita?
+        -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita? - DONE
         -intrebari legat de solve freeze - nu mai e nevoie, s-a rezolvat - DONE
-        -ceva informatii legat de react-native ? cum sa dau switch pe screen-uri. (nu am exp cu react-native si inca invat)
+        -ceva informatii legat de react-native ? cum sa dau switch pe screen-uri. (nu am exp cu react-native si inca invat) - de vazut link salvat ( de luat ca paramtru )
