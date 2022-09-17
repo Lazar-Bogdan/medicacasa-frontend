@@ -217,16 +217,29 @@ recapitulare 01.09.2022
         -Poze - Se rezolva - aws cloud - ceva access forbidden - ONGOING
         -scheletu pentru mobile app - ONGOING
             - login - DONE
-            - doua tab-uri jos cu chat / profile
-            - la tab ul dechat sa fie chat ul efectiv (cometchat ? streamchat.io ?) - ideal ar fii sa ti faci mecanism de chat si sa   fie bagat in mongodb -
+            - doua tab-uri jos cu chat / profile - 
+                - se salveaza id-ul userului - DONE
+                - pentru client s a facut profile - EDIT / ADD PROFILE - DONE
+                - pentru doctor de implementat doar EDIT - ONGOING
+                - de impartit in 2 parti, pagini pt user, pagini pt doctor - ONGOING
+                    -pagina pentru doctor -
+                        -am diferentiat login ul, sa se aleaga daca esti doctor sau user - DONE
+                        -la doctor de vazut cum sa ai 2 screen ul ca la client - ONGOING
+                        -profile ramane la fel - ONGOING
+                        -edit profile sa fie pentru descriere etc - ONGOING
+                            - de modificat catre cine se trimite baza de date
+                - legat de chat de vazut cum sa fie async totul, poate cu socket.io ? de vazut - ONGOING
+            - la tab ul dechat sa fie chat ul efectiv (cometchat ? streamchat.io ?) - ideal ar fii sa ti faci mecanism de chat si sa   fie bagat in mongodb - ONGOING - baza de date pentru message creata, trebuie sa vad ce fite face useEffectul ala
             - tab de profile
                 -edit profile - implementat doar asa crud, inca nu e functional - ONGOING
+                    - adaugat 2 input uri pt email si username - poza choose ONGOING
                 -add info - ar fii frumos sa se poata adauga si la google "health" - de vazut - pagina create - ONGOING
                     -add pulse
                     -greutate
                     -inaltime
             - pop up de eroare la log
         -poate un pop-ul la momentul intrarii in site / logout 
+        -pop ul dupa ce se adauga info corect pt user - DONE
         -animations when changin pages/scrolling
         -style popups
         -doctor info page
@@ -237,8 +250,13 @@ recapitulare 01.09.2022
             -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server (alert mai bine)
             -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
             -de modificat mesajul la emailjs cand se trimite catre user
+            -de modificat chestii hardcoded ( de ex myDoctor se trimite email hardcoded)
             
         - HARDWARE IMPLEMENTATION - ONGOING
+            - piesa de pulse stricat, luat una noua, pare ca da ceva ouput - DONE
+            - de testat placa wifi
+            - de pus LCD urile si testat
+            - de pus asamblu impreuna
 
     INTREBARI:
         -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita? - DONE

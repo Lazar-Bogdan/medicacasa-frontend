@@ -51,10 +51,12 @@ export default (() => {
     }
   }
   
-  async function handleRemove(id,role){
+  async function handleRemove(id,role,email){
       if(role == 1011){
         const response = await UserService.deleteUser(id);
         if(response){
+          const userId = await UserService.getMessage(email);
+          await UserService.deleteMessage(userId._id);
           alert("user deleted successfully");
           history.push('/adminpage');
         }
@@ -62,6 +64,8 @@ export default (() => {
       if(role == 2011){
         const response = await DoctorService.deleteDoctor(id);
         if(response){
+          const doctorId = await UserService.getMessageDoctor(email);
+          await UserService.deleteMessage(doctorId._id);
           alert("doctor deleted successfully");
           history.push('/adminpage');
         }
@@ -112,7 +116,7 @@ export default (() => {
               </Button>
             </Override>
             <Override slot="cell-2">
-              <Button position="relative" right="-90px" onClick={() => handleRemove(item._id,item.role)}>
+              <Button position="relative" right="-90px" onClick={() => handleRemove(item._id,item.role,item.email)}>
                 Remove
               </Button>
             </Override>

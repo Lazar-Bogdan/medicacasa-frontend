@@ -31,6 +31,7 @@ export default (() => {
   async function handleAddSub(){
     const response = await UserService.addSub(userEmail,doctorEmal);
     if(response){
+        await UserService.addMessage(userEmail,doctorEmal);
         alert("subscription created");
         history.push('/clientlist');
     }else{

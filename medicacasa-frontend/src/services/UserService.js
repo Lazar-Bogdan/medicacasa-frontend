@@ -81,6 +81,46 @@ class UserService{
             return false;
         }
     }
+
+    async addMessage(client,doctor){
+        try{
+            const response = await axios.post(URL + "messages/addMessage", {client: client, doctor:doctor} );
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
+
+    async deleteMessage(_id){
+        try{
+            const response = await axios.delete(URL + "messages/deleteMessage", {headers: {_id:_id}});
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
+
+    async getMessage(client){
+        try{
+            const response = await axios.get(URL + "messages/clientMessage", {headers: {client:client}});
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
+    
+    async getMessageDoctor(doctor){
+        try{
+            const response = await axios.get(URL + "messages/doctorMessage", {headers: {doctor:doctor}});
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
 }
 
 export default new UserService

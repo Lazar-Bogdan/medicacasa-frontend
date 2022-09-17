@@ -51,6 +51,7 @@ export default (() => {
 		await axios.get(URL + "users/getUserUnderEmail", { headers: { email:"bogdilazar5@gmail.com" }})
 			.then(response => {
 				setCurrentUser(response.data);
+				// console.log(response.data);
 				// console.log(response.data[0].subscription[0]);
 			})
 			.catch(err => {
