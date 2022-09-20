@@ -6,8 +6,8 @@ const REGION ='eu-central-1';
 
 
 AWS.config.update({
-    accessKeyId: 'AKIAVB5RGJ3APYLTK3YM',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIAVB5RGJ3ADZMXXRXI',
+    secretAccessKey: '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'
 })
 
 const myBucket = new AWS.S3({
