@@ -211,41 +211,62 @@ recapitulare 01.09.2022
         - de mai vazut faza cu freeze la pagina - DONE (daca mai apar probleme pe viitor (n ar mai trebuii))
         - de refactorizat  + rezolvat probleme la add appointment ( s a schimbat zilele + luniile) un algoritm nou ceva - DONE
         - myschedule, ultima oara nu a mers, de revizuit - DONE
-
-
-    not DONE:
-        -Poze - Se rezolva - aws cloud - ceva access forbidden - ONGOING
-        -scheletu pentru mobile app - ONGOING
+        26.09.2022
+        - poze done:
+            - SE STOCHEAZA POZA - DONE
+        -mobile:
             - login - DONE
-            - doua tab-uri jos cu chat / profile - 
-                - se salveaza id-ul userului - DONE
+            - se salveaza id-ul userului - DONE
                 - pentru client s a facut profile - EDIT / ADD PROFILE - DONE
-                - pentru doctor de implementat doar EDIT - ONGOING
-                - de impartit in 2 parti, pagini pt user, pagini pt doctor - ONGOING
+                - pentru doctor de implementat doar EDIT - DONE
+                - de impartit in 2 parti, pagini pt user, pagini pt doctor - DONE
                     -pagina pentru doctor -
                         -am diferentiat login ul, sa se aleaga daca esti doctor sau user - DONE
-                        -la doctor de vazut cum sa ai 2 screen ul ca la client - ONGOING
-                        -profile ramane la fel - ONGOING
-                        -edit profile sa fie pentru descriere etc - ONGOING
-                            - de modificat catre cine se trimite baza de date
-                - legat de chat de vazut cum sa fie async totul, poate cu socket.io ? de vazut - ONGOING
-            - la tab ul dechat sa fie chat ul efectiv (cometchat ? streamchat.io ?) - ideal ar fii sa ti faci mecanism de chat si sa   fie bagat in mongodb - ONGOING - baza de date pentru message creata, trebuie sa vad ce fite face useEffectul ala
-            - tab de profile
-                -edit profile - implementat doar asa crud, inca nu e functional - ONGOING
-                    - adaugat 2 input uri pt email si username - poza choose ONGOING
-                -add info - ar fii frumos sa se poata adauga si la google "health" - de vazut - pagina create - ONGOING
+                        -la doctor de vazut cum sa ai 2 screen ul ca la client - DONE
+                        -profile ramane la fel - DONE
+                        - de modificat catre cine se trimite baza de date - DONE
+            - client page 
+                - message page - DONE - de inlocuit email cu cel de la asyncStorage
+            - doctor page
+                - message page DONE
+             - tab de profile
+                -edit profile - implementat doar asa crud, inca nu e functional - DONE
+                    - adaugat 2 input uri pt email si username - poza choose DONE
+                -add info - ar fii frumos sa se poata adauga si la google "health" - de vazut - pagina create - DONE
                     -add pulse
                     -greutate
                     -inaltime
-            - pop up de eroare la log
-        -poate un pop-ul la momentul intrarii in site / logout 
+                - pop up de eroare la log - DONE
         -pop ul dupa ce se adauga info corect pt user - DONE
+        - piesa de pulse stricat, luat una noua, pare ca da ceva ouput - DONE
+        - toate piese sunt aici - DONE
+
+    not DONE:
+        -Poze - Se rezolva - aws cloud - ceva access forbidden - ONGOING
+            - SE ADAUGA LINK CATRE POZA PE MONGO - ONGOING
+        -scheletu pentru mobile app - ONGOING
+            - message btw doctor and client - ONGOING
+            - doua tab-uri jos cu chat / profile - 
+                        -edit profile sa fie pentru descriere etc - ONGOING - sau maybe not ?
+                - legat de chat de vazut cum sa fie async totul, poate cu socket.io ? de vazut - ONGOING
+            - la tab ul dechat sa fie chat ul efectiv (cometchat ? streamchat.io ?) - ideal ar fii sa ti faci mecanism de chat si 
+                sa   fie bagat in mongodb - ONGOING - baza de date pentru message creata, trebuie sa vad ce fite face useEffectul 
+                ala
+                - socket.io ? functioneaza sa trimita notificari chiar si daca aplicatia este closed ? ONGOING
+                -  de vazut cum se implementeaza asta - ONGOING
+                - client page 
+                    - message channel ONGOING
+                - doctor page
+                    - message channel ONGOING
+        -poate un pop-ul la momentul intrarii in site / logout 
         -animations when changin pages/scrolling
         -style popups
         -doctor info page
     
         - IMPROVMENT:
-            -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri)
+            -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri) - ONGOING, am reusit sa adaug priteni din comanda
+                - acum de pus specific, adica de luat uid de la doctor + uid de la client si sa se trimita
+                    aici se poate face un fetch pt doctor si una pt client si de acolo sa se trimita uid ul - ONGOING
             -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)
             -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server (alert mai bine)
             -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
@@ -253,7 +274,6 @@ recapitulare 01.09.2022
             -de modificat chestii hardcoded ( de ex myDoctor se trimite email hardcoded)
             
         - HARDWARE IMPLEMENTATION - ONGOING
-            - piesa de pulse stricat, luat una noua, pare ca da ceva ouput - DONE
             - de testat placa wifi
             - de pus LCD urile si testat
             - de pus asamblu impreuna
