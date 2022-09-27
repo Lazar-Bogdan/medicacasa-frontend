@@ -5,10 +5,25 @@ import { Helmet } from "react-helmet";
 import { RawHtml, Override, SocialMedia, Formspree } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
+import AWS from 'aws-sdk'
 
 import { useHistory } from "react-router-dom";
 import DoctorService from "services/DoctorService";
 import AuthService from "services/AuthService";
+
+const S3_BUCKET ='mydoctorbucket/profilePhotos';
+const REGION ='eu-central-1';
+
+
+AWS.config.update({
+    accessKeyId: 'AKIAVB5RGJ3ADZMXXRXI',
+    secretAccessKey: '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'
+})
+
+const myBucket = new AWS.S3({
+    params: { Bucket: S3_BUCKET},
+    region: REGION,
+})
 
 export default (() => {
   const history = useHistory();
@@ -30,18 +45,38 @@ export default (() => {
   const[Password,setPassword]=useState(" ");
   const[Role,setRole]=useState(2011);
   const[age,setAge]=useState(" ");
-  const[img,setImg]=useState(" ");
+  const[img,setImg]=useState(null);
   const[FirstDesc,set1Desc]=useState(" ");
   const[SecondDesc, set2Desc]=useState(" ");
+  const [progress , setProgress] = useState(0);
 
   async function handleAddClient(){
-    const response = await DoctorService.addDoctor(username,email,Password,Role,age,img,FirstDesc,SecondDesc);
+    console.log(img.name);
+    const params = {
+        ACL: 'public-read',
+        Body: img,
+        Bucket: S3_BUCKET,
+        Key: img.name
+    };
+
+    myBucket.putObject(params)
+        .on('httpUploadProgress', (evt) => {
+            setProgress(Math.round((evt.loaded / evt.total) * 100))
+        })
+        .send((err) => {
+            if (err) console.log(err)
+        })
+    const response = await DoctorService.addDoctor(username,email,Password,Role,age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,FirstDesc,SecondDesc);
     if(response){
       alert("doctor created");
       history.push('/clientlist');
     }else{
       alert("check credentials");
     }
+  }
+
+  const handleFileInput = (e) => {
+    setImg(e.target.files[0]);
   }
 
   const handleInputChange = (event) => {
@@ -239,7 +274,7 @@ export default (() => {
                 <Text margin="0px 0px 0px 0px" position="relative" >
                   Img URL:
                 </Text>
-                <Input width="100%" type="text" name="img" placeHolder="IMG URL" onChange={(event) => setImg(event.target.value) } />
+                <Input type="file" onChange={handleFileInput} />
                 <Button variant="btn btn-success" type="submit" onClick={() => handleAddClient()}>
                   Add Doctor
                 </Button>

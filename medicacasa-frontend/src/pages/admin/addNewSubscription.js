@@ -9,6 +9,7 @@ import { Button } from "@quarkly/widgets/build/cjs/prod";
 import UserService from "services/UserService";
 import { useHistory } from "react-router-dom";
 import AuthService from "services/AuthService";
+import DoctorService from "services/DoctorService";
 
 export default (() => {
   const history = useHistory();
@@ -29,14 +30,20 @@ export default (() => {
   const [doctorEmal,setDoctorEmail] = useState();
 
   async function handleAddSub(){
-    const response = await UserService.addSub(userEmail,doctorEmal);
-    if(response){
-        await UserService.addMessage(userEmail,doctorEmal);
-        alert("subscription created");
-        history.push('/clientlist');
-    }else{
-        alert("check credentials");
-      }
+    let doctorUid, userUid;
+
+    userUid = await UserService.getUserUid(userEmail);
+    console.log(userUid);
+    doctorUid = await DoctorService.getDoctorUid(doctorEmal);
+    console.log(doctorUid)
+    const response = await UserService.addSub(userEmail,doctorEmal, userUid, doctorUid);
+    // if(response){
+    //     // await UserService.addMessage(userEmail,doctorEmal);
+    //     alert("subscription created");
+    //     //history.push('/clientlist');
+    // }else{
+    //     alert("check credentials");
+    //   }
   }
 
   return  <Theme theme={theme}>

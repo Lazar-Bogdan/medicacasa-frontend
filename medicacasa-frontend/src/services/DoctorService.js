@@ -62,6 +62,16 @@ class DoctorService{
             return false;
         }
     }
+
+    async getDoctorUid(email){
+        try{
+            const response = await axios.get(URL + "doctor/getDoctorUid", {headers: {email:email}});
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
 }
 
 export default new DoctorService

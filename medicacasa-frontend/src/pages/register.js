@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Formspree, SocialMedia } from "@quarkly/components";
 import AuthService from "./../services/AuthService";
+import AWS from 'aws-sdk'
 
 import FacebookLogin from 'react-facebook-login';
 
@@ -17,9 +18,28 @@ import Modal from "./popups/model"
 
 const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
 
+const S3_BUCKET ='mydoctorbucket/profilePhotos';
+const REGION ='eu-central-1';
+
+
+AWS.config.update({
+    accessKeyId: 'AKIAVB5RGJ3ADZMXXRXI',
+    secretAccessKey: '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'
+})
+
+const myBucket = new AWS.S3({
+    params: { Bucket: S3_BUCKET},
+    region: REGION,
+})
+
 export default (() => {
 	// form la subscription
 	// [{email:"test"},{email:"test"},{email:"test"}]
+	const [username,setUsername] = useState(" ");
+	const [email,setEmail] = useState(" ");
+	const [password,setPassword] = useState(" ");
+	const [age, setAge] = useState(0);
+	const [img,setImg] = useState(null);
 	const [loginFalse, setLoginFalse] = useState(false);
 	const history = useHistory();
 	useEffect(() =>{
@@ -31,11 +51,28 @@ export default (() => {
 		};
 		gapi.load('client:auth2', initClient);
 	},[loginFalse]);
+	const [progress , setProgress] = useState(0);
 
 	async function handleSubmitRegister(){
+		console.log(img.name);
+		const params = {
+			ACL: 'public-read',
+			Body: img,
+			Bucket: S3_BUCKET,
+			Key: img.name
+		};
+	
+		myBucket.putObject(params)
+			.on('httpUploadProgress', (evt) => {
+				setProgress(Math.round((evt.loaded / evt.total) * 100))
+			})
+			.send((err) => {
+				if (err) console.log(err)
+			})
 		const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
 		console.log(uid);
-		const response = await AuthService.registerUser("Arianna", "Arianna0@gmail.com","test",1011, 12,"img",uid);
+		const response = await AuthService.registerUser(username, email,password,1011, age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid);
+		console.log(response);
 		if(response){
 			console.log("user logged");
 			AuthService.handleLoginSucces(response._id,response.role,response.uid);
@@ -48,6 +85,10 @@ export default (() => {
 				setLoginFalse(true);
 			}
 		}
+	}
+
+	const handleFileInput = (e) => {
+		setImg(e.target.files[0]);
 	}
 
 	const responseGoogle = async (res) => {
@@ -121,13 +162,25 @@ export default (() => {
 								grid-gap="16px"
 							>
 								<Text font="--base" margin="0 0 4px 0">
+									Username
+								</Text>
+								<Input width="100%" type="email" name="email" onChange={(event)=> setUsername(event.target.value) } />
+								<Text font="--base" margin="0 0 4px 0">
 									Email
 								</Text>
-								<Input width="100%" type="email" name="email" />
+								<Input width="100%" type="email" name="email" onChange={(event)=> setEmail(event.target.value) } />
 								<Text font="--base" margin="0 0 4px 0">
 									Password
 								</Text>
-								<Input width="100%" type="password" name="email" />
+								<Input width="100%" type="password" onChange={(event) => setPassword(event.target.value) } />
+								<Text font="--base" margin="0 0 4px 0">
+									Age
+								</Text>
+								<Input width="100%" type="number" onChange={(event) => setAge(event.target.value) }  />
+								<Text font="--base" margin="0 0 4px 0">
+									Image
+								</Text>
+								<Input width="100%" type="file" onChange={handleFileInput} />
 							</Box>
 						</Formspree>
 					</Box>

@@ -5,11 +5,26 @@ import { Helmet } from "react-helmet";
 import { RawHtml, Override, SocialMedia } from "@quarkly/components";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
-
+import AWS from 'aws-sdk'
 import GetMedicineService from "services/GetMedicineService";
 
 import { useHistory } from "react-router-dom";
 import AuthService from "services/AuthService";
+
+
+const S3_BUCKET ='mydoctorbucket/medicinePhotos';
+const REGION ='eu-central-1';
+
+
+AWS.config.update({
+    accessKeyId: 'AKIAVB5RGJ3ADZMXXRXI',
+    secretAccessKey: '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'
+})
+
+const myBucket = new AWS.S3({
+    params: { Bucket: S3_BUCKET},
+    region: REGION,
+})
 
 export default (() => {
 
@@ -31,15 +46,36 @@ export default (() => {
   const[price,setPrice]=useState(" ");
   const[description,setDescription]=useState(" ");
   const[img,setImg]=useState(" ");
+  const [progress , setProgress] = useState(0);
+
 
   async function handleAddMeds(){
-    const response = await GetMedicineService.addMeds(name,price,description,img)
+    console.log(img.name);
+    const params = {
+        ACL: 'public-read',
+        Body: img,
+        Bucket: S3_BUCKET,
+        Key: img.name
+    };
+
+    myBucket.putObject(params)
+        .on('httpUploadProgress', (evt) => {
+            setProgress(Math.round((evt.loaded / evt.total) * 100))
+        })
+        .send((err) => {
+            if (err) console.log(err)
+        })
+
+    const response = await GetMedicineService.addMeds(name,price,description,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/medicinePhotos/" + img.name)
     if(response){
       alert("meds created");
       history.push('/medlist');
     }else{
       alert("check credentials");
     }
+  }
+  const handleFileInput = (e) => {
+    setImg(e.target.files[0]);
   }
 
 
@@ -197,15 +233,7 @@ export default (() => {
                 <Text margin="0px 0px 0px 0px" position="relative" >
                   Img URL:
                 </Text>
-                <Input
-                  display="block"
-                  placeholder-color="LightGray"
-                  background="white"
-                  position="relative"
-
-                  placeholder='Img URL'
-                  onChange={(event) => setImg(event.target.value) }
-                />
+                <Input type="file" onChange={handleFileInput} />
                 <Button position="relative" onClick={() => handleAddMeds()}>
                   Add Meds
                 </Button>

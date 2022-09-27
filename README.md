@@ -240,10 +240,17 @@ recapitulare 01.09.2022
         -pop ul dupa ce se adauga info corect pt user - DONE
         - piesa de pulse stricat, luat una noua, pare ca da ceva ouput - DONE
         - toate piese sunt aici - DONE
+        - bug gasit in partea de client chat - DONE
+        -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri) - DONE, am reusit sa adaug priteni din comanda
+            - acum de pus specific, adica de luat uid de la doctor + uid de la client si sa se trimita
+                aici se poate face un fetch pt doctor si una pt client si de acolo sa se trimita uid ul - DONE
 
     not DONE:
         -Poze - Se rezolva - aws cloud - ceva access forbidden - ONGOING
             - SE ADAUGA LINK CATRE POZA PE MONGO - ONGOING
+                - medicine/user/doctor from admin - DONE - ONLY JPEG PHOTO CAN BE ADDED
+                - register - DONE 
+                - poate de adaugat o info ca doar jpeg se poate ?
         -scheletu pentru mobile app - ONGOING
             - message btw doctor and client - ONGOING
             - doua tab-uri jos cu chat / profile - 
@@ -256,27 +263,25 @@ recapitulare 01.09.2022
                 -  de vazut cum se implementeaza asta - ONGOING
                 - client page 
                     - message channel ONGOING
-                - doctor page
+                - doctor page 
+                    - la edit sa se editeze first desc si second desc
                     - message channel ONGOING
         -poate un pop-ul la momentul intrarii in site / logout 
         -animations when changin pages/scrolling
         -style popups
         -doctor info page
     
-        - IMPROVMENT:
-            -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri) - ONGOING, am reusit sa adaug priteni din comanda
-                - acum de pus specific, adica de luat uid de la doctor + uid de la client si sa se trimita
-                    aici se poate face un fetch pt doctor si una pt client si de acolo sa se trimita uid ul - ONGOING
-            -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)
-            -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server (alert mai bine)
-            -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
-            -de modificat mesajul la emailjs cand se trimite catre user
-            -de modificat chestii hardcoded ( de ex myDoctor se trimite email hardcoded)
-            
-        - HARDWARE IMPLEMENTATION - ONGOING
-            - de testat placa wifi
-            - de pus LCD urile si testat
-            - de pus asamblu impreuna
+    - IMPROVMENT:
+        -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)
+        -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server (alert mai bine)
+        -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
+        -de modificat mesajul la emailjs cand se trimite catre user
+        -de modificat chestii hardcoded ( de ex myDoctor se trimite email hardcoded)
+        
+    - HARDWARE IMPLEMENTATION - ONGOING
+        - de testat placa wifi
+        - de pus LCD urile si testat
+        - de pus asamblu impreuna
 
     INTREBARI:
         -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita? - DONE

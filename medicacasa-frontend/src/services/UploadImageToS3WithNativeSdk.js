@@ -1,7 +1,7 @@
 import React ,{useState} from 'react';
 import AWS from 'aws-sdk'
 
-const S3_BUCKET ='mydoctorbucket';
+const S3_BUCKET ='mydoctorbucket/profilePhotos';
 const REGION ='eu-central-1';
 
 

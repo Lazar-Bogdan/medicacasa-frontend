@@ -72,9 +72,9 @@ class UserService{
         }
     }
 
-    async addSub(userEmail,DoctorEmail){
+    async addSub(userEmail,DoctorEmail,userUid,doctorUid){
         try{
-            const response = await axios.post(URL + "users/AddSub", {userEmail:userEmail, DoctorEmail:DoctorEmail})
+            const response = await axios.post(URL + "users/AddSub", {userEmail:userEmail, DoctorEmail:DoctorEmail, userUid:userUid, doctorUid:doctorUid})
             return response.data;
         }catch(err){
             console.log("err",err.response);
@@ -115,6 +115,16 @@ class UserService{
     async getMessageDoctor(doctor){
         try{
             const response = await axios.get(URL + "messages/doctorMessage", {headers: {doctor:doctor}});
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+    }
+
+    async getUserUid(email){
+        try{
+            const response = await axios.get(URL + "users/getUserUid", {headers: {email:email}});
             return response.data;
         }catch(err){
             console.log("err",err.response);
