@@ -3,13 +3,20 @@ import URL from "./BackEndURL";
 
 class UserService{
     async getAllUsers(){
-        try{
-            const response = await axios.get(URL + "users/getAllUsers");
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+            
+        //     const response = await axios.get(URL + "users/getAllUsers");
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "users/getAllUsers")
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async getUsersUnderEmail(email){

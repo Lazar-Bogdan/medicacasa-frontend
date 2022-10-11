@@ -244,13 +244,13 @@ recapitulare 01.09.2022
         -de vazut cum adaugi prieteni pe cometChat ( acuma vede toti useri) - DONE, am reusit sa adaug priteni din comanda
             - acum de pus specific, adica de luat uid de la doctor + uid de la client si sa se trimita
                 aici se poate face un fetch pt doctor si una pt client si de acolo sa se trimita uid ul - DONE
-
-    not DONE:
-        -Poze - Se rezolva - aws cloud - ceva access forbidden - ONGOING
+        -Poze - Se rezolva - aws cloud - ceva access forbidden - DONE
             - SE ADAUGA LINK CATRE POZA PE MONGO - ONGOING
                 - medicine/user/doctor from admin - DONE - ONLY JPEG PHOTO CAN BE ADDED
                 - register - DONE 
                 - poate de adaugat o info ca doar jpeg se poate ?
+
+    not DONE:
         -scheletu pentru mobile app - ONGOING
             - message btw doctor and client - ONGOING
             - doua tab-uri jos cu chat / profile - 
@@ -270,13 +270,19 @@ recapitulare 01.09.2022
         -animations when changin pages/scrolling
         -style popups
         -doctor info page
-    
+    TO-DO:
+        -frontent pentru chat (backend ul ar trebuii sa fie ok)
+        -de schimbat din axios in call uri normale. ex - UserService -> getAllUsers.
+        -style
+        -hardware
+
     - IMPROVMENT:
         -la fiecare edit sa fie valoarea si sa se poata edita ( momentan e doar valorea da nu poti edita)
         -la addAppointment , sa fie initializate year + month, sa apara un pop-up la response negativ de la server (alert mai bine)
         -la mySchedule, de gasit un argoritm mai bun pentru numele zilelor ( cand trebuie nu mi da exact numele zii care trebuie)
         -de modificat mesajul la emailjs cand se trimite catre user
         -de modificat chestii hardcoded ( de ex myDoctor se trimite email hardcoded)
+        -remove axios, use something else that is not a library. (use the normal call);
         
     - HARDWARE IMPLEMENTATION - ONGOING
         - de testat placa wifi
