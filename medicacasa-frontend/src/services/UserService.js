@@ -1,6 +1,11 @@
 import axios from "axios";
 import URL from "./BackEndURL";
 
+// onst options = {
+    //     method: 'POST',
+    //     headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
+    //     body: JSON.stringify({accepted: ['testesd']})
+    //   };
 class UserService{
     async getAllUsers(){
         // try{
@@ -20,43 +25,117 @@ class UserService{
     }
 
     async getUsersUnderEmail(email){
-        try{
-            const response = await axios.get(URL + "users/getUserUnderEmail", {headers:{email:email}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
+        // try{
+        //     const response = await axios.get(URL + "users/getUserUnderEmail", {headers:{email:email}});
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        const option = {
+            method: 'GET',
+            headers: {
+                email:email
+            },
+            body: {}
         }
+        let x;
+        await fetch(URL + "users/getUserUnderEmail", option)
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async getUsersUnderId(id){
-        try{
-            const response = await axios.get(URL + "users/getUserUnderId", {headers:{_id:id}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
+        // try{
+        //     const response = await axios.get(URL + "users/getUserUnderId", {headers:{_id:id}});
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        const option = {
+            method: 'GET',
+            headers: {
+                _id:id
+            },
+            body: {}
         }
+        let x;
+        await fetch(URL + "users/getUserUnderId", option)
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async getUserUnderDoctorEmail(email){
-        try{
-            const response = await axios.get(URL + "users/getUserUnderDoctorEmail", {headers:{email:email}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
+        // try{
+        //     const response = await axios.get(URL + "users/getUserUnderDoctorEmail", {headers:{email:email}});
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        const option = {
+            method: 'GET',
+            headers: {
+                email:email
+            },
+            body: {}
         }
+        let x;
+        await fetch(URL + "users/getUserUnderDoctorEmail", option)
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async addUser(username,email,password,role,age,img,uid){
-        try{
-            const response = await axios.post(URL + "users/addClient", {username:username, email:email, password:password, role:role, age:age, img:img,uid:uid})
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
+        // try{
+        //     const response = await axios.post(URL + "users/addClient", {username:username, email:email, password:password, role:role, age:age, img:img,uid:uid})
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        const option = {
+            method: 'POST',
+            headers: {
+                
+            },
+            body: {
+                username:username, 
+                email:email, 
+                password:password, 
+                role:role, 
+                age:age, 
+                img:img,
+                uid:uid
+            }
         }
+        let x;
+        await fetch(URL + "users/addClient", {
+            method: 'POST',
+            headers: {
+                username:username, 
+                email:email, 
+                password:password, 
+                role:role, 
+                age:age, 
+                img:img,
+                uid:uid
+            },
+            body: {
+ 
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async deleteUser(id){

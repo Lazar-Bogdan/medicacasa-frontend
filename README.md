@@ -283,6 +283,7 @@ recapitulare 01.09.2022
         -de modificat mesajul la emailjs cand se trimite catre user
         -de modificat chestii hardcoded ( de ex myDoctor se trimite email hardcoded)
         -remove axios, use something else that is not a library. (use the normal call);
+            - error on getAllDoctors - to be checked
         
     - HARDWARE IMPLEMENTATION - ONGOING
         - de testat placa wifi
