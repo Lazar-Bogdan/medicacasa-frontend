@@ -3,10 +3,10 @@ import MDSpinner from "react-md-spinner";
 import AuthService from './AuthService';
 
 
-const appID="218089f1f04422d7";
+const appID="22278567a3f9fc18";
 const region="eu";
-const AUTH_KEY="17a6beee49348895b4781076a97ecc7352a4aae0";
-const wid="035cd74a-203c-4fad-b807-792e316088a6";
+const AUTH_KEY="df04fddb854b700fead7ba0ac2fde3fefa565e1d";
+const wid="5e71efd5-f14a-4257-aa58-bd4d40516434";
 
 const CometChat =()=>{
     useEffect(() => {

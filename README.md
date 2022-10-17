@@ -283,7 +283,9 @@ recapitulare 01.09.2022
         -de modificat mesajul la emailjs cand se trimite catre user
         -de modificat chestii hardcoded ( de ex myDoctor se trimite email hardcoded)
         -remove axios, use something else that is not a library. (use the normal call);
-            - error on getAllDoctors - to be checked
+            - error on getAllDoctors - to be checked 
+                - error on add client/doctor is related to cometChat, progress ongoing
+                - error on deleting user / message still unknown, wip
         
     - HARDWARE IMPLEMENTATION - ONGOING
         - de testat placa wifi

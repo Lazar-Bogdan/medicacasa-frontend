@@ -8,20 +8,29 @@ import URL from "./BackEndURL";
     //   };
 class UserService{
     async getAllUsers(){
+        try{
+            console.log("inainte de response");
+            const response = await axios.get(URL + "users/getAllUsers");
+            console.log("dupa response");
+            console.log(response.data);
+            return response.data;
+        }catch(err){
+            console.log("err",err.response);
+            return false;
+        }
+        // let x;
+        // await fetch(URL + "users/getAllUsers")
+        // .then(response => response.json())
+        // .then(response => { x = response; })
+        // .catch(err => { x = err; console.error(err)});
+        // return x;
         // try{
-            
-        //     const response = await axios.get(URL + "users/getAllUsers");
-        //     return response.data;
+        //     const response = await fetch(URL + "users/getAllUsers");
+        //     return response.json();
         // }catch(err){
         //     console.log("err",err.response);
         //     return false;
         // }
-        let x;
-        await fetch(URL + "users/getAllUsers")
-        .then(response => response.json())
-        .then(response => { x = response; })
-        .catch(err => { x = err; console.error(err)});
-        return x;
     }
 
     async getUsersUnderEmail(email){

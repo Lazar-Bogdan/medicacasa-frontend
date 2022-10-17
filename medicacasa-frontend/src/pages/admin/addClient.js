@@ -67,7 +67,7 @@ export default (() => {
             if (err) console.log(err)
         })
     const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
-    const response = await UserService.addUser(username,email,Password,Role,age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid);
+    const response = await UserService.addUser(username,email,Password,1011,age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid);
     if(response){
       alert("user created");
       history.push('/clientlist');
