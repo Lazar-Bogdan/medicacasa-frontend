@@ -148,83 +148,216 @@ class UserService{
     }
 
     async deleteUser(id){
-        try{
-            const response = await axios.delete(URL + "users/deleteUser", {headers:{_id:id}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.delete(URL + "users/deleteUser", {headers:{_id:id}})
+        //     console.log(response);
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "users/deleteUser", {
+            method: 'DELETE',
+            headers: {
+                _id:id
+            },
+            body: {
+ 
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async editUser(id,username,email,password,role,age,img){
-        try{
-            const response = await axios.put(URL + "users/updateUser", {_id:id,username:username,email:email,password:password,role:role,age:age,img:img})
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.put(URL + "users/updateUser", {_id:id,username:username,email:email,password:password,role:role,age:age,img:img})
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "users/updateUser", {
+            method: 'PUT',
+            headers: {
+                _id:id,
+                username:username,
+                email:email,
+                password:password,
+                role:role,
+                age:age,
+                img:img
+            },
+            body: {
+                _id:id,
+                username:username,
+                email:email,
+                password:password,
+                role:role,
+                age:age,
+                img:img
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async addSub(userEmail,DoctorEmail,userUid,doctorUid){
-        try{
-            const response = await axios.post(URL + "users/AddSub", {userEmail:userEmail, DoctorEmail:DoctorEmail, userUid:userUid, doctorUid:doctorUid})
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.post(URL + "users/AddSub", {userEmail:userEmail, DoctorEmail:DoctorEmail, userUid:userUid, doctorUid:doctorUid})
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "users/AddSub", {
+            method: 'POST',
+            headers: {
+                userEmail:userEmail, 
+                DoctorEmail:DoctorEmail, 
+                userUid:userUid, 
+                doctorUid:doctorUid
+            },
+            body: {
+                userEmail:userEmail, 
+                DoctorEmail:DoctorEmail, 
+                userUid:userUid, 
+                doctorUid:doctorUid
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async addMessage(client,doctor){
-        try{
-            const response = await axios.post(URL + "messages/addMessage", {client: client, doctor:doctor} );
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.post(URL + "messages/addMessage", {client: client, doctor:doctor} );
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "messages/addMessage", {
+            method: 'POST',
+            headers: {
+                client: client, 
+                doctor:doctor
+            },
+            body: {
+                client: client, 
+                doctor:doctor
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async deleteMessage(_id){
-        try{
-            const response = await axios.delete(URL + "messages/deleteMessage", {headers: {_id:_id}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.delete(URL + "messages/deleteMessage", {headers: {_id:_id}});
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "messages/deleteMessage", {
+            method: 'DELETE',
+            headers: {
+                _id:_id
+            },
+            body: {
+ 
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async getMessage(client){
-        try{
-            const response = await axios.get(URL + "messages/clientMessage", {headers: {client:client}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.get(URL + "messages/clientMessage", {headers: {client:client}});
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "messages/clientMessage", {
+            method: 'GET',
+            headers: {
+                client:client
+            },
+            body: {
+ 
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
     
     async getMessageDoctor(doctor){
-        try{
-            const response = await axios.get(URL + "messages/doctorMessage", {headers: {doctor:doctor}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.get(URL + "messages/doctorMessage", {headers: {doctor:doctor}});
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "messages/doctorMessage", {
+            method: 'GET',
+            headers: {
+                doctor:doctor
+            },
+            body: {
+ 
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async getUserUid(email){
-        try{
-            const response = await axios.get(URL + "users/getUserUid", {headers: {email:email}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.get(URL + "users/getUserUid", {headers: {email:email}});
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "users/getUserUid", {
+            method: 'GET',
+            headers: {
+                email:email
+            },
+            body: {
+ 
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 }
 

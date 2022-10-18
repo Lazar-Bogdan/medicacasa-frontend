@@ -4,23 +4,42 @@ import URL from "./BackEndURL";
 
 class DoctorService{
     async getAllDoctors(){
-        try{
-            const response = await axios.get(URL + "doctor/getAllDoctors");
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.get(URL + "doctor/getAllDoctors");
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "doctor/getAllDoctors", {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async getDoctorAfterId(id){
-        try{
-            const response = await axios.get(URL + "doctor/getDoctorUnderId", {headers:{_id:id}});
-            return response.data;
-        }catch(err){
-            console.log("err",err.response);
-            return false;
-        }
+        // try{
+        //     const response = await axios.get(URL + "doctor/getDoctorUnderId", {headers:{_id:id}});
+        //     return response.data;
+        // }catch(err){
+        //     console.log("err",err.response);
+        //     return false;
+        // }
+        let x;
+        await fetch(URL + "doctor/getDoctorUnderId", {
+            method: 'GET',
+            headers: {
+                _id:id
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
     }
 
     async addDoctor(username,email,password,role,age,img,FirstDesc,SecondDesc){
