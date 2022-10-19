@@ -47,7 +47,9 @@ export default (() => {
     }
 
     async function handleEditMed(id){
+        console.log(id);
         const response = await GetMedicineService.editMed(id,name,price,description,img);
+        console.log(response);
         if(response){
             alert("med edited");
             history.push('/adminpage');
@@ -116,8 +118,8 @@ export default (() => {
                     placeholder='Img URL'
                     onChange={(event) => setImg(event.target.value) }
                     />
-                    <Button position="relative" onClick={() => handleEditMed()}>
-                    Add Meds
+                    <Button position="relative" onClick={() => handleEditMed(item._id)}>
+                    Edit Meds
                     </Button>
                                 </Box>
                         </Box>

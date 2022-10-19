@@ -41,6 +41,7 @@ export default (() => {
 	const [age, setAge] = useState(0);
 	const [img,setImg] = useState(null);
 	const [loginFalse, setLoginFalse] = useState(false);
+	const [registeFalse,setRegisterFalse] = useState(false);
 	const history = useHistory();
 	useEffect(() =>{
 		const initClient = () => {
@@ -50,7 +51,7 @@ export default (() => {
 			});
 		};
 		gapi.load('client:auth2', initClient);
-	},[loginFalse]);
+	},[loginFalse, registeFalse]);
 	const [progress , setProgress] = useState(0);
 
 	async function handleSubmitRegister(){
@@ -75,14 +76,18 @@ export default (() => {
 		console.log(response);
 		if(response){
 			console.log("user logged");
+			console.log(response);
 			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			history.push("/client");
 		}else{
 			if(loginFalse == true && response == false){
 				setLoginFalse(false);
 				setLoginFalse(true);
+				setRegisterFalse(false);
+				setRegisterFalse(true);
 			}else{
 				setLoginFalse(true);
+				setRegisterFalse(true);
 			}
 		}
 	}
@@ -133,7 +138,7 @@ export default (() => {
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
 		</Helmet>
-		<Modal>Test</Modal>
+		{ registeFalse && <Modal>Hello worlds</Modal>}
 		<Section>
 			<Box
 				display="flex"

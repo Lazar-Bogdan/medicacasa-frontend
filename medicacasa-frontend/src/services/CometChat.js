@@ -18,6 +18,8 @@ const CometChat =()=>{
             console.log("Initialization completed successfully");
             //You can now call login function.
             let uid = AuthService.handleGetUid();
+            console.log("uid");
+            console.log(uid);
             //login-ul efectiv
             window.CometChatWidget.login({
                 uid: uid,

@@ -42,10 +42,12 @@ function Login() {
 
 	async function handleSubmitLogin(){
 		let response = await AuthService.doUserLogin(email,password,);
-		if(!response){
+		if(response === "wrong credential" ){
 			response = await AuthService.doDoctorLogin(email,password);
 		}
-		if(response){
+		if(response !== "wrong credential"){
+			console.log("response output");
+			console.log(response);
 			AuthService.handleLoginSucces(response._id,response.role,response.uid);
 			// this.props.history.push("/home");
 			if(response.role == 1011){
