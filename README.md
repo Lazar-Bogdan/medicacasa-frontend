@@ -289,8 +289,8 @@ recapitulare 01.09.2022
         
     - HARDWARE IMPLEMENTATION - ONGOING
         - de testat placa wifi
-        - de pus LCD urile si testat
-        - de pus asamblu impreuna
+        - de pus LCD urile si testat - DONE
+        - de pus asamblu impreuna - WIP
 
     INTREBARI:
         -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita? - DONE

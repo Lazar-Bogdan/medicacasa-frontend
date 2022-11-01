@@ -33,17 +33,20 @@ export default (() => {
     let doctorUid, userUid;
 
     userUid = await UserService.getUserUid(userEmail);
+    console.log("user id");
     console.log(userUid);
     doctorUid = await DoctorService.getDoctorUid(doctorEmal);
+    console.log("doctor uid");
     console.log(doctorUid)
     const response = await UserService.addSub(userEmail,doctorEmal, userUid, doctorUid);
-    // if(response){
-    //     // await UserService.addMessage(userEmail,doctorEmal);
-    //     alert("subscription created");
-    //     //history.push('/clientlist');
-    // }else{
-    //     alert("check credentials");
-    //   }
+    if(response){
+        const rand = Math.floor(Math.random() * 100000);
+        await UserService.addMessage(userEmail,doctorEmal,rand);
+        alert("subscription created");
+        history.push('/clientlist');
+    }else{
+        alert("check credentials");
+      }
   }
 
   return  <Theme theme={theme}>

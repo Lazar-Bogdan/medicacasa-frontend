@@ -217,19 +217,15 @@ class UserService{
         //     return false;
         // }
         let x;
+        console.log(userEmail);
+        console.log(DoctorEmail);
         await fetch(URL + "users/AddSub", {
             method: 'POST',
             headers: {
-                userEmail:userEmail, 
-                DoctorEmail:DoctorEmail, 
-                userUid:userUid, 
-                doctorUid:doctorUid
-            },
-            body: {
-                userEmail:userEmail, 
-                DoctorEmail:DoctorEmail, 
-                userUid:userUid, 
-                doctorUid:doctorUid
+                user:userEmail,
+                doctor:DoctorEmail,
+                uiduser:userUid,
+                uiddoctor:doctorUid
             }
         })
         .then(response => response.json())
@@ -238,7 +234,7 @@ class UserService{
         return x;
     }
 
-    async addMessage(client,doctor){
+    async addMessage(client,doctor, roomid){
         // try{
         //     const response = await axios.post(URL + "messages/addMessage", {client: client, doctor:doctor} );
         //     return response.data;
@@ -251,11 +247,8 @@ class UserService{
             method: 'POST',
             headers: {
                 client: client, 
-                doctor:doctor
-            },
-            body: {
-                client: client, 
-                doctor:doctor
+                doctor:doctor,
+                roomid:roomid
             }
         })
         .then(response => response.json())
@@ -349,9 +342,6 @@ class UserService{
             method: 'GET',
             headers: {
                 email:email
-            },
-            body: {
- 
             }
         })
         .then(response => response.json())

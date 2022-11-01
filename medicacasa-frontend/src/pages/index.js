@@ -13,7 +13,7 @@ import {motion, useAnimation, AnimatePresence} from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const TestVariant = {
-	visible: { opacity: 1, scale: 1, transition: { duration: 0.2 } },
+	visible: { opacity: 1, scale: 1, transition: { duration: 0.7 } },
 	hidden: { opacity: 0, scale: 0 }
   };
 

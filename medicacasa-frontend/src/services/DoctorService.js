@@ -21,7 +21,7 @@ class DoctorService{
         return x;
     }
 
-    async getDoctorAfterId(id){
+    async getDoctorUidAfterId(id){
         // try{
         //     const response = await axios.get(URL + "doctor/getDoctorUnderId", {headers:{_id:id}});
         //     return response.data;
