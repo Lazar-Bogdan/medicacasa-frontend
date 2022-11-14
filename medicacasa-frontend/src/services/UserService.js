@@ -69,7 +69,6 @@ class UserService{
             headers: {
                 _id:id
             },
-            body: {}
         }
         let x;
         await fetch(URL + "users/getUserUnderId", option)
@@ -92,7 +91,6 @@ class UserService{
             headers: {
                 email:email
             },
-            body: {}
         }
         let x;
         await fetch(URL + "users/getUserUnderDoctorEmail", option)

@@ -37,9 +37,9 @@ export default (() => {
     }, [])
 
 	async function getClients(){
-		const response = await UserService.getUserUnderDoctorEmail("Bogdan@gmail.com");
+		const response = await UserService.getUserUnderDoctorEmail("Doctor@gmail.com");
 		if(response){
-			//console.log(response);
+			console.log(response);
 			setClients(response);
 		}
 	}
