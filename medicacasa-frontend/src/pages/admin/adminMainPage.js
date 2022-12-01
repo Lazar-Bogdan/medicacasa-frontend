@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import theme from "theme";
 import { Theme, Link, Text, Box, Section } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
@@ -20,7 +20,26 @@ export default (() => {
     if(!AuthService.handleGetLoginStatus()){
         history.push("/")
     }
-  
+
+    // async function testing()
+    // {
+    //     const option = {
+    //         method: 'POST',
+    //         headers: {
+
+    //         },
+    //         body: {}
+    //     }
+    //     let x;
+    //     await fetch("https://backend-server-doctor.herokuapp.com/users/addInfoHardware", option)
+    //     .then(response => response.json())
+    //     .then(response => { x = response; })
+    //     .catch(err => { x = err; console.error(err)});
+    //     return x;
+    // }
+    // useEffect(()=>{
+    //     testing();
+    // })
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"index"} />
 		<Helmet>

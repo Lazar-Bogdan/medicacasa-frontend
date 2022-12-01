@@ -285,14 +285,10 @@ recapitulare 01.09.2022
         -remove axios, use something else that is not a library. (use the normal call);
             - error on getAllDoctors - to be checked 
                 - error on add client/doctor is related to cometChat, progress DONE
-                - error on deleting user / message still unknown, wip
+                - error on deleting user / message still unknown
+        -de verificat roomid sa nu existe deja
         
     - HARDWARE IMPLEMENTATION - ONGOING
         - de testat placa wifi
         - de pus LCD urile si testat - DONE
         - de pus asamblu impreuna - WIP
-
-    INTREBARI:
-        -unde sa fie pop ul ? pana acum doar login/register/contact) la admin ? Se merita? - DONE
-        -intrebari legat de solve freeze - nu mai e nevoie, s-a rezolvat - DONE
-        -ceva informatii legat de react-native ? cum sa dau switch pe screen-uri. (nu am exp cu react-native si inca invat) - de vazut link salvat ( de luat ca paramtru )

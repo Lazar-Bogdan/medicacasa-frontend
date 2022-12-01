@@ -183,6 +183,21 @@ class DoctorService{
         .catch(err => { x = err; console.error(err)});
         return x;
     }
+
+    async getUsername(email)
+    {
+        let x;
+        await fetch(URL + "doctor/getUsername", {
+            method: 'GET',
+            headers: {
+                email:email
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
+    }
 }
 
 export default new DoctorService

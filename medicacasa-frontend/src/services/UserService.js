@@ -50,10 +50,10 @@ class UserService{
         }
         let x;
         await fetch(URL + "users/getUserUnderEmail", option)
-        .then(response => response.json())
+        .then(response => console.log(response.json()))
         .then(response => { x = response; })
         .catch(err => { x = err; console.error(err)});
-        return x;
+        console.log(x);
     }
 
     async getUsersUnderId(id){
@@ -232,7 +232,7 @@ class UserService{
         return x;
     }
 
-    async addMessage(client,doctor, roomid){
+    async addMessage(client,doctor, roomid, doctorusername, clientusername){
         // try{
         //     const response = await axios.post(URL + "messages/addMessage", {client: client, doctor:doctor} );
         //     return response.data;
@@ -241,9 +241,12 @@ class UserService{
         //     return false;
         // }
         let x;
+        console.log(doctorusername)
         await fetch(URL + "messages/addMessage", {
             method: 'POST',
             headers: {
+                doctorusername: doctorusername,
+                clientusername: clientusername,
                 client: client, 
                 doctor:doctor,
                 roomid:roomid
@@ -339,6 +342,20 @@ class UserService{
         await fetch(URL + "users/getUserUid", {
             method: 'GET',
             headers: {
+                email:email
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
+    }
+
+    async getUsername(email){
+        let x;
+        await fetch(URL + "users/getUsername", {
+            method: 'GET',
+            headers:{
                 email:email
             }
         })
