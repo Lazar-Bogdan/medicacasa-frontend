@@ -37,6 +37,7 @@ import { createBrowserHistory  as createHistory} from 'history';
 
 import CookieService from "./services/CookieService";
 
+
 const GlobalStyles = createGlobalStyle`
     body {
         margin: 0;
