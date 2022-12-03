@@ -42,7 +42,7 @@
         "start": "set HTTPS=true&&react-scripts start",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "build": "CI=false && react-scripts build && mv build build"
+        "build": "CI=false && react-scripts --openssl-legacy-provider build && mv build build"
     },
     "eslintConfig": {
         "extends": "react-app"
