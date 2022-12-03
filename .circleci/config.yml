@@ -21,7 +21,7 @@ jobs:
             - ./node_modules
       - run:
           name: Build application for production
-          command: cd medicacasa-frontend && npm start 
+          command: cd medicacasa-frontend && npm run build 
       - run:
           name: Deploy app to Firebase
           command: cd medicacasa-frontend && ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN  
