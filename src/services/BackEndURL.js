@@ -1,3 +1,3 @@
-const URL = "http://localhost:2000/";
+const URL = "https://backend-medicacasa.web.app/";
 
 export default URL;
