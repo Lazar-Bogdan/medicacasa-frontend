@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Update NPM
-          command: "sudo npm install -g npm@7.23.0"
+          command: "sudo npm install -g npm@9.1.3"
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
