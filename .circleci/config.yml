@@ -13,7 +13,7 @@ jobs:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install Dependencies
-          command: cd medicacasa-frontend && npm install --force
+          command: npm install --force
       - run: npm install --save-dev firebase-tools --force
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
@@ -21,10 +21,10 @@ jobs:
             - ./node_modules
       - run:
           name: Build application for production
-          command: cd medicacasa-frontend && npm run build 
+          command: npm run build 
       - run:
           name: Deploy app to Firebase
-          command: cd medicacasa-frontend && ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN  
+          command: /node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN  
 workflows:
   build-and-deploy:
     jobs:
