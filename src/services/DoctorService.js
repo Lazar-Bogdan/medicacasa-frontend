@@ -30,6 +30,7 @@ class DoctorService{
         //     return false;
         // }
         let x;
+        console.log(id);
         await fetch(URL + "doctor/getDoctorUnderId", {
             method: 'GET',
             headers: {

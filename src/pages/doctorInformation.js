@@ -36,8 +36,9 @@ export default (() => {
         let url = window.location.href;
         // console.log(url);
         let first = url.split("/");
-        // console.log(first[4]);
-        const response = await DoctorService.getDoctorAfterId(first[4])
+        console.log(first[4]);
+        const response = await DoctorService.getDoctorUidAfterId(first[4]);
+        console.log(response);
         if(response){
             setDoctor(response);
         }

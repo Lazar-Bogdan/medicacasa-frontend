@@ -78,7 +78,7 @@ export default(()=>{
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
                 >Home</Link>
                 <Link
-                    href="medicine"
+                    href="../medicine"
                     display="flex"
                     justify-content="center"
                     font="--base"
@@ -89,7 +89,7 @@ export default(()=>{
                     
                 >Medicine</Link>
                 <Link
-                    href="mydoctor"
+                    href="../mydoctor"
                     display="flex"
                     justify-content="center"
                     font="--base"
