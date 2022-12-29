@@ -34,6 +34,7 @@ import logout from "pages/logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { createBrowserHistory  as createHistory} from 'history';
+import medicineInfo from "pages/medicineInfo";
 
 import CookieService from "./services/CookieService";
 
@@ -83,6 +84,7 @@ export default () => (
             <Route exact path='/uploadSDK' component={UploadImageToS3WithNativeSdk} />
             <Route exact path='/schedule' component={MySchedule} />
             <Route exact path="/logout" component={logout} />
+            <Route exact path='/medicineInfo/:id' component={medicineInfo} />
 			<Route component={Page404}/>
         </Switch>
     </Router>
