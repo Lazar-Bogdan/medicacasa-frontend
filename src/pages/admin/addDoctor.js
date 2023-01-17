@@ -66,7 +66,7 @@ export default (() => {
         .send((err) => {
             if (err) console.log(err)
         })
-    const response = await DoctorService.addDoctor(username,email,Password,Role,age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,FirstDesc,SecondDesc);
+    const response = await DoctorService.addDoctor(username,email,Password,Role,age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,FirstDesc,SecondDesc, img.name);
     if(response){
       alert("doctor created");
       history.push('/clientlist');

@@ -43,7 +43,7 @@ class DoctorService{
         return x;
     }
 
-    async addDoctor(username,email,password,role,age,img,FirstDesc,SecondDesc){
+    async addDoctor(username,email,password,role,age,img,FirstDesc,SecondDesc, imgName){
         // try{
         //     const response = await axios.post(URL + "doctor/addDoctor", {username:username,email:email,password:password,role:role,age:age,img:img, doctorFirstDescription:FirstDesc, doctorSecondDescription:SecondDesc})
         //     return response.data;
@@ -62,7 +62,8 @@ class DoctorService{
                 age:age,
                 img:img, 
                 doctorFirstDescription:FirstDesc, 
-                doctorSecondDescription:SecondDesc
+                doctorSecondDescription:SecondDesc,
+                imgName:imgName,
             },
             body: {
                 username:username,
@@ -72,7 +73,8 @@ class DoctorService{
                 age:age,
                 img:img, 
                 doctorFirstDescription:FirstDesc, 
-                doctorSecondDescription:SecondDesc
+                doctorSecondDescription:SecondDesc,
+                imgName:imgName,
             }
         })
         .then(response => response.json())
@@ -195,6 +197,21 @@ class DoctorService{
             }
         })
         .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
+    }
+
+    async getDoctorImg(email)
+    {
+        let x;
+
+        await fetch(URL + "doctor/getDoctorImg", {
+            method: 'GET',
+            headers: {
+                email:email
+            }
+        }).then(response => response.json())
         .then(response => { x = response; })
         .catch(err => { x = err; console.error(err)});
         return x;

@@ -41,12 +41,18 @@ export default (() => {
     const response = await UserService.addSub(userEmail,doctorEmal, userUid, doctorUid);
     const clientusername = await UserService.getUsername(userEmail);
     const doctorUsername = await DoctorService.getUsername(doctorEmal);
+    const clientImg = await UserService.getClientImg(userEmail);
+    const doctorImg = await DoctorService.getDoctorImg(doctorEmal);
     console.log("EMAILS:");
     console.log(doctorUsername);
     console.log(clientusername);
+    console.log(clientImg);
+    console.log(doctorImg);
+    console.log("response");
+    console.log(response);
     if(response){
         const rand = Math.floor(Math.random() * 100000);
-        await UserService.addMessage(userEmail,doctorEmal,rand, doctorUsername, clientusername);
+        await UserService.addMessage(userEmail,doctorEmal,rand, doctorUsername, clientusername, ""+ clientImg, doctorImg);
         alert("subscription created");
         history.push('/clientlist');
     }else{

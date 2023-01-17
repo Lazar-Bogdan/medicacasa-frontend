@@ -100,7 +100,7 @@ class UserService{
         return x;
     }
 
-    async addUser(username,email,password,role,age,img,uid){
+    async addUser(username,email,password,role,age,img,uid,imgName){
         // try{
         //     const response = await axios.post(URL + "users/addClient", {username:username, email:email, password:password, role:role, age:age, img:img,uid:uid})
         //     return response.data;
@@ -120,9 +120,12 @@ class UserService{
                 role:role, 
                 age:age, 
                 img:img,
-                uid:uid
+                uid:uid,
+                imgName:imgName
             }
         }
+        console.log("Userservice imgName");
+        console.log(imgName);
         let x;
         await fetch(URL + "users/addClient", {
             method: 'POST',
@@ -133,7 +136,8 @@ class UserService{
                 role:role, 
                 age:age, 
                 img:img,
-                uid:uid
+                uid:uid,
+                imgName:imgName,
             },
             body: {
  
@@ -232,9 +236,9 @@ class UserService{
         return x;
     }
 
-    async addMessage(client,doctor, roomid, doctorusername, clientusername){
+    async addMessage(client,doctor, roomid, doctorusername, clientusername, clientImg, doctorImg){
         // try{
-        //     const response = await axios.post(URL + "messages/addMessage", {client: client, doctor:doctor} );
+        //     const response = await axios.post(URL + "messages/addMessage", {clientImg: client, doctor:doctor} );
         //     return response.data;
         // }catch(err){
         //     console.log("err",err.response);
@@ -242,6 +246,7 @@ class UserService{
         // }
         let x;
         console.log(doctorusername)
+        console.log(clientImg);
         await fetch(URL + "messages/addMessage", {
             method: 'POST',
             headers: {
@@ -249,7 +254,9 @@ class UserService{
                 clientusername: clientusername,
                 client: client, 
                 doctor:doctor,
-                roomid:roomid
+                roomid:roomid,
+                clientimg:clientImg,
+                doctorImg:doctorImg
             }
         })
         .then(response => response.json())
@@ -360,6 +367,21 @@ class UserService{
             }
         })
         .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
+    }
+
+    async getClientImg(email)
+    {
+        let x;
+
+        await fetch(URL + "users/getClientImg", {
+            method: 'GET',
+            headers: {
+                email:email
+            }
+        }).then(response => response.json())
         .then(response => { x = response; })
         .catch(err => { x = err; console.error(err)});
         return x;
