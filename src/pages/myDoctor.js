@@ -43,21 +43,24 @@ export default (() => {
 	const [doctors,setDoctors] = useState([]);
 	const[visible, setVisible] = useState(6);
 
-	useEffect( () =>{
-		getCurentUser();
-    }, [])
+	
 
 	async function getCurentUser(){
-		await axios.get(URL + "users/getUserUnderEmail", { headers: { email:"client@gmail.com" }})
+		console.log("GET CURENT USER");
+		await axios.get(URL + "users/getUserUnderId", { headers: { _id: AuthService.handleGetId() }})
 			.then(response => {
 				setCurrentUser(response.data);
-				// console.log(response.data);
+				console.log(response.data);
 				// console.log(response.data[0].subscription[0]);
 			})
 			.catch(err => {
 				console.log("error on fetching user");
 			})
 	}
+
+	useEffect( () =>{
+		getCurentUser();
+    }, [])
 	
 	// to be implemented
 	
@@ -68,7 +71,10 @@ export default (() => {
 
 
 	async function getDoctors(){
+		console.log("GET DOCTORS");
 		console.log(currentUser);
+		console.log("DOCTOR EMAIL");
+		console.log(currentUser[0]);
 		if(currentUser.length == 1){
 			const size = currentUser[0].subscription.length;
 			for(var i=0;i<size; i++){
@@ -86,6 +92,7 @@ export default (() => {
 	}
 	
 	function MapDoc(List){
+		console.log("MAP DOCTOR");
 		console.log(List);
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
@@ -102,7 +109,7 @@ export default (() => {
 					md-padding="0px 0px 0px 0px"
 					md-margin="0px 0px 30px 0px"
 				>
-					<Image max-width="340px" src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/image%2052.png?v=2021-08-27T23:20:31.207Z" md-margin="0px 0px 20px 0px" />
+					<Image max-width="340px" src={item[0].img} md-margin="0px 0px 20px 0px" />
 					<Text margin="0px 0px 0px 0px" color="--darkL2" font="--base">
 						
 					</Text>

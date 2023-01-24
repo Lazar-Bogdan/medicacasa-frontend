@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import AuthService from "./../services/AuthService";
 
 import CometChat from "services/CometChat";
+import DoctorService from "services/DoctorService";
 
 export default (() => {
 	const history = useHistory();
@@ -37,7 +38,12 @@ export default (() => {
     }, [])
 
 	async function getClients(){
-		const response = await UserService.getUserUnderDoctorEmail("Doctor@gmail.com");
+		const res1 = await DoctorService.getEmailUnderId(AuthService.handleGetId());
+
+		console.log("emaildoctor");
+		console.log(res1);
+
+		const response = await UserService.getUserUnderDoctorEmail(res1);
 		if(response){
 			console.log(response);
 			setClients(response);

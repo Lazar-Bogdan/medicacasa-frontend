@@ -114,26 +114,19 @@ export default(()=>{
 			</Box>
 		</Section>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
-		<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
-			Last update:
-			<p></p>
-		</Text>
-		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
-		<Text>
-            {medicine._id}
-        </Text>
-        <Text>
-            {medicine.name}
-        </Text>
-        <Text>
-            {medicine.price}
-        </Text>
-        <Text>
-            {medicine.description}
-        </Text>
-        <Text>
-            {medicine.img}
-        </Text>
+		<div style={{
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+			height: '70vh'
+		}}>
+			<Box width="350px" height="auto" >
+				<Image src={medicine.img} width="100%" height="auto" />
+				<Text fontSize="20px" fontWeight="600" margin="10px 0"><b>Name: </b>{medicine.name}</Text>
+				<Text fontSize="16px" margin="10px 0"><b>Description: </b>{medicine.description}</Text>
+				<Text fontSize="18px" fontWeight="600" margin="10px 0"><b>Price: </b>{medicine.price}$</Text>
+			</Box>
+		</div>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 			<p></p>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />

@@ -216,6 +216,21 @@ class DoctorService{
         .catch(err => { x = err; console.error(err)});
         return x;
     }
+
+    async getEmailUnderId(_id)
+    {
+        let x 
+
+        await fetch(URL + "doctor/getEmailUnderId", {
+            method: 'GET',
+            headers: {
+                _id:_id
+            }
+        }).then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
+    }
 }
 
 export default new DoctorService

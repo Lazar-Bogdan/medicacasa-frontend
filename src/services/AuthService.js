@@ -1,6 +1,7 @@
 import axios from "axios";
 import CookieService from "./CookieService";
 import URL from "./BackEndURL";
+import Cookies from "universal-cookie";
 
 class AuthService {
     async doUserLogin(email,password){
@@ -102,6 +103,10 @@ class AuthService {
 
     handleGetUid(){
         return CookieService.get("uid");
+    }
+
+    handleGetId(){
+        return CookieService.get("id");
     }
 
     handleLogOut(){

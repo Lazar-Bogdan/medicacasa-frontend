@@ -63,7 +63,6 @@ export default (() => {
                 >
                 <button className="imgButton" height="0px" width="0px" type="submit" onClick={() => seeDetails(item._id)}>
                     <Image
-                        border-radius="50%"
                         src={item.img}
                         object-fit="cover"
                         position="absolute"
@@ -85,7 +84,7 @@ export default (() => {
                         text-align="center"
                         color="--darkL1"
                     >
-                        {item.username}
+                        Dr. {item.username}
                     </Text>
                     <Text
                         margin="16px 0px 26px 0px"

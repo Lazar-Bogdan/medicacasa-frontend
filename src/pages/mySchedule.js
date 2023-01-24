@@ -11,6 +11,8 @@ import AuthService from "./../services/AuthService";
 import {getDays, getMonths, getCurrentDayName, arangeDays,DaysDone, MonthDone} from "./../services/DateSettings";
 import { B, Button } from "@quarkly/widgets/build/cjs/prod";
 
+import DoctorService from "services/DoctorService";
+
 import CometChat from "services/CometChat";
 
 let months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -61,7 +63,9 @@ const MySchedule = () => {
     const[visible, setVisible] = useState(9);
     
     async function getClientsApp(months,year,numberDays){
-        const response = await MyClientsService.getMyClientsUnderDoctorEmail("Bogdan@gmail.com",months,year,numberDays);
+        const res1 = await DoctorService.getEmailUnderId(AuthService.handleGetId());
+
+        const response = await MyClientsService.getMyClientsUnderDoctorEmail(res1,months,year,numberDays);
         if(response){
             console.log(response);
             setClientsApp(response);

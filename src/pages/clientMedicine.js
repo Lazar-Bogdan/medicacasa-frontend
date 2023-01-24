@@ -13,6 +13,7 @@ import CometChat from "services/CometChat";
 
 export default (() => {
 	const history = useHistory();
+	const [hover, setHover] = React.useState(null);
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
 		history.push("/doctor")
@@ -27,7 +28,7 @@ export default (() => {
 	}
 
 	const [medicine, setMedicine] = useState([]);
-	const[visible, setVisible] = useState(6);
+	const[visible, setVisible] = useState(1000);
 	const showMoreItems = () => {
         setVisible((prevValue) => prevValue + 3);
     };
@@ -50,40 +51,55 @@ export default (() => {
 	function MapMeds(List){
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
-			<Box
-			padding="50px 55px 50px 55px"
-			sm-padding="55px 40px 50px 55px"
-			border-width="1px"
-			border-style="solid"
-			border-radius="24px"
-			border-color="--color-lightD2"
-			display="flex"
-			flex-direction="column"
-			align-items="flex-start"
-			>
-				<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" />
-				<Text
-					margin="0px 0px 35px 0px"
-					color="--dark"
-					font="--lead"
-					lg-margin="0px 0px 50px 0px"
-					sm-margin="0px 0px 30px 0px"
-					flex="1 0 auto"
+			<div marginRight="10px">
+				<Box
+				padding="50px 55px 50px 55px"
+				border-width="1px"
+				border-style="solid"
+				border-radius="30px"
+				border-color="--color-lightD2"
+				display="flex"
+				flex-direction="column"
+				marginRight="10px"
+				margin="10px"
 				>
-					{item.name}
-				</Text>
-				<Text
-					margin="0px 0px 35px 0px"
-					color="--dark"
-					font="--lead"
-					lg-margin="0px 0px 50px 0px"
-					sm-margin="0px 0px 30px 0px"
-					flex="1 0 auto"
-				>
-					{item.price} $
-				</Text>
-				<Button onClick={() => seeMoreInfo(item._id)}>More information</Button>
-			</Box>
+					<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" />
+					<Text
+						justifyContent="center"
+						alignItems="center"
+						margin="0px 0px 35px 0px"
+						color="--dark"
+						font="--lead"
+						lg-margin="0px 0px 50px 0px"
+						sm-margin="0px 0px 30px 0px"
+						marginRight="10px"
+					>
+						{item.name}
+					</Text>
+					<Text
+						justifyContent="center"
+						alignItems="center"
+						margin="0px 0px 35px 0px"
+						color="--dark"
+						font="--lead"
+						lg-margin="0px 0px 50px 0px"
+						sm-margin="0px 0px 30px 0px"
+						flex="1 0 auto"
+					>
+						{item.price} $
+					</Text>
+					<Button onClick={() => seeMoreInfo(item._id)} 
+						onMouseOver={() => setHover(item._id)}
+						onMouseOut={() => setHover(null)}
+						style={{
+							backgroundColor: hover === item._id ? 'white' : 'black',
+							color: hover === item._id? 'black' : 'white',
+						}}
+	  				>
+						More information
+					</Button>
+				</Box>
+			</div>
         );
         return Filtered;
 	}
