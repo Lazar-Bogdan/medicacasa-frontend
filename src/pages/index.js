@@ -17,7 +17,15 @@ const TestVariant = {
 	hidden: { opacity: 0, scale: 0 }
   };
 
+
 export default (() => {
+	const [backgroundIndex, setBackgroundIndex] = useState(0);
+
+	const backgrounds = [
+		"url(https://www.scripps.org/sparkle-assets/seo_thumbnails/news_items/6473/facebook-437f97cdb8e096c0ce61654b167311f7.jpg)",
+		"url(https://www.shutterstock.com/image-photo/indian-male-doctor-consulting-senior-260nw-2036186195.jpg)",
+		"url(https://t3.ftcdn.net/jpg/02/38/73/06/360_F_238730671_D7HoHQrLIJSJk5RpfrO8SWy29UGa2ER6.jpg)"
+	];
 	// to do remove this, was a test
 	const control = useAnimation();
 	const [ref, inView] = useInView()
@@ -29,6 +37,14 @@ export default (() => {
 			control.start("hidden");
 		}
 	}, [control,inView]);
+
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setBackgroundIndex((backgroundIndex + 1) % backgrounds.length);
+		}, 10000);
+		return () => clearInterval(interval);
+	}, [backgroundIndex, backgrounds.length]);
 
 	const history = useHistory();
 
@@ -79,6 +95,17 @@ export default (() => {
         );
         return Filtered;
     }
+
+	const background = {
+		backgroundImage: `linear-gradient(0deg, rgba(4, 8, 12, 0.6), rgba(4, 8, 12, 0.6)), ${backgrounds[backgroundIndex]}`,
+		backgroundSize: "cover",
+		backgroundPosition: "center",
+		padding: "64px 0",
+		color:"--light",
+		font:"--base",
+		transition: "background 100s ease-in-out"
+	};
+
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"index"} />
 		<Helmet>
@@ -202,11 +229,7 @@ export default (() => {
 			
 		>
 			<Section
-				background="linear-gradient(0deg,rgba(4, 8, 12, 0.6) 0%,rgba(4, 8, 12, 0.6) 100%),--color-darkL2 url(https://www.scripps.org/sparkle-assets/seo_thumbnails/news_items/6473/facebook-437f97cdb8e096c0ce61654b167311f7.jpg) center/cover"
-				padding="64px 0"
-				sm-padding="40px 0"
-				color="--light"
-				font="--base"
+				style={background}
 			>
 				<Stack>
 					<StackItem width="75%" lg-width="100%">
@@ -214,7 +237,7 @@ export default (() => {
 						<Text color="--lightD2" letter-spacing="1px" text-transform="uppercase" margin="0">
 							Excellence in everything
 						</Text>
-						<Text as="h1" font="--headline1" md-font="--headline2" margin="10px 0">
+						<Text as="h1" color="--lightD2" font="--headline1" md-font="--headline2" margin="10px 0">
 							We want you to feel the best always and forever.
 						</Text>
 					</StackItem>

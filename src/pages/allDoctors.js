@@ -10,6 +10,16 @@ import { useHistory } from "react-router-dom";
 import AuthService from "services/AuthService";
 
 export default (() => {
+    const [scale, setScale] = useState(1);
+    const [hoveredBox, setHoveredBox] = useState(null);
+
+    const handleMouseEnter = (id) => {
+      setHoveredBox(id);
+    };
+  
+    const handleMouseLeave = () => {
+      setHoveredBox(null);
+    };
     const history = useHistory();
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
@@ -51,50 +61,62 @@ export default (() => {
                 flex-direction="column"
                 align-items="center"
                 justify-content="flex-start"
-                padding="24px 24px 0px 24px"
+                padding="10px 10px 0px 10px"
+                border="2.5px solid black"
+                transform={hoveredBox === item._id ? "scale(1.2)" : "scale(1)"}
+                width="250px"
+                height="300px"
             >
                 <Box
-                    width="100%"
-                    height="auto"
-                    overflow-x="hidden"
-                    overflow-y="hidden"
-                    position="relative"
-                    padding="100% 0px 0px 0px"
+                    onMouseEnter={() => handleMouseEnter(item._id)}
+                    onMouseLeave={handleMouseLeave}
+                    width="200px"
+                    height="300px"
                 >
-                <button className="imgButton" height="0px" width="0px" type="submit" onClick={() => seeDetails(item._id)}>
-                    <Image
-                        src={item.img}
-                        object-fit="cover"
-                        position="absolute"
-                        top={0}
-                        left={0}
-                        bottom={0}
-                        right={0}
-                        display="block"
+                    <Box
                         width="100%"
-                        max-height="100%"
-                    />
-                </button>
-                </Box>
-                <Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
-                    <Text
-                        margin="21px 0px 0px 0px"
-                        font="--headline3"
-                        display="block"
-                        text-align="center"
-                        color="--darkL1"
+                        height="auto"
+                        overflow-x="hidden"
+                        overflow-y="hidden"
+                        position="relative"
+                        padding="50% 50px 100px 50px"
+                        height="100px"
                     >
-                        Dr. {item.username}
-                    </Text>
-                    <Text
-                        margin="16px 0px 26px 0px"
-                        font="--base"
-                        display="block"
-                        text-align="center"
-                        color="--greyD2"
-                    >
-                        {item.doctorFirstDescription}
-                    </Text>
+                        <button className="imgButton" height="0px" width="0px" type="submit" onClick={() => seeDetails(item._id)}>
+                            <Image
+                                src={item.img}
+                                object-fit="cover"
+                                position="absolute"
+                                top={0}
+                                left={0}
+                                bottom={0}
+                                right={0}
+                                display="block"
+                                width="100%"
+                                max-height="100%"
+                            />
+                        </button>
+                    </Box>
+                    <Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
+                        <Text
+                            margin="21px 0px 0px 0px"
+                            font="--headline3"
+                            display="block"
+                            text-align="center"
+                            color="--darkL1"
+                        >
+                            Dr. {item.username}
+                        </Text>
+                        <Text
+                            margin="16px 0px 26px 0px"
+                            font="--base"
+                            display="block"
+                            text-align="center"
+                            color="--greyD2"
+                        >
+                            {item.doctorFirstDescription}
+                        </Text>
+                    </Box>
                 </Box>
             </Box>
 		);
