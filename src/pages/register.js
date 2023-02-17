@@ -32,6 +32,7 @@ const myBucket = new AWS.S3({
     region: REGION,
 })
 
+
 export default (() => {
 	// form la subscription
 	// [{email:"test"},{email:"test"},{email:"test"}]
@@ -43,6 +44,7 @@ export default (() => {
 	const [loginFalse, setLoginFalse] = useState(false);
 	const [registeFalse,setRegisterFalse] = useState(false);
 	const history = useHistory();
+	const [ value, setValue] = useState("");
 	useEffect(() =>{
 		const initClient = () => {
 			gapi.client.init({
@@ -186,6 +188,14 @@ export default (() => {
 									Image
 								</Text>
 								<Input width="100%" type="file" onChange={handleFileInput} />
+								<Text font="--base" margin="0 0 4px 0">
+									Plan & Bills
+								</Text>
+								<select  onChange={(e) => { setValue(e.target.value) }}>
+									<option>Standard</option>
+									<option>Premium</option>
+								</select>
+								<p></p>
 							</Box>
 						</Formspree>
 					</Box>

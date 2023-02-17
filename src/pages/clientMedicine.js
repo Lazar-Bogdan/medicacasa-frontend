@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from "react";
 import theme from "theme";
-import { Theme, Link, Text, Box, Section, Image } from "@quarkly/widgets";
+import { Theme, Link, Text, Box, Section, Image, Input } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, SocialMedia } from "@quarkly/components";
@@ -14,6 +14,7 @@ import CometChat from "services/CometChat";
 export default (() => {
 	const history = useHistory();
 	const [hover, setHover] = React.useState(null);
+	const [searchQuery, setSearchQuery] = useState('');
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
 		history.push("/doctor")
@@ -103,6 +104,87 @@ export default (() => {
         );
         return Filtered;
 	}
+
+	const SearchBar = (props) => {
+		const [query, setQuery] = useState('');
+	  
+		const handleInputChange = (event) => {
+		  setQuery(event.target.value);
+		  console.log('Query:', event.target.value);
+		  if (props.onSearch) {
+			props.onSearch(event.target.value);
+		  }
+		};
+	  
+		return (
+		  <Section>
+			<Input width="100%" type="text" placeholder="Search..."value={query} onChange={handleInputChange} />
+		  </Section>
+		);
+	  };
+	  
+	  const ItemList = ({ items, query }) => {
+		const filteredItems = items.filter(item => item.toLowerCase().includes(query.toLowerCase()));
+		return (
+			<div>
+			{filteredItems.map((item, index) => (
+				<div marginRight="10px">
+				<Box
+				padding="50px 55px 50px 55px"
+				border-width="1px"
+				border-style="solid"
+				border-radius="30px"
+				border-color="--color-lightD2"
+				display="flex"
+				flex-direction="column"
+				marginRight="10px"
+				margin="10px"
+				>
+						<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" />
+						<Text
+							justifyContent="center"
+							alignItems="center"
+							margin="0px 0px 35px 0px"
+							color="--dark"
+							font="--lead"
+							lg-margin="0px 0px 50px 0px"
+							sm-margin="0px 0px 30px 0px"
+							marginRight="10px"
+						>
+							{item.name}
+						</Text>
+						<Text
+							justifyContent="center"
+							alignItems="center"
+							margin="0px 0px 35px 0px"
+							color="--dark"
+							font="--lead"
+							lg-margin="0px 0px 50px 0px"
+							sm-margin="0px 0px 30px 0px"
+							flex="1 0 auto"
+						>
+							{item.price} $
+						</Text>
+						<Button onClick={() => seeMoreInfo(item._id)} 
+							onMouseOver={() => setHover(item._id)}
+							onMouseOut={() => setHover(null)}
+							style={{
+								backgroundColor: hover === item._id ? 'white' : 'black',
+								color: hover === item._id? 'black' : 'white',
+							}}
+							>
+							More information
+						</Button>
+					</Box>
+		  		</div>
+			))}
+			</div>
+		);
+	  };
+
+	const handleSearch = (query) => {
+		setSearchQuery(query);
+	  };
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"medicine"} />
 		<Helmet>
@@ -190,7 +272,9 @@ export default (() => {
 				>
 					Medicine
 				</Text>
+				<SearchBar onSearch={handleSearch} />
 			</Box>
+      		{/* <ItemList items={medicine} query={searchQuery} /> */}
 			{MapMeds(medicine)}
 		</Section>
 		<Section padding="60px 0" sm-padding="40px 0">

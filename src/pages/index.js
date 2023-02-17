@@ -11,6 +11,7 @@ import AuthService from "services/AuthService";
 import { useHistory } from "react-router-dom";
 import {motion, useAnimation, AnimatePresence} from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Button } from "react-bootstrap";
 
 const TestVariant = {
 	visible: { opacity: 1, scale: 1, transition: { duration: 0.7 } },
@@ -570,6 +571,100 @@ export default (() => {
 				</Box>
 			</Section>
 		</motion.div>
+		<Text
+			margin="0px 0px 16px 0px"
+			color="--dark"
+			font="--headline1"
+			text-align="center"
+			sm-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
+		>
+			Plan & Billings
+		</Text>
+		<Section padding="80px 0 80px 0">
+			<div style={{display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: 'row'}}>
+				<Box
+					display="flex"
+					grid-template-columns="repeat(3, 1fr)"
+					grid-gap="16px"
+					lg-grid-template-columns="repeat(2, 1fr)"
+					md-grid-template-columns="1fr"
+				>
+					<Box
+						padding="50px 55px 50px 55px"
+						sm-padding="55px 40px 50px 55px"
+						border-width="1px"
+						border-style="solid"
+						border-radius="24px"
+						border-color="--color-lightD2"
+						display="flex"
+						flex-direction="column"
+						align-items="flex-start"
+					>
+						<h1> STANDARD </h1>
+						<p></p>
+						<p></p>
+						<h7> ALL THE TIME </h7>
+						<p></p>
+						<p></p>
+						<div style={{borderTop: "1px solid black", width: "100%"}}></div>
+						<p></p>
+						<p></p>
+						<h3>Clients informations</h3>
+						<p></p>
+						<p></p>
+						<h3>Doctor informations</h3>
+						<p></p>
+						<p></p>
+						<h3>HeartBeat sensor</h3>
+						<p></p>
+						<p></p>
+						<Button>Buy Now</Button>
+					</Box>
+				</Box>
+				<Box
+					display="flex"
+					grid-template-columns="repeat(3, 1fr)"
+					grid-gap="16px"
+					lg-grid-template-columns="repeat(2, 1fr)"
+					md-grid-template-columns="1fr"
+					margin-left="20px"
+				>
+					<Box
+						padding="50px 55px 50px 55px"
+						sm-padding="55px 40px 50px 55px"
+						border-width="1px"
+						border-style="solid"
+						border-radius="24px"
+						border-color="--color-lightD2"
+						display="flex"
+						flex-direction="column"
+						align-items="flex-start"
+					>
+						<h1> PREMIUM </h1>
+						<p></p>
+						<p></p>
+						<h7> ONCE AT MONTH FOR 30$ </h7>
+						<p></p>
+						<p></p>
+						<div style={{borderTop: "1px solid black", width: "100%"}}></div>
+						<p></p>
+						<p></p>
+						<h3>Chat online with the client</h3>
+						<p></p>
+						<p></p>
+						<h3>Medicine informations</h3>
+						<p></p>
+						<p></p>
+						<h3>Schedule for the doctor</h3>
+						<p></p>
+						<p></p>
+						<Button>Buy Now</Button>
+						
+					</Box>
+				</Box>
+			</div>
+		</Section>
+
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0">
 			<SocialMedia
