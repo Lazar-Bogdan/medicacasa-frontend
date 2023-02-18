@@ -43,8 +43,7 @@ export default(()=>{
 	function MapClient(List){
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
-			<Structure cells-number-total="9" cells-number-group="9">
-				<Override slot="Content" grid-template-columns="repeat(12, 1fr)" sm-grid-template-columns="12fr">
+			<Section>
 					<Override slot="Cell 0th" grid-column="1 / span 6" md-grid-column="1 / span 12" sm-grid-column="auto" />
 					<Override slot="Cell 1st" grid-column="7 / span 6" md-grid-column="1 / span 12" sm-grid-column="auto" />
 					<Override
@@ -60,52 +59,45 @@ export default(()=>{
 					<Override slot="Cell 6th" grid-column="1 / span 4" sm-grid-column="auto" />
 					<Override slot="Cell 7th" grid-column="5 / span 4" sm-grid-column="auto" />
 					<Override slot="Cell 8th" grid-column="9 / span 4" sm-grid-column="auto" />
-					<Override slot="cell-0">
-						<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" display="block" position="relative" right="-100px"/>
-					</Override>
-					<Override slot="cell-1">
-						<Text margin="0px 0px 0px 0px" position="relative" top="50px" right="-150px">
-							Name:{item.username}
-						</Text>
-					</Override>
-					<Override slot="cell-2">
-						<Text margin="0px 0px 0px 0px" position="relative" right="px">
-							Email:{item.email}
-						</Text>
-					</Override>
-					<Override slot="cell-3">
-						<Text margin="0px 0px 0px 0px" position="relative" right="-40px">
-							Age:{item.age}
-						</Text>
-					</Override>
-					<Override slot="cell-4">
-						<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
-							Height:{item.height}
-						</Text>
-					</Override>
-					<Override slot="cell-5">
-						<Text margin="0px 0px 0px 0px" position="relative" right="-150px">
-							Weight:{item.weight}
-						</Text>
-					</Override>
-					<Override slot="cell-6">
-						<Text margin="0px 0px 0px 0px" position="relative" right="-150px">
-							No. Hearts beat:{item.numberHeart}
-						</Text>
-					</Override>
-					<Override slot="cell-7">
-						<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
-							Phone number:{item.phone}
-						</Text>
-					</Override>
-					<Override slot="cell-8">
-						<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
-							Other diseases: {item.diseases}
-						</Text>
-					</Override>
-																								
-				</Override>
-			</Structure>
+					<Box 
+						padding="50px 55px 50px 55px"
+						border-width="1px"
+						border-style="solid"
+						border-radius="30px"
+						border-color="--color-lightD2"
+						flex-direction="column"
+						marginRight="10px"
+						margin="10px"
+						height="300px"
+					>
+							<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" display="block" position="relative" right="-15px"/>
+							<Text margin="0px 0px 0px 0px" position="relative" top="50px" right="12-px">
+								Name:{item.username}
+							</Text>
+							<Text margin="0px 0px 0px 0px" position="relative" right="px">
+								Email:{item.email}
+							</Text>
+							<Text margin="0px 0px 0px 0px" top="-200px" position="relative"  right="-300px">
+								Age:{item.age}
+							</Text>
+							<Text margin="0px 0px 0px 0px" position="relative" top="-130px" right="-300px">
+								Height:{item.height}
+							</Text>
+							<Text margin="0px 0px 0px 0px" position="relative" top="-50px" right="-300px">
+								Weight:{item.weight}
+							</Text>
+							<Text margin="0px 0px 0px 0px" position="relative" top="-275px" right="-700px">
+								No. Hearts beat:{item.numberHeart}
+							</Text>
+							<Text margin="0px 0px 0px 0px" position="relative" top="-205px" right="-700px">
+								Phone number:{item.phone}
+							</Text>
+							<Text margin="0px 0px 0px 0px" position="relative" top="-125px" right="-700px">
+								Other diseases: {item.diseases}
+							</Text>
+					</Box>																		
+
+			</Section>
 		);
 		return Filtered;
 	}

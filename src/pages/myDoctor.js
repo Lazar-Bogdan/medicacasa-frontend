@@ -80,6 +80,7 @@ export default (() => {
 			for(var i=0;i<size; i++){
 				await axios.get(URL + "doctor/getDoctorUnderEmail",{ headers: {email: currentUser[0].subscription[i].email}})
 				.then(response => {
+					console.log(response.data);
 					setDoctors(doctors=>[...doctors,response.data]);
 				})
 				.catch(err => {
@@ -96,42 +97,86 @@ export default (() => {
 		console.log(List);
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
-			<Section padding="80px 0 80px 0" sm-padding="60px 0 60px 0">
-				<Override slot="SectionContent" flex-direction="row" md-flex-wrap="wrap" />
-				<Box
-					width="50%"
-					display="flex"
+				<div marginRight="10px">
+					<Box
+					padding="50px 55px 50px 55px"
+					border-width="1px"
+					border-style="solid"
+					border-radius="30px"
+					border-color="--color-lightD2"
 					flex-direction="column"
-					justify-content="space-between"
-					md-width="100%"
-					padding="0px 0px 0px 0px"
-					lg-padding="0px 30px 0px 0px"
-					md-padding="0px 0px 0px 0px"
-					md-margin="0px 0px 30px 0px"
-				>
-					<Image max-width="340px" src={item[0].img} md-margin="0px 0px 20px 0px" />
-					<Text margin="0px 0px 0px 0px" color="--darkL2" font="--base">
-						
-					</Text>
-				</Box>
-				<Box
-					width="50%"
-					display="flex"
-					flex-direction="column"
-					justify-content="space-between"
-					md-width="100%"
-				>
-					<Text margin="0px 0px 40px 0px" color="--dark" font="--headline2" md-margin="0px 0px 30px 0px">
-						Name : {item[0].username}
-					</Text>
-					<Text margin="0px 0px 40px 0px" color="--darkL2" font="--base">
-						Description :{item[0].doctorFirstDescription}
-					</Text>
-					<Text margin="0px 0px 0px 0px" color="--darkL2" font="--base">
-						Description :{item[0].doctorSecondDescription}
-					</Text>
-				</Box>
-			</Section>
+					marginRight="10px"
+					margin="10px"
+					height="300px"
+					>
+						<Image src={item[0].img} margin="0px 0px 2px 0px" height="150px" width="150px" />
+						<Text
+							justifyContent="center"
+							alignItems="center"
+							margin="25px 10px 35px 40px"
+							color="--dark"
+							font="--lead"
+							lg-margin="0px 0px 50px 0px"
+							sm-margin="0px 0px 30px 0px"
+							marginRight="10px"
+						>
+							{item[0].username}
+						</Text>
+						<Text
+							justifyContent="center"
+							alignItems="center"
+							margin="-280px 0px 100px 550px"
+							color="--dark"
+							font="--lead"
+							lg-margin="0px 0px 50px 0px"
+							sm-margin="0px 0px 30px 0px"
+							flex="1 0 auto"
+							font-weight="bold"
+						>
+							Profession:
+						</Text>
+						<Text 
+							justifyContent="center"
+							alignItems="center"
+							margin="-100px 0px 100px 500px"
+							color="--dark"
+							font="--lead"
+							lg-margin="0px 0px 50px 0px"
+							sm-margin="0px 0px 30px 0px"
+							flex="1 0 auto"
+						>
+							test {item[0].doctorFirstDescription}
+						</Text>
+						<Text 
+							justifyContent="center"
+							alignItems="center"
+							margin="-100px 0px 100px 550px"
+							color="--dark"
+							font="--lead"
+							lg-margin="0px 0px 50px 0px"
+							sm-margin="0px 0px 30px 0px"
+							flex="1 0 auto"
+							font-weight="bold"
+						>
+							About me: 
+						</Text>
+						<Text 
+							justifyContent="center"
+							alignItems="center"
+							margin="-100px 0px 100px 200px"
+							color="--dark"
+							font="--lead"
+							lg-margin="0px 0px 50px 0px"
+							sm-margin="0px 0px 30px 0px"
+							flex="1 0 auto"
+							overflow="hidden"
+							white-space="normal"
+							word-wrap= "break-word"
+						>
+							Second aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: {item[0].doctorSecondDescription} 
+						</Text>
+					</Box>
+			</div>
         );
         return Filtered;
 	}
@@ -204,7 +249,9 @@ export default (() => {
 			</Box>
 		</Section>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+		<Section padding="80px 0 80px 0">
 		{MapDoc(doctors)}
+		</Section>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0">
             <SocialMedia

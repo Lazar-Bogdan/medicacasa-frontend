@@ -266,11 +266,11 @@ export default (() => {
                 <Text margin="0px 0px 0px 0px" position="relative" >
                 1. Description:
                 </Text>
-                <Input width="100%" type="text" name="1Desc" placeHolder="1. Description" onChange={(event) => set1Desc(event.target.value) } />
+                <Input as="textarea" width="100%" type="text" name="1Desc" placeHolder="1. Description" onChange={(event) => set1Desc(event.target.value) } />
                 <Text margin="0px 0px 0px 0px" position="relative" >
                 2. Description:
                 </Text>
-                <Input width="100%" type="text" name="2Desc" placeHolder="2. Description" onChange={(event) => set2Desc(event.target.value) } />
+                <Input as="textarea" width="100%" type="text" name="2Desc" placeHolder="2. Description" onChange={(event) => set2Desc(event.target.value) } />
                 <Text margin="0px 0px 0px 0px" position="relative" >
                   Img URL:
                 </Text>

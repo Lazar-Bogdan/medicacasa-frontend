@@ -364,7 +364,7 @@ const MySchedule = () => {
                 >
                     Schedule of workshop program
                 </Text>
-                <Button position="relative" top="25px" right="-500px" onClick={() => yearSubOnClickFunction()}></Button>
+                <Button display="inline-flex" alignItems="center" justify-cont position="relative" top="25px" right="-500px" onClick={() => yearSubOnClickFunction()}></Button>
                 {ArrayYear()}
                 <Button position="relative" top="-35px" right="-640px" onClick={() => yearAddOnClickFunction()}></Button>
                 <p></p>

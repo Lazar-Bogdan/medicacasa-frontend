@@ -223,12 +223,16 @@ export default (() => {
                   Description:
                 </Text>
                 <Input
+                  as="textarea"
                   display="block"
                   placeholder-color="LightGray"
                   background="white"
                   position="relative"
                   placeholder='Description'
                   onChange={(event) => setDescription(event.target.value) }
+                  whiteSpace="pre-wrap"
+                  wordWrap="break-word"
+                  rows={4}
                 />
                 <Text margin="0px 0px 0px 0px" position="relative" >
                   Img URL:
