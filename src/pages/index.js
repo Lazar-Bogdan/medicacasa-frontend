@@ -13,6 +13,8 @@ import {motion, useAnimation, AnimatePresence} from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Button } from "react-bootstrap";
 
+import NavbarLink from "./NavbarLink.js";
+
 const TestVariant = {
 	visible: { opacity: 1, scale: 1, transition: { duration: 0.7 } },
 	hidden: { opacity: 0, scale: 0 }
@@ -104,7 +106,7 @@ export default (() => {
 		padding: "64px 0",
 		color:"--light",
 		font:"--base",
-		transition: "background 100s ease-in-out"
+		transition: "background 0.3s ease-in-out"
 	};
 
 	return <Theme theme={theme}>
@@ -167,60 +169,30 @@ export default (() => {
 						flex-direction="row"
 						md-flex-direction="column"
 					>
-						<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
+						<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead" color="black" >
 							Doctors For You
 						</Text>
-						<Link
-							href="/"
-							display="flex"
-							justify-content="center"
-							font="--base"
-							font-weight="700"
-							md-flex-direction="column"
-							md-align-items="center"
-							slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-						>Home</Link>
-						<Link
-							href="/aboutus"
-							display="flex"
-							justify-content="center"
-							font="--base"
-							font-weight="700"
-							md-flex-direction="column"
-							md-align-items="center"
-							slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-						>About us</Link>
-						<Link
-							href="/alldoctors"
-							display="flex"
-							justify-content="center"
-							font="--base"
-							font-weight="700"
-							md-flex-direction="column"
-							md-align-items="center"
-							slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-						>Doctors</Link>
-						<Link
-							href="/contactus"
-							display="flex"
-							justify-content="center"
-							font="--base"
-							font-weight="700"
-							md-flex-direction="column"
-							md-align-items="center"
-							slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-						>Contact us</Link>
-						<Link
-							href="/login"
-							display="flex"
-							justify-content="center"
-							font="--base"
-							font-weight="700"
-							md-flex-direction="column"
-							md-align-items="center"
-							slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-							
-						>Login</Link>
+					</Box>
+					<Box
+						display="flex"
+						padding="12px 0"
+						justify-content="space-between"
+						align-items="center"
+						flex-direction="row"
+						md-flex-direction="column"
+						style={{
+							background: "black",
+							borderRadius: "20px",
+							position: "relative",
+							overflow: "hidden"
+						}}
+					>
+						
+						<NavbarLink href="/">Home</NavbarLink>
+						<NavbarLink href="/aboutus">About Us</NavbarLink>
+						<NavbarLink href="/alldoctors">Our Doctors</NavbarLink>
+						<NavbarLink href="/contactus">Contact us</NavbarLink>
+						<NavbarLink href="/login">Login</NavbarLink>
 					</Box>
 				</motion.div>
 			</Section>

@@ -10,6 +10,8 @@ import { useHistory } from "react-router-dom";
 import FacebookLogin from 'react-facebook-login';
 
 import GoogleLogin from 'react-google-login';
+import NavbarLink from "./NavbarLink.js";
+
 
 import Modal from "./popups/model"
 
@@ -123,57 +125,11 @@ function Login() {
 				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
 					Doctors For You
 				</Text>
-				<Link
-                    href="/"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >Home</Link>
-                <Link
-                    href="/aboutus"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >About us</Link>
-				<Link
-                    href="/alldoctors"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >Doctors</Link>
-                <Link
-                    href="/contactus"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >Contact us</Link>
-                <Link
-					href="/login"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
-                >Login</Link>
+				<NavbarLink href="/">Home</NavbarLink>
+                <NavbarLink href="/aboutus">About Us</NavbarLink>
+                <NavbarLink href="/alldoctors">Our Doctors</NavbarLink>
+                <NavbarLink href="/contactus">Contact us</NavbarLink>
+                <NavbarLink href="/login">Login</NavbarLink>
 			</Box>
 		</Section>
 		<Section background="--color-light" color="--dark" padding="64px 0 64px 0">

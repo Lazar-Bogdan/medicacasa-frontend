@@ -13,6 +13,8 @@ import { B, Button } from "@quarkly/widgets/build/cjs/prod";
 
 import DoctorService from "services/DoctorService";
 
+import NavbarLink from "./NavbarLink";
+
 import CometChat from "services/CometChat";
 
 let months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -307,49 +309,10 @@ const MySchedule = () => {
                 <Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
                     Doctors For You
                 </Text>
-                <Link
-                    href="/doctor"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >Home</Link>
-                <Link
-                    href="/schedule"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
-                >My schedule</Link>
-                <Link
-                    href="/myclients"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
-                >My clients</Link>
-                
-                <Link
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    href="/logout"
-                >Logout</Link>
+                <NavbarLink href="/doctor">Home</NavbarLink>
+                <NavbarLink href="/schedule">My schedule</NavbarLink>
+                <NavbarLink href="/myclients">My clients</NavbarLink>
+                <NavbarLink href="/logout">Logout</NavbarLink>   
             </Box>
         </Section>
         <Section>

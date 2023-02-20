@@ -5,7 +5,7 @@ import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { Theme, Link, Text, Box, Section, Hr, Icon, Image } from "@quarkly/widgets";
 import { RawHtml, Override, StackItem, Stack, SocialMedia } from "@quarkly/components";
 import { MdArrowDownward } from "react-icons/md";
-
+import NavbarLink from "./NavbarLink";
 
 import AuthService from "services/AuthService";
 import { useHistory } from "react-router-dom";
@@ -49,50 +49,10 @@ export default (() => {
 				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
 					Doctors For You
 				</Text>
-                <Link
-                    href="/client"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                >Home</Link>
-                <Link
-                    href="medicine"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
-                >Medicine</Link>
-                <Link
-                    href="mydoctor"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
-                >My Doctor</Link>
-                
-                <Link
-					href="/logout"
-                    display="flex"
-                    justify-content="center"
-                    font="--base"
-                    font-weight="700"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
-                    
-                >Logout</Link>
+				<NavbarLink href="/client">Home</NavbarLink>
+                <NavbarLink href="/medicine">Medicine</NavbarLink>
+                <NavbarLink href="/mydoctor">My Doctor</NavbarLink>
+                <NavbarLink href="/logout">Logout</NavbarLink>                
 			</Box>
             </Section>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
