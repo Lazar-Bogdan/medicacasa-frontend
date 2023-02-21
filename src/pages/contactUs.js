@@ -13,8 +13,10 @@ import { useHistory } from "react-router-dom";
 
 import emailjs from '@emailjs/browser';
 import NavbarLink from "./NavbarLink.js";
+import NavBarLinkOnPage from './NavBarLinkOnPage';
 
 import SubmitForm from './popups/formPop';
+import {motion, useAnimation, AnimatePresence} from "framer-motion";
 
 export default (() => {
 
@@ -22,6 +24,7 @@ export default (() => {
 	const [email, setEmail] = useState(" ");
 	const [message, setMessage] = useState(" ");
 	const [loginFalse,setLoginFalse] = useState(false);
+	const control = useAnimation();
 
 	const history = useHistory();
 
@@ -80,28 +83,173 @@ export default (() => {
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
 		</Helmet>
-
-		<Section>
-			{loginFalse && <SubmitForm></SubmitForm>}
-
-			<Box
-				display="flex"
-				padding="12px 0"
-				justify-content="space-between"
-				align-items="center"
-				flex-direction="row"
-				md-flex-direction="column"
-			>
-				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
-					Doctors For You
-				</Text>
-				<NavbarLink href="/">Home</NavbarLink>
-				<NavbarLink href="/aboutus">About Us</NavbarLink>
-				<NavbarLink href="/alldoctors">Our Doctors</NavbarLink>
-				<NavbarLink href="/contactus">Contact us</NavbarLink>
-				<NavbarLink href="/login">Login</NavbarLink>
-			</Box>
-		</Section>
+		<motion.div
+					initial={{
+						x: 100,
+						opacity:0
+					}}
+					animate={{
+						x: 0,
+						opacity:1,
+						transition: {
+							delay:0.2,
+							duration:0.3
+						}
+					}}
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+				>
+				<Section>
+					{loginFalse && <SubmitForm></SubmitForm>}
+					<Box
+						display="flex"
+						padding="12px 0"
+						justify-content="space-between"
+						align-items="center"
+						flex-direction="row"
+						md-flex-direction="column"
+					>
+						<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead" color="black" >
+							Doctors For You
+						</Text>
+					</Box>
+					<Box
+						display="flex"
+						padding="12px 0"
+						justify-content="space-between"
+						align-items="center"
+						flex-direction="row"
+						md-flex-direction="column"
+						style={{
+							background: "black",
+							borderRadius: "20px",
+							position: "relative",
+							overflow: "hidden"
+						}}
+					>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.1,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/">Home</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.3,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/aboutus">About Us</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.5,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/alldoctors">Our Doctors</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.7,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavBarLinkOnPage href="/contactus">Contact us</NavBarLinkOnPage>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.9,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/login">Login</NavbarLink>
+						</motion.div>
+					</Box>
+					</Section>
+		</motion.div>
 		<Section
 			color="--light"
 			padding="100px 0"

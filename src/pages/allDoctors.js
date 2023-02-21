@@ -9,10 +9,15 @@ import DoctorService from "services/DoctorService";
 import { useHistory } from "react-router-dom";
 import AuthService from "services/AuthService";
 import NavbarLink from "./NavbarLink.js";
+import NavBarLinkOnPage from "./NavBarLinkOnPage.js";
+
+import {motion, useAnimation, AnimatePresence} from "framer-motion";
+
 
 export default (() => {
     const [scale, setScale] = useState(1);
     const [hoveredBox, setHoveredBox] = useState(null);
+    const control = useAnimation();
 
     const handleMouseEnter = (id) => {
       setHoveredBox(id);
@@ -133,6 +138,27 @@ export default (() => {
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
 		</Helmet>
+        <motion.div
+			initial={{
+				x: 100,
+				opacity:0
+			}}
+			animate={{
+				x: 0,
+				opacity:1,
+				transition: {
+					delay:0.2,
+					duration:0.3
+				}
+			}}
+			exit={{
+				x:100,
+				opacity:0,
+				transition: {
+					duration: 0.3
+				}
+			}}
+		>
 		<Section>
 			<Box
 				display="flex"
@@ -142,16 +168,142 @@ export default (() => {
 				flex-direction="row"
 				md-flex-direction="column"
 			>
-				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
+				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead" color="black" >
 					Doctors For You
 				</Text>
-                <NavbarLink href="/">Home</NavbarLink>
-                <NavbarLink href="/aboutus">About Us</NavbarLink>
-                <NavbarLink href="/alldoctors">Our Doctors</NavbarLink>
-                <NavbarLink href="/contactus">Contact us</NavbarLink>
-                <NavbarLink href="/login">Login</NavbarLink>
 			</Box>
-		</Section>
+			<Box
+				display="flex"
+				padding="12px 0"
+				justify-content="space-between"
+				align-items="center"
+				flex-direction="row"
+				md-flex-direction="column"
+				style={{
+					background: "black",
+					borderRadius: "20px",
+					position: "relative",
+					overflow: "hidden"
+				}}
+			>
+				<motion.div
+					initial={{
+						x: 100,
+						opacity:0
+					}}
+					animate={{
+						x: 0,
+						opacity:1,
+						transition: {
+							delay:0.1,
+							duration:0.6
+						}
+					}}
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+				>
+					<NavbarLink href="/">Home</NavbarLink>
+				</motion.div>
+				<motion.div
+					initial={{
+						x: 100,
+						opacity:0
+					}}
+					animate={{
+						x: 0,
+						opacity:1,
+						transition: {
+							delay:0.3,
+							duration:0.6
+						}
+					}}
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+				>
+					<NavbarLink href="/aboutus">About Us</NavbarLink>
+				</motion.div>
+				<motion.div
+					initial={{
+						x: 100,
+						opacity:0
+					}}
+					animate={{
+						x: 0,
+						opacity:1,
+						transition: {
+							delay:0.5,
+							duration:0.6
+						}
+					}}
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+				>
+					<NavBarLinkOnPage href="/alldoctors">Our Doctors</NavBarLinkOnPage>
+				</motion.div>
+				<motion.div
+					initial={{
+						x: 100,
+						opacity:0
+					}}
+					animate={{
+						x: 0,
+						opacity:1,
+						transition: {
+							delay:0.7,
+							duration:0.6
+						}
+					}}
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+				>
+					<NavbarLink href="/contactus">Contact us</NavbarLink>
+				</motion.div>
+				<motion.div
+					initial={{
+						x: 100,
+						opacity:0
+					}}
+					animate={{
+						x: 0,
+						opacity:1,
+						transition: {
+							delay:0.9,
+							duration:0.6
+						}
+					}}
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+				>
+					<NavbarLink href="/login">Login</NavbarLink>
+				</motion.div>
+			</Box>
+			</Section>
+		</motion.div>
 		<Section padding="80px 0 80px 0">
 			<Box
 				display="grid"

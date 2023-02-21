@@ -14,6 +14,7 @@ import { useInView } from "react-intersection-observer";
 import { Button } from "react-bootstrap";
 
 import NavbarLink from "./NavbarLink.js";
+import NavBarLinkOnPage from "./NavBarLinkOnPage.js"; 
 
 const TestVariant = {
 	visible: { opacity: 1, scale: 1, transition: { duration: 0.7 } },
@@ -23,7 +24,7 @@ const TestVariant = {
 
 export default (() => {
 	const [backgroundIndex, setBackgroundIndex] = useState(0);
-
+	const [typeButton,setTypeButton] = useState(0);
 	const backgrounds = [
 		"url(https://www.scripps.org/sparkle-assets/seo_thumbnails/news_items/6473/facebook-437f97cdb8e096c0ce61654b167311f7.jpg)",
 		"url(https://www.shutterstock.com/image-photo/indian-male-doctor-consulting-senior-260nw-2036186195.jpg)",
@@ -127,8 +128,8 @@ export default (() => {
 				x: 0,
 				opacity:1,
 				transition: {
-					delay:0.2,
-					duration:0.3
+					delay:0.3,
+					duration:0.4
 				}
 			}}
 			exit={{
@@ -187,12 +188,121 @@ export default (() => {
 							overflow: "hidden"
 						}}
 					>
-						
-						<NavbarLink href="/">Home</NavbarLink>
-						<NavbarLink href="/aboutus">About Us</NavbarLink>
-						<NavbarLink href="/alldoctors">Our Doctors</NavbarLink>
-						<NavbarLink href="/contactus">Contact us</NavbarLink>
-						<NavbarLink href="/login">Login</NavbarLink>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.1,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavBarLinkOnPage style={{"background-color": "white" }} href="/">Home</NavBarLinkOnPage>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.3,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/aboutus" onClick={() => {setTypeButton(2)}}>About Us</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.5,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/alldoctors">Our Doctors</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.7,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/contactus">Contact us</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.9,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/login">Login</NavbarLink>
+						</motion.div>
 					</Box>
 				</motion.div>
 			</Section>
@@ -636,6 +746,8 @@ export default (() => {
 				</Box>
 			</div>
 		</Section>
+
+
 
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0">
