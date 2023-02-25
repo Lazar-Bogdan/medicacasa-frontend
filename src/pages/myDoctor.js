@@ -11,11 +11,13 @@ import { List } from "@quarkly/widgets/build/cjs/prod";
 import { useHistory } from "react-router-dom";
 import AuthService from "./../services/AuthService";
 import CometChat from "services/CometChat";
-
+import NavBarLinkOnPage from "./NavBarLinkOnPage.js"; 
+import {motion, useAnimation, AnimatePresence} from "framer-motion";
 import NavbarLink from "./NavbarLink";
 
 export default (() => {
 	const history = useHistory();
+	const [typeButton,setTypeButton] = useState(0);
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
 		history.push("/doctor")
@@ -192,25 +194,171 @@ export default (() => {
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
 		</Helmet>
-		<Section>
-			<Box
-				display="flex"
-				padding="12px 0"
-				justify-content="space-between"
-				align-items="center"
-				flex-direction="row"
-				md-flex-direction="column"
-			>
-				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
-					Doctors For You
-				</Text>
-                <NavbarLink href="/client">Home</NavbarLink>
-                <NavbarLink href="/medicine">Medicine</NavbarLink>
-                <NavbarLink href="/mydoctor">My Doctor</NavbarLink>
-                <NavbarLink href="/logout">Logout</NavbarLink>   
-                    
-			</Box>
-		</Section>
+		<motion.div
+			initial={{
+				x: 100,
+				opacity:0
+			}}
+			animate={{
+				x: 0,
+				opacity:1,
+				transition: {
+					delay:0.3,
+					duration:0.4
+				}
+			}}
+			exit={{
+				x:100,
+				opacity:0,
+				transition: {
+					duration: 0.3
+				}
+			}}
+		>
+			<Section>
+				<motion.div
+					initial={{
+						x: 100,
+						opacity:0
+					}}
+					animate={{
+						x: 0,
+						opacity:1,
+						transition: {
+							delay:0.2,
+							duration:0.3
+						}
+					}}
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+				>
+					<Box
+						display="flex"
+						padding="12px 0"
+						justify-content="space-between"
+						align-items="center"
+						flex-direction="row"
+						md-flex-direction="column"
+					>
+						<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead" color="black" >
+							Doctors For You
+						</Text>
+					</Box>
+					<Box
+						display="flex"
+						padding="12px 0"
+						justify-content="space-between"
+						align-items="center"
+						flex-direction="row"
+						md-flex-direction="column"
+						style={{
+							background: "black",
+							borderRadius: "20px",
+							position: "relative",
+							overflow: "hidden"
+						}}
+					>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.1,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/client" onClick={() => {setTypeButton(2)}}>Home</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.3,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/medicine">Medicine</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.5,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavBarLinkOnPage style={{"background-color": "white" }} href="/mydoctor">My Doctor</NavBarLinkOnPage>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.9,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/logout">logout</NavbarLink>
+						</motion.div>
+					</Box>
+				</motion.div>
+			</Section>
+		</motion.div>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="80px 0 80px 0">
 		{MapDoc(doctors)}

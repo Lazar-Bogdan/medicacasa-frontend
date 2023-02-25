@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import theme from "theme";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
@@ -6,15 +6,43 @@ import { Theme, Link, Text, Box, Section, Hr, Icon, Image } from "@quarkly/widge
 import { RawHtml, Override, StackItem, Stack, SocialMedia } from "@quarkly/components";
 import { MdArrowDownward } from "react-icons/md";
 import NavbarLink from "./NavbarLink";
+import { useInView } from "react-intersection-observer";
 
 import AuthService from "services/AuthService";
 import { useHistory } from "react-router-dom";
 
 import CometChat from "services/CometChat";
 
+import NavBarLinkOnPage from "./NavBarLinkOnPage.js"; 
+import {motion, useAnimation, AnimatePresence} from "framer-motion";
+
+const TestVariant = {
+	visible: { opacity: 1, scale: 1, transition: { duration: 0.7 } },
+	hidden: { opacity: 0, scale: 0 }
+};
+
 export default (() => {
 	const history = useHistory();
-
+	const [ref, inView] = useInView()
+	const control = useAnimation();
+	const control2 = useAnimation();
+	useEffect(() => {
+		if(inView){
+			control.start("visible");
+			control2.start({
+				scale: 1,
+				x: 0,
+				opacity:1,
+				transition: {
+					delay:0.6,
+					duration:0.7
+				},
+			});
+		}else{
+			control.start("hidden");
+			control2.start("hidden");
+		}
+	}, [control,control2,inView]);
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
 		history.push("/doctor")
 	}
@@ -27,6 +55,7 @@ export default (() => {
 		history.push("/");
 	}
 
+	const [typeButton,setTypeButton] = useState(0);
 
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"index"} />
@@ -37,24 +66,171 @@ export default (() => {
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
 		</Helmet>
-		<Section>
-			<Box
-				display="flex"
-				padding="12px 0"
-				justify-content="space-between"
-				align-items="center"
-				flex-direction="row"
-				md-flex-direction="column"
-			>
-				<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead">
-					Doctors For You
-				</Text>
-				<NavbarLink href="/client">Home</NavbarLink>
-                <NavbarLink href="/medicine">Medicine</NavbarLink>
-                <NavbarLink href="/mydoctor">My Doctor</NavbarLink>
-                <NavbarLink href="/logout">Logout</NavbarLink>                
-			</Box>
-            </Section>
+		<motion.div
+			initial={{
+				x: 100,
+				opacity:0
+			}}
+			animate={{
+				x: 0,
+				opacity:1,
+				transition: {
+					delay:0.3,
+					duration:0.4
+				}
+			}}
+			exit={{
+				x:100,
+				opacity:0,
+				transition: {
+					duration: 0.3
+				}
+			}}
+		>
+			<Section>
+				<motion.div
+					initial={{
+						x: 100,
+						opacity:0
+					}}
+					animate={{
+						x: 0,
+						opacity:1,
+						transition: {
+							delay:0.2,
+							duration:0.3
+						}
+					}}
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+				>
+					<Box
+						display="flex"
+						padding="12px 0"
+						justify-content="space-between"
+						align-items="center"
+						flex-direction="row"
+						md-flex-direction="column"
+					>
+						<Text margin="0" md-margin="0px 0 20px 0" text-align="left" font="--lead" color="black" >
+							Doctors For You
+						</Text>
+					</Box>
+					<Box
+						display="flex"
+						padding="12px 0"
+						justify-content="space-between"
+						align-items="center"
+						flex-direction="row"
+						md-flex-direction="column"
+						style={{
+							background: "black",
+							borderRadius: "20px",
+							position: "relative",
+							overflow: "hidden"
+						}}
+					>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.1,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavBarLinkOnPage style={{"background-color": "white" }} href="/client">Home</NavBarLinkOnPage>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.3,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/medicine" onClick={() => {setTypeButton(2)}}>Medicine</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.5,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/mydoctor">My Doctor</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.9,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
+							<NavbarLink href="/logout">logout</NavbarLink>
+						</motion.div>
+					</Box>
+				</motion.div>
+			</Section>
+		</motion.div>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section
 			background="linear-gradient(0deg,rgba(4, 8, 12, 0.6) 0%,rgba(4, 8, 12, 0.6) 100%),--color-darkL2 url(https://www.scripps.org/sparkle-assets/seo_thumbnails/news_items/6473/facebook-437f97cdb8e096c0ce61654b167311f7.jpg) center/cover"
@@ -80,6 +256,99 @@ export default (() => {
 				</Text>
 				<Icon category="md" margin="0 auto" icon={MdArrowDownward} />
 			</Box>
+		</Section>
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+		<Section padding="80px 0 80px 0">
+			<Override slot="SectionContent" flex-direction="row" flex-wrap="wrap" />
+			<motion.div
+				initial={{
+					x: 100,
+					opacity:0
+				}}
+				animate={{
+					x: 0,
+					opacity:1,
+					transition: {
+						delay:0.2,
+						duration:0.3
+					}
+				}}
+				exit={{
+					x:70,
+					opacity:0,
+					transition: {
+						duration: 0.3
+					}
+				}}
+				ref={ref}
+				initial={
+					{
+						opacity: 0, 
+						scale: 0 
+					}
+				}
+				animate={control}
+				variants={TestVariant}
+			>
+				<Box
+					display="flex"
+					align-items="center"
+					flex-direction="column"
+					justify-content="center"
+					margin="0px 0px 56px 0px"
+					width="100%"
+					sm-margin="0px 0px 30px 0px"
+				>
+					<Text
+						margin="0px 0px 16px 0px"
+						color="--dark"
+						font="--headline1"
+						text-align="center"
+						sm-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
+					>
+						Who are we? What are we doing?
+					</Text>
+				</Box>
+				<Box
+					display="grid"
+					grid-template-columns="repeat(3, 1fr)"
+					grid-gap="16px"
+					lg-grid-template-columns="repeat(2, 1fr)"
+					md-grid-template-columns="1fr"
+				>
+				</Box>
+					<motion.div
+					exit={{
+						x:100,
+						opacity:0,
+						transition: {
+							duration: 0.3
+						}
+					}}
+					ref={ref}
+					initial={
+						{
+							x: -1000,
+							opacity: 0, 
+							scale: 0 
+						}
+					}
+					animate={control2}
+					variants={TestVariant}
+				>
+					<Text
+						margin="0px 0px 35px 0px"
+						color="--dark"
+						font="--lead"
+						lg-margin="0px 0px 50px 0px"
+						sm-margin="0px 0px 30px 0px"
+						flex="1 0 auto"
+					>
+						As our client, we want to make sure that everything is looking the best for you! etc.. etc n am imaginatie
+					</Text>
+				</motion.div>
+			</motion.div>
 		</Section>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0" color="--dark">

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import theme from "theme";
-import { Theme, Link,Text, Box, Section, Image } from "@quarkly/widgets";
+import { Theme, Link,Text, Box, Section, Image, Hr } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Menu, SocialMedia } from "@quarkly/components";
@@ -630,6 +630,7 @@ export default (() => {
 				</Box>
 			</motion.div>
 		</Section>
+		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0">
 			<SocialMedia
 				facebook="https://www.facebook.com/bogdi.lazar.5/"
