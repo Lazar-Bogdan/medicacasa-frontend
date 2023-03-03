@@ -282,7 +282,6 @@ export default (() => {
                 </Text>
                 <select  onChange={(e) => { setValue(e.target.value) }}>
                   <option></option>
-									<option>Standard</option>
 									<option>Premium</option>
 								</select>
                 <p></p>
