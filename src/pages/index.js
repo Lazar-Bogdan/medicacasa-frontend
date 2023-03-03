@@ -697,7 +697,8 @@ export default (() => {
 						<h3>Doctor informations</h3>
 						<p></p>
 						<p></p>
-						<h3>HeartBeat sensor</h3>
+						<h3>Chat with the client directly</h3>
+						<h2>from the site</h2>
 						<p></p>
 						<p></p>
 						<Button>Buy Now</Button>
@@ -731,13 +732,15 @@ export default (() => {
 						<div style={{borderTop: "1px solid black", width: "100%"}}></div>
 						<p></p>
 						<p></p>
-						<h3>Chat online with the client</h3>
+						<h3>Some admin functionality</h3>
 						<p></p>
 						<p></p>
 						<h3>Medicine informations</h3>
 						<p></p>
 						<p></p>
 						<h3>Schedule for the doctor</h3>
+						<p></p>
+						<p></p>
 						<p></p>
 						<p></p>
 						<Button>Buy Now</Button>

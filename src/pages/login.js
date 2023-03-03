@@ -51,7 +51,7 @@ function Login() {
 		if(response !== "wrong credential"){
 			console.log("response output");
 			console.log(response);
-			AuthService.handleLoginSucces(response._id,response.role,response.uid);
+			AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
 			// this.props.history.push("/home");
 			if(response.role == 1011){
 				history.push("/client");

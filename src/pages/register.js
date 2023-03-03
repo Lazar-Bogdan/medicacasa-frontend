@@ -44,7 +44,7 @@ export default (() => {
 	const [loginFalse, setLoginFalse] = useState(false);
 	const [registeFalse,setRegisterFalse] = useState(false);
 	const history = useHistory();
-	const [ value, setValue] = useState("");
+	const [ valueRank, setValue] = useState("");
 	useEffect(() =>{
 		const initClient = () => {
 			gapi.client.init({
@@ -74,12 +74,12 @@ export default (() => {
 			})
 		const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
 		console.log(uid);
-		const response = await AuthService.registerUser(username, email,password,1011, age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid);
+		const response = await AuthService.registerUser(username, email,password,1011, age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid,valueRank);
 		console.log(response);
 		if(response){
 			console.log("user logged");
 			console.log(response);
-			AuthService.handleLoginSucces(response._id,response.role,response.uid);
+			AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
 			history.push("/client");
 		}else{
 			if(loginFalse == true && response == false){
@@ -192,6 +192,7 @@ export default (() => {
 									Plan & Bills
 								</Text>
 								<select  onChange={(e) => { setValue(e.target.value) }}>
+									<option></option>
 									<option>Standard</option>
 									<option>Premium</option>
 								</select>

@@ -82,13 +82,14 @@ class AuthService {
         return x;
     }
 
-    handleLoginSucces(id,role,uid){
+    handleLoginSucces(id,role,uid,rank){
         console.log(id);
         const options = {path :"/"};
         CookieService.set("id", id,options);
         CookieService.set("login",true,options);
         CookieService.set("role",role,options);
         CookieService.set("uid",uid,options);
+        CookieService.set("rank",rank,options);
         return true;
     }
 
@@ -109,13 +110,18 @@ class AuthService {
         return CookieService.get("id");
     }
 
+    handleGetRank(){
+        return CookieService.get("rank");
+    }
+
     handleLogOut(){
         CookieService.remove("id");
         CookieService.remove("role");
         CookieService.set("login",false);
+        CookieService.remove("rank");
     }
 
-    async registerUser(username,email,password,role,age,img,uid){
+    async registerUser(username,email,password,role,age,img,uid,rank){
         // try{
         //     // de hardcodat link ul
         //     const response = await axios.post(URL + "auth/register", {username:username, email:email, password:password, role:role, age:age, img:img, uid:uid});
@@ -134,7 +140,8 @@ class AuthService {
                 role:role, 
                 age:age, 
                 img:img, 
-                uid:uid
+                uid:uid,
+                rank:rank
             },
             body: {
                 username:username, 
@@ -143,7 +150,8 @@ class AuthService {
                 role:role, 
                 age:age, 
                 img:img, 
-                uid:uid
+                uid:uid,
+                rank:rank
             }
         })
         .then(response => response.json())

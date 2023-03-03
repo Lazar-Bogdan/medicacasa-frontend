@@ -32,6 +32,7 @@ const MySchedule = () => {
     const numberMonth = new Date().getMonth();
     const[dayNames,setDayNames] = useState([]);
     const [typeButton,setTypeButton] = useState(0);
+    const [disableButtons, setDisableButtons] = useState(true);
 
     useEffect( () => {
         setCurrentMonth(getMonths(numberMonth));
@@ -40,6 +41,9 @@ const MySchedule = () => {
         setDayNames(getCurrentDayName());
         getClientsApp(months[numberMonth],CurrentYear,arangeDays(y)[0]);
         setCurrentYear(new Date().getFullYear());
+        if(AuthService.handleGetRank() == "Standard"){
+            setDisableButtons(true);
+        }
     },[]);
     let year = [];
     year[0] = CurrentYear;
@@ -291,6 +295,7 @@ const MySchedule = () => {
         return Filtered;
     }
     
+
     return <Theme theme={theme}>
         <GlobalQuarklyPageStyles pageUrl={"clients"} />
         <Helmet>
@@ -465,33 +470,94 @@ const MySchedule = () => {
 				</motion.div>
 			</Section>
 		</motion.div>
-        <Section>
-            <Override slot="SectionContent" max-width="1220px" />
-            <Box margin="0px 0px 0px 0px" padding="15px 15px 15px 15px" md-margin="0px 0px 40px 0px" lg-margin="0px 0px 56px 0px">
-                <Text
-                    margin="0px 0px 24px 0px"
-                    font="--headline1"
-                    color="--dark"
-                    text-align="center"
-                    md-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
-                >
-                    Schedule of workshop program
-                </Text>
-                <Button display="inline-flex" alignItems="center" justify-cont position="relative" top="25px" right="-500px" onClick={() => yearSubOnClickFunction()}></Button>
-                {ArrayYear()}
-                <Button position="relative" top="-35px" right="-640px" onClick={() => yearAddOnClickFunction()}></Button>
-                <p></p>
-                <Button position="relative" top="25px" right="-490px" onClick={() => {MonthSubOnClickFunction();}}></Button>
-                {MonthFunctionArray()}
-                <Button position="relative" top="-35px" right="-650px" onClick={() => {MonthAddOnClickFunction(); }}></Button>
-                <Button position="relative" top="50px" right="-420px" onClick={() => {NumberNameSubOnClickFunction();}}></Button>
-                {NameFunctionArray()}
-                <p></p>
-                {NumberFunctionArray()}
-                <Button position="relative" top="-60px" right="-670px" onClick={() => {NumberNameAddOnClickFunction();}}></Button>
-            </Box>
-        </Section>
-        {MapApp(clientsApp)}
+        {AuthService.handleGetRank() == "Standard" ? (
+            <div style={{ 
+                display: "flex", 
+                flexDirection: "column", 
+                justifyContent: "center", 
+                alignItems: "center", 
+                textAlign: "center",
+            }}>
+                <h1>Please subscribe to access our premium content</h1>
+            </div>
+        ) : (
+            <div>
+
+            </div>
+        )}
+        <div className="content" style={{ 
+            filter: AuthService.handleGetRank() == "Premium"  ? "" : "blur(5px)", 
+            display: "flex", 
+            flexDirection: "column", 
+            justifyContent: "center", 
+            alignItems: "center", 
+            textAlign: "center" 
+        }}>
+            {AuthService.handleGetRank() == "Premium" ? (
+                <div>
+                    <Section>
+                    <Override slot="SectionContent" max-width="1220px" />
+                    <Box margin="0px 0px 0px 0px" padding="15px 15px 15px 15px" md-margin="0px 0px 40px 0px" lg-margin="0px 0px 56px 0px">
+                        <Text
+                            margin="0px 0px 24px 0px"
+                            font="--headline1"
+                            color="--dark"
+                            text-align="center"
+                            md-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
+                        >
+                            Schedule of workshop program
+                        </Text>
+                        <Button display="inline-flex" alignItems="center" justify-cont position="relative" top="30px" right="100px" onClick={() => yearSubOnClickFunction()}></Button>
+                        {ArrayYear()}
+                        <Button position="relative" top="-35px" right="-100px" onClick={() => yearAddOnClickFunction()}></Button>
+                        <p></p>
+                        <Button position="relative" top="25px" right="100px" onClick={() => {MonthSubOnClickFunction();}}></Button>
+                        {MonthFunctionArray()}
+                        <Button position="relative" top="-34px" right="-125px" onClick={() => {MonthAddOnClickFunction(); }}></Button>
+                        <Button position="relative" top="50px" right="125px" onClick={() => {NumberNameSubOnClickFunction();}}></Button>
+                        {NameFunctionArray()}
+                        <p></p>
+                        {NumberFunctionArray()}
+                        <Button position="relative" top="-60px" right="-100px" onClick={() => {NumberNameAddOnClickFunction();}}></Button>
+                    </Box>
+                    </Section>
+                
+                    {MapApp(clientsApp)}
+                </div>
+            ) : (
+                <div>
+                    
+                    <Section>
+                    <Override slot="SectionContent" max-width="1220px" />
+                    <Box margin="0px 0px 0px 0px" padding="15px 15px 15px 15px" md-margin="0px 0px 40px 0px" lg-margin="0px 0px 56px 0px">
+                        <Text
+                            margin="0px 0px 24px 0px"
+                            font="--headline1"
+                            color="--dark"
+                            text-align="center"
+                            md-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
+                        >
+                            Schedule of workshop program
+                        </Text>
+                        <Button display="inline-flex" disabled={disableButtons} alignItems="center" justify-cont position="relative" top="30px" right="100px" onClick={() => yearSubOnClickFunction()}></Button>
+                        {ArrayYear()}
+                        <Button position="relative" disabled={disableButtons} top="-35px" right="-100px" onClick={() => yearAddOnClickFunction()}></Button>
+                        <p></p>
+                        <Button position="relative" disabled={disableButtons} top="25px" right="100px" onClick={() => {MonthSubOnClickFunction();}}></Button>
+                        {MonthFunctionArray()}
+                        <Button position="relative" disabled={disableButtons} top="-34px" right="-125px" onClick={() => {MonthAddOnClickFunction(); }}></Button>
+                        <Button position="relative" disabled={disableButtons} top="50px" right="125px" onClick={() => {NumberNameSubOnClickFunction();}}></Button>
+                        {NameFunctionArray()}
+                        <p></p>
+                        {NumberFunctionArray()}
+                        <Button position="relative" disabled={disableButtons} top="-60px" right="-100px" onClick={() => {NumberNameAddOnClickFunction();}}></Button>
+                    </Box>
+                    </Section>
+
+                </div>
+            )}
+            
+        </div>
         <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
         <Section padding="60px 0" sm-padding="40px 0">
             <SocialMedia
@@ -514,7 +580,7 @@ const MySchedule = () => {
                 {":root {\n  box-sizing: border-box;\n}\n\n* {\n  box-sizing: inherit;\n}"}
             </style>
         </RawHtml>
-    </Theme>;
+        </Theme>;
 }
 
 export default MySchedule;

@@ -19,6 +19,8 @@ export default (() => {
 	const [hover, setHover] = React.useState(null);
 	const [searchQuery, setSearchQuery] = useState('');
 	const [typeButton,setTypeButton] = useState(0);
+	const [disableButtons, setDisableButtons] = useState(true);
+
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 2011){
 		history.push("/doctor")
@@ -39,6 +41,9 @@ export default (() => {
     };
 	useEffect( () =>{
         getMedicine();
+		if(AuthService.handleGetRank() == "Standard"){
+			setDisableButtons(true);
+		}
     }, [])
 
 	async function getMedicine(){
@@ -54,6 +59,64 @@ export default (() => {
 	}
 
 	function MapMeds(List){
+		if(!List){List=[];}
+		const Filtered = List.slice(0, visible).map((item) =>
+			<div marginRight="10px">
+				<Box
+				padding="50px 55px 50px 55px"
+				border-width="1px"
+				border-style="solid"
+				border-radius="30px"
+				border-color="--color-lightD2"
+				display="flex"
+				flex-direction="column"
+				marginRight="10px"
+				margin="10px"
+				>
+					<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" />
+					<Text
+						justifyContent="center"
+						alignItems="center"
+						margin="0px 0px 35px 0px"
+						color="--dark"
+						font="--lead"
+						lg-margin="0px 0px 50px 0px"
+						sm-margin="0px 0px 30px 0px"
+						marginRight="10px"
+					>
+						{item.name}
+					</Text>
+					<Text
+						justifyContent="center"
+						alignItems="center"
+						margin="0px 0px 35px 0px"
+						color="--dark"
+						font="--lead"
+						lg-margin="0px 0px 50px 0px"
+						sm-margin="0px 0px 30px 0px"
+						flex="1 0 auto"
+					>
+						{item.price} $
+					</Text>
+					<Button onClick={() => seeMoreInfo(item._id)} 
+						onMouseOver={() => setHover(item._id)}
+						onMouseOut={() => setHover(null)}
+						style={{
+							backgroundColor: hover === item._id ? 'white' : 'black',
+							color: hover === item._id? 'black' : 'white',
+							border: '2px solid black'
+						}}
+						disabled={disableButtons}
+	  				>
+						More information
+					</Button>
+				</Box>
+			</div>
+        );
+        return Filtered;
+	}
+
+	function MapMedsRandPremium(List){
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
 			<div marginRight="10px">
@@ -177,6 +240,7 @@ export default (() => {
 								backgroundColor: hover === item._id ? 'white' : 'black',
 								color: hover === item._id? 'black' : 'white',
 							}}
+							disabled={disableButtons}
 							>
 							More information
 						</Button>
@@ -364,31 +428,90 @@ export default (() => {
 				</motion.div>
 			</Section>
 		</motion.div>
-		<Section padding="80px 0 80px 0">
-			<Override slot="SectionContent" flex-direction="row" flex-wrap="wrap" />
-			<Box
-				display="flex"
-				align-items="center"
-				flex-direction="column"
-				justify-content="center"
-				margin="0px 0px 56px 0px"
-				width="100%"
-				sm-margin="0px 0px 30px 0px"
-			>
-				<Text
-					margin="0px 0px 16px 0px"
-					color="--dark"
-					font="--headline1"
-					text-align="center"
-					sm-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
-				>
-					Medicine
-				</Text>
-				<SearchBar onSearch={handleSearch} />
-			</Box>
-      		{/* <ItemList items={medicine} query={searchQuery} /> */}
-			{MapMeds(medicine)}
-		</Section>
+		{AuthService.handleGetRank() == "Standard" ? (
+			<div style={{ 
+				display: "flex", 
+				flexDirection: "column", 
+				justifyContent: "center", 
+				alignItems: "center", 
+				textAlign: "center",
+			}}>
+				<h1>Please subscribe to access our premium content</h1>
+			</div>
+		) : (
+			<div>
+
+			</div>
+		)}
+		<div className="content" style={{ 
+			filter: AuthService.handleGetRank() == "Premium"  ? "" : "blur(5px)", 
+			display: "flex", 
+			flexDirection: "column", 
+			justifyContent: "center", 
+			alignItems: "center", 
+			textAlign: "center" 
+		}}>
+			{AuthService.handleGetRank() == "Premium" ? (
+				<div>
+					<Section padding="80px 0 80px 0">
+						<Override slot="SectionContent" flex-direction="row" flex-wrap="wrap" />
+						<Box
+							display="flex"
+							align-items="center"
+							flex-direction="column"
+							justify-content="center"
+							margin="0px 0px 56px 0px"
+							width="100%"
+							sm-margin="0px 0px 30px 0px"
+						>
+							<Text
+								margin="0px 0px 16px 0px"
+								color="--dark"
+								font="--headline1"
+								text-align="center"
+								sm-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
+							>
+								Medicine
+							</Text>
+							<SearchBar onSearch={handleSearch} />
+						</Box>
+						{/* <ItemList items={medicine} query={searchQuery} /> */}
+						{MapMedsRandPremium(medicine)}
+					</Section>
+				</div>
+			) : (
+				<div>
+					
+					<Section padding="80px 0 80px 0">
+						<Override slot="SectionContent" flex-direction="row" flex-wrap="wrap" />
+						<Box
+							display="flex"
+							align-items="center"
+							flex-direction="column"
+							justify-content="center"
+							margin="0px 0px 56px 0px"
+							width="100%"
+							sm-margin="0px 0px 30px 0px"
+						>
+							<Text
+								margin="0px 0px 16px 0px"
+								color="--dark"
+								font="--headline1"
+								text-align="center"
+								sm-font="normal 700 42px/1.2 &quot;Source Sans Pro&quot;, sans-serif"
+							>
+								Medicine
+							</Text>
+							<SearchBar onSearch={handleSearch} disabled={true} />
+						</Box>
+						{/* <ItemList items={medicine} query={searchQuery} /> */}
+						{MapMeds(medicine)}
+					</Section>
+
+				</div>
+			)}
+			
+		</div>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		<Section padding="60px 0" sm-padding="40px 0">
 				<SocialMedia
@@ -413,3 +536,4 @@ export default (() => {
 		</RawHtml>
 	</Theme>;
 });
+

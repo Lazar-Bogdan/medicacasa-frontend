@@ -28,6 +28,8 @@ const myBucket = new AWS.S3({
 })
 
 export default (() => {
+  const [ valueRank, setValue] = useState("");
+
   const history = useHistory();
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
@@ -67,7 +69,7 @@ export default (() => {
             if (err) console.log(err)
         })
     const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
-    const response = await UserService.addUser(username,email,Password,1011,age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid,img.name);
+    const response = await UserService.addUser(username,email,Password,1011,age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid,img.name,valueRank);
     if(response){
       alert("user created");
       history.push('/clientlist');
@@ -267,6 +269,15 @@ export default (() => {
                   Img URL:
                 </Text>
                 <Input type="file" onChange={handleFileInput} />
+                <Text margin="0px 0px 0px 0px" position="relative" >
+                  Type of subscription:
+                </Text>
+                <select  onChange={(e) => { setValue(e.target.value) }}>
+                  <option></option>
+									<option>Standard</option>
+									<option>Premium</option>
+								</select>
+                <p></p>
                 <Button variant="btn btn-success" type="submit" onClick={() => handleAddClient()}>
                   Add Client
                 </Button>

@@ -100,7 +100,7 @@ class UserService{
         return x;
     }
 
-    async addUser(username,email,password,role,age,img,uid,imgName){
+    async addUser(username,email,password,role,age,img,uid,imgName,rank){
         // try{
         //     const response = await axios.post(URL + "users/addClient", {username:username, email:email, password:password, role:role, age:age, img:img,uid:uid})
         //     return response.data;
@@ -121,7 +121,8 @@ class UserService{
                 age:age, 
                 img:img,
                 uid:uid,
-                imgName:imgName
+                imgName:imgName,
+                rank:rank
             }
         }
         console.log("Userservice imgName");
