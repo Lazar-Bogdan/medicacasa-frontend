@@ -436,7 +436,7 @@ export default (() => {
 				alignItems: "center", 
 				textAlign: "center",
 			}}>
-				<h1>Please subscribe to access our premium content</h1>
+				<h1>Please upgrade to premium</h1>
 			</div>
 		) : (
 			<div>

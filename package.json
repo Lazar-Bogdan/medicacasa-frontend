@@ -6,6 +6,7 @@
         "@quarkly/atomize": "1.0.20",
         "@quarkly/components": "0.2.71",
         "@quarkly/widgets": "0.2.71",
+        "@stripe/stripe-js": "^1.48.0",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
@@ -32,6 +33,7 @@
         "react-router-dom": "^5.3.3",
         "react-router-hash-link": "^1.2.2",
         "react-scripts": "^3.4.0",
+        "react-stripe-checkout": "^2.6.3",
         "styled-components": "^5.0.1",
         "universal-cookie": "^4.0.4"
     },

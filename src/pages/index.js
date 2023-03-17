@@ -64,6 +64,10 @@ export default (() => {
 		history.push("/adminpage")
 	}
 
+	function goToRegister(){
+		history.push("/register");
+	}
+
 	const[visible, setVisible] = useState(4);
     const showMoreItems = () => {
         setVisible((prevValue) => prevValue + 3);
@@ -701,7 +705,7 @@ export default (() => {
 						<h2>from the site</h2>
 						<p></p>
 						<p></p>
-						<Button>Buy Now</Button>
+						<Button onClick={() =>{goToRegister()}}>Buy Now</Button>
 					</Box>
 				</Box>
 				<Box
@@ -743,7 +747,7 @@ export default (() => {
 						<p></p>
 						<p></p>
 						<p></p>
-						<Button>Buy Now</Button>
+						<Button onClick={() =>{goToRegister()}}>Buy Now</Button>
 						
 					</Box>
 				</Box>

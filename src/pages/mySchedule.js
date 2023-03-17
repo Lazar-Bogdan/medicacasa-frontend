@@ -196,7 +196,7 @@ const MySchedule = () => {
     }
 
     function MonthFunctionArray(){
-        return (<Text margin="0px 0px 0px 0px" font="--headline3" color="--darkL2" text-align="center">
+        return (<Text margin="40px 0px 0px 0px" font="--headline3" color="--darkL2" text-align="center">
             {months[currentMoth[MonthArray]]}
         </Text>);
     }
@@ -208,7 +208,7 @@ const MySchedule = () => {
     }
 
     function NameFunctionArray(){
-        return (<Text margin="0px 0px 0px 0px" font="--headline3" color="--darkL2" text-align="center">
+        return (<Text margin="40px 0px 0px 0px" font="--headline3" color="--darkL2" text-align="center">
             {dayNames[DayNameArray]}
         </Text>);
     }
@@ -478,7 +478,7 @@ const MySchedule = () => {
                 alignItems: "center", 
                 textAlign: "center",
             }}>
-                <h1>Please subscribe to access our premium content</h1>
+                <h1>Please upgrade to premium</h1>
             </div>
         ) : (
             <div>
@@ -507,18 +507,112 @@ const MySchedule = () => {
                         >
                             Schedule of workshop program
                         </Text>
-                        <Button display="inline-flex" alignItems="center" justify-cont position="relative" top="30px" right="100px" onClick={() => yearSubOnClickFunction()}></Button>
+                        <button
+                            style={{
+                                fontSize: '50px',
+                                top: '57%',
+                                left: '43%',
+                                transform: 'translate(-50%, -50%) rotate(180deg)',
+                                padding: '10px',
+                                position: 'absolute',
+                                border: 'none',
+                                backgroundColor: 'transparent',
+                                color: '#000',
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => yearSubOnClickFunction()}
+                        >
+                            &#8594;
+                        </button>                    
                         {ArrayYear()}
-                        <Button position="relative" top="-35px" right="-100px" onClick={() => yearAddOnClickFunction()}></Button>
+                        <button
+                            style={{
+                                fontSize: '50px',
+                                top: '50.55%',
+                                left: '54%',
+                                padding: '10px',
+                                position: 'absolute',
+                                border: 'none',
+                                backgroundColor: 'transparent',
+                                color: '#000',
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => yearAddOnClickFunction()}
+                        >
+                            &#8594;
+                        </button> 
                         <p></p>
-                        <Button position="relative" top="25px" right="100px" onClick={() => {MonthSubOnClickFunction();}}></Button>
+                        <button
+                            style={{
+                                fontSize: '50px',
+                                top: '67%',
+                                left: '43%',
+                                transform: 'translate(-50%, -50%) rotate(180deg)',
+                                padding: '10px',
+                                position: 'absolute',
+                                border: 'none',
+                                backgroundColor: 'transparent',
+                                color: '#000',
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => MonthSubOnClickFunction()}
+                        >
+                            &#8594;
+                        </button>  
                         {MonthFunctionArray()}
-                        <Button position="relative" top="-34px" right="-125px" onClick={() => {MonthAddOnClickFunction(); }}></Button>
-                        <Button position="relative" top="50px" right="125px" onClick={() => {NumberNameSubOnClickFunction();}}></Button>
+                        <button
+                            style={{
+                                fontSize: '50px',
+                                top: '60.55%',
+                                left: '54%',
+                                padding: '10px',
+                                position: 'absolute',
+                                border: 'none',
+                                backgroundColor: 'transparent',
+                                color: '#000',
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => MonthAddOnClickFunction()}
+                        >
+                            &#8594;
+                        </button>
+                        <p></p>
+                        <button
+                            style={{
+                                fontSize: '50px',
+                                top: '81%',
+                                left: '43%',
+                                transform: 'translate(-50%, -50%) rotate(180deg)',
+                                padding: '10px',
+                                position: 'absolute',
+                                border: 'none',
+                                backgroundColor: 'transparent',
+                                color: '#000',
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => NumberNameSubOnClickFunction()}
+                        >
+                            &#8594;
+                        </button>  
                         {NameFunctionArray()}
                         <p></p>
                         {NumberFunctionArray()}
-                        <Button position="relative" top="-60px" right="-100px" onClick={() => {NumberNameAddOnClickFunction();}}></Button>
+                        <button
+                            style={{
+                                fontSize: '50px',
+                                top: '74.55%',
+                                left: '54%',
+                                padding: '10px',
+                                position: 'absolute',
+                                border: 'none',
+                                backgroundColor: 'transparent',
+                                color: '#000',
+                                cursor: 'pointer',
+                            }}
+                            onClick={() => NumberNameAddOnClickFunction()}
+                        >
+                            &#8594;
+                        </button>
                     </Box>
                     </Section>
                 

@@ -6,6 +6,8 @@ import { GlobalQuarklyPageStyles } from "global-page-styles";
 import { RawHtml, Override, Formspree, SocialMedia } from "@quarkly/components";
 import AuthService from "./../services/AuthService";
 import AWS from 'aws-sdk'
+import StripeCheckout from 'react-stripe-checkout';
+
 
 import FacebookLogin from 'react-facebook-login';
 
@@ -15,6 +17,7 @@ import { gapi } from 'gapi-script';
 import { useHistory } from "react-router-dom";
 
 import Modal from "./popups/model"
+import getStripe from "./getStripe";
 
 const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
 
@@ -80,6 +83,22 @@ export default (() => {
 			console.log("user logged");
 			console.log(response);
 			AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
+			if(valueRank == "Premium")
+			{
+				const stripe = await getStripe();
+				const {error} = await stripe.redirectToCheckout({
+					lineItems: [
+						{
+							price: 'price_1Mj4PFBnnFZXFBWvbLzsaSVm',
+							quantity:1,
+						}
+					],
+					mode: 'subscription',
+					successUrl: `http://localhost:3001/client`,
+					cancelUrl: `http://localhost:3000/cancel`,
+					customerEmail: email,
+				})
+			}
 			history.push("/client");
 		}else{
 			if(loginFalse == true && response == false){
@@ -157,47 +176,138 @@ export default (() => {
 		</Section>
 		<Section background="--color-light" color="--dark" padding="64px 0 64px 0">
 			<Box margin="-16px -16px -16px -16px" display="flex" flex-wrap="wrap">
-				<Box width="50%" padding="8px 8px 8px 8px" lg-width="100%">
+				<Box width="100%" padding="8px 8px 8px 8px" lg-width="100%">
 					<Box>
 						<Formspree endpoint="xeqpgrlv">
 							<Box
 								gap="16px"
-								display="grid"
+								display="flex" 
 								flex-direction="row"
-								flex-wrap="wrap"
+								lex-wrap="wrap"
 								grid-template-columns="repeat(2, 1fr)"
 								grid-gap="16px"
 							>
-								<Text font="--base" margin="0 0 4px 0">
-									Username
-								</Text>
-								<Input width="100%" type="email" name="email" onChange={(event)=> setUsername(event.target.value) } />
-								<Text font="--base" margin="0 0 4px 0">
-									Email
-								</Text>
-								<Input width="100%" type="email" name="email" onChange={(event)=> setEmail(event.target.value) } />
-								<Text font="--base" margin="0 0 4px 0">
-									Password
-								</Text>
-								<Input width="100%" type="password" onChange={(event) => setPassword(event.target.value) } />
-								<Text font="--base" margin="0 0 4px 0">
-									Age
-								</Text>
-								<Input width="100%" type="number" onChange={(event) => setAge(event.target.value) }  />
-								<Text font="--base" margin="0 0 4px 0">
-									Image
-								</Text>
-								<Input width="100%" type="file" onChange={handleFileInput} />
-								<Text font="--base" margin="0 0 4px 0">
-									Plan & Bills
-								</Text>
-								<select  onChange={(e) => { setValue(e.target.value) }}>
-									<option></option>
-									<option>Standard</option>
-									<option>Premium</option>
-								</select>
-								<p></p>
+								<Box
+									gap="16px"
+									display="grid"
+									margin="40px"
+									flex-direction="row"
+									flex-wrap="wrap"
+									grid-template-columns="repeat(2, 1fr)"
+									grid-gap="16px"
+								>
+									<Text font="--base" margin="0 0 4px 0">
+										Username
+									</Text>
+									<Input width="100%" type="email" name="email" onChange={(event)=> setUsername(event.target.value) } />
+									<Text font="--base" margin="0 0 4px 0">
+										Email
+									</Text>
+									<Input width="100%" type="email" name="email" onChange={(event)=> setEmail(event.target.value) } />
+									<Text font="--base" margin="0 0 4px 0">
+										Password
+									</Text>
+									<Input width="100%" type="password" onChange={(event) => setPassword(event.target.value) } />
+									<Text font="--base" margin="0 0 4px 0">
+										Age
+									</Text>
+									<Input width="100%" type="number" onChange={(event) => setAge(event.target.value) }  />
+									<Text font="--base" margin="0 0 4px 0">
+										Image
+									</Text>
+									<Input width="100%" type="file" onChange={handleFileInput} />
+									<Text font="--base" margin="0 0 4px 0">
+										Plan & Bills
+									</Text>
+									<select  onChange={(e) => { setValue(e.target.value) }}>
+										<option></option>
+										<option>Standard</option>
+										<option>Premium</option>
+									</select>
+									<p></p>
+								</Box>
+								<Box
+									display="flex"
+									grid-template-columns="repeat(3, 1fr)"
+									grid-gap="16px"
+									lg-grid-template-columns="repeat(2, 1fr)"
+									md-grid-template-columns="1fr"
+								>
+									<Box
+										padding="50px 55px 0px 55px"
+										sm-padding="55px 40px 50px 55px"
+										border-width="1px"
+										border-style="solid"
+										border-radius="24px"
+										border-color="black"
+										display="flex"
+										flex-direction="column"
+										align-items="flex-start"
+									>
+										<h3> STANDARD </h3>
+										<p></p>
+										<p></p>
+										<h9> ALL THE TIME </h9>
+										<p></p>
+										<p></p>
+										<div style={{borderTop: "1px solid black", width: "100%"}}></div>
+										<p></p>
+										<p></p>
+										<h9>Clients informations</h9>
+										<p></p>
+										<p></p>
+										<h9>Doctor informations</h9>
+										<p></p>
+										<p></p>
+										<h9>Chat with the client directly</h9>
+										<h8>from the site</h8>
+										<p></p>
+										<p></p>
+									</Box>
+								</Box>
+								<Box
+									display="flex"
+									grid-template-columns="repeat(3, 1fr)"
+									grid-gap="16px"
+									lg-grid-template-columns="repeat(2, 1fr)"
+									md-grid-template-columns="1fr"
+									margin-left="20px"
+								>
+									<Box
+										padding="50px 55px 0px 55px"
+										sm-padding="55px 40px 50px 55px"
+										border-width="1px"
+										border-style="solid"
+										border-radius="24px"
+										border-color="black"
+										display="flex"
+										flex-direction="column"
+										align-items="flex-start"
+									>
+										<h3> PREMIUM </h3>
+										<p></p>
+										<p></p>
+										<h9> ONCE AT MONTH FOR 30$ </h9>
+										<p></p>
+										<p></p>
+										<div style={{borderTop: "1px solid black", width: "100%"}}></div>
+										<p></p>
+										<p></p>
+										<h9>Some admin functionality</h9>
+										<p></p>
+										<p></p>
+										<h9>Medicine informations</h9>
+										<p></p>
+										<p></p>
+										<h8>Schedule for the doctor</h8>
+										<p></p>
+										<p></p>
+										<p></p>
+										<p></p>										
+									</Box>
+								</Box>
 							</Box>
+							
 						</Formspree>
 					</Box>
 					<Button variant="btn btn-success" type="submit" onClick={() => handleSubmitRegister()}>
