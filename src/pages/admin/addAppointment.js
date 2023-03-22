@@ -13,6 +13,7 @@ import { arangeDays,getDays,getMonths } from "services/DateSettings";
 import { useHistory } from "react-router-dom";
 import AuthService from "services/AuthService";
 import App from "App";
+import addClient from "./addClient";
 
 
 
@@ -121,7 +122,17 @@ export default (() => {
   async function handleAddClient(){
     const response = await MyClientsService.addApp(doctoremail,clientEmail,finalValueDay,valueHour,finalMonthValue,finalYearValue);
     if(response){
-      alert("App added!");
+      alert("App added");
+      console.log("pana aici1");
+      const startDate = new Date();
+      const endDate = new Date();
+      endDate.setHours(endDate.getHours() + 1); // Set end time to 1 hour after start time
+      console.log("pana aici");
+
+      const calendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=Appointment+Set&dates=${startDate.toISOString()}/${endDate.toISOString()}`;
+
+      console.log("pana aici");
+      window.open(calendarUrl, '_blank');
       history.push('/adminpage');
     }
   }
@@ -346,6 +357,7 @@ export default (() => {
                         <label>
                             Year:
                             <select onChange={handleChangeYear}>
+                              <option value=""></option>
                               <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
                               <option value={new Date().getFullYear() + 1}>{new Date().getFullYear() + 1}</option>
                             </select>
@@ -353,12 +365,14 @@ export default (() => {
                           <label>
                           Month:
                             <select  onChange={handleChangeMonth}>
+                              <option value=""></option> 
                               {MonthFunction()}
                             </select>
                           </label>
                           <label>
                             Day:
                             <select onChange={handleChange}>
+                              <option value=""></option> 
                               {dayFunction(valueDay)}
                             </select>
                         </label>
@@ -400,7 +414,7 @@ export default (() => {
                       <label>
                       Hour:
                         <select value={valueHour} onChange={handleChangeHour}>
-                          <option></option>
+                          <option value=""></option> 
                           {Time(AppList)}
                         </select>
                       </label>

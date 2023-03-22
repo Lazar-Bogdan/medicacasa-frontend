@@ -18,7 +18,7 @@ const overrides = {
       "transition": "color 0.5s ease-in-out",
       "position": "relative",
       "background-color": "--dark",
-      "border-radius": "4px",
+      "border-radius": "100px",
       "children": [
         {
           "kind": "Text",

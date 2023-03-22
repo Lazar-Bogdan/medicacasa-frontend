@@ -101,6 +101,7 @@ class MyClientsService{
         //     console.error("Error", err.response);
         //     return false;
         // }
+        console.log("Beggining of the function addApp from myClientService");
         let x;
         await fetch(URL + "App/addApp", {
             method: 'POST',

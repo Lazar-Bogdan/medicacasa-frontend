@@ -3,7 +3,7 @@ import theme from "theme";
 import { Theme, Link, Text, Box, Section, Image, Hr, Input } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
-import { RawHtml, Override, SocialMedia } from "@quarkly/components";
+import { RawHtml, Override, SocialMedia, Formspree } from "@quarkly/components";
 import GetMedicineService from "services/GetMedicineService";
 import { Button } from "@quarkly/widgets/build/cjs/prod";
 
@@ -17,7 +17,6 @@ import {motion, useAnimation, AnimatePresence} from "framer-motion";
 export default (() => {
 	const history = useHistory();
 	const [hover, setHover] = React.useState(null);
-	const [searchQuery, setSearchQuery] = useState('');
 	const [typeButton,setTypeButton] = useState(0);
 	const [disableButtons, setDisableButtons] = useState(true);
 
@@ -35,6 +34,7 @@ export default (() => {
 	}
 
 	const [medicine, setMedicine] = useState([]);
+	const [query, setQuery] = useState("");
 	const[visible, setVisible] = useState(1000);
 	const showMoreItems = () => {
         setVisible((prevValue) => prevValue + 3);
@@ -173,25 +173,9 @@ export default (() => {
         return Filtered;
 	}
 
-	const SearchBar = (props) => {
-		const [query, setQuery] = useState('');
+	
 	  
-		const handleInputChange = (event) => {
-		  setQuery(event.target.value);
-		  console.log('Query:', event.target.value);
-		  if (props.onSearch) {
-			props.onSearch(event.target.value);
-		  }
-		};
-	  
-		return (
-		  <Section>
-			<Input width="100%" type="text" placeholder="Search..."value={query} onChange={handleInputChange} />
-		  </Section>
-		);
-	  };
-	  
-	  const ItemList = ({ items, query }) => {
+	const ItemList = ({ items, query }) => {
 		const filteredItems = items.filter(item => item.toLowerCase().includes(query.toLowerCase()));
 		return (
 			<div>
@@ -249,11 +233,16 @@ export default (() => {
 			))}
 			</div>
 		);
-	  };
+	};
 
-	const handleSearch = (query) => {
-		setSearchQuery(query);
-	  };
+	const handleQueryChange = (event) => {
+		setQuery(event.target.value);
+	}
+
+	const filteredItemsSearchBar = medicine.filter((item) => 
+		item.name.toLowerCase().includes(query.toLowerCase())
+	);
+
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"medicine"} />
 		<Helmet>
@@ -473,10 +462,13 @@ export default (() => {
 							>
 								Medicine
 							</Text>
-							<SearchBar onSearch={handleSearch} />
+							<Formspree endpoint="xeqpgrlv">
+								<Input width="100%" placeholder="Search..." value={query} onChange={handleQueryChange} />
+							</Formspree>
+
 						</Box>
-						{/* <ItemList items={medicine} query={searchQuery} /> */}
-						{MapMedsRandPremium(medicine)}
+
+						{MapMedsRandPremium(filteredItemsSearchBar)}
 					</Section>
 				</div>
 			) : (
@@ -502,9 +494,7 @@ export default (() => {
 							>
 								Medicine
 							</Text>
-							<SearchBar onSearch={handleSearch} disabled={true} />
 						</Box>
-						{/* <ItemList items={medicine} query={searchQuery} /> */}
 						{MapMeds(medicine)}
 					</Section>
 
