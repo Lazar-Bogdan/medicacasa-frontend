@@ -43,7 +43,7 @@ class DoctorService{
         return x;
     }
 
-    async addDoctor(username,email,password,role,age,img,FirstDesc,SecondDesc, imgName,rank){
+    async addDoctor(username,email,password,role,age,img,FirstDesc,SecondDesc, imgName,rank, phone){
         // try{
         //     const response = await axios.post(URL + "doctor/addDoctor", {username:username,email:email,password:password,role:role,age:age,img:img, doctorFirstDescription:FirstDesc, doctorSecondDescription:SecondDesc})
         //     return response.data;
@@ -64,7 +64,8 @@ class DoctorService{
                 doctorFirstDescription:FirstDesc, 
                 doctorSecondDescription:SecondDesc,
                 imgName:imgName,
-                rank:rank
+                rank:rank,
+                phone:phone
             },
             body: {
                 username:username,
@@ -76,7 +77,8 @@ class DoctorService{
                 doctorFirstDescription:FirstDesc, 
                 doctorSecondDescription:SecondDesc,
                 imgName:imgName,
-                rank:rank
+                rank:rank,
+                phone:phone
             }
         })
         .then(response => response.json())

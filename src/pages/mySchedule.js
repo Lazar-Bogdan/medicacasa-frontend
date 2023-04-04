@@ -216,81 +216,146 @@ const MySchedule = () => {
     function MapApp(List){
         if(!List){List=[];}
         const Filtered = List.slice(0, visible).map((item) =>
-            <Section padding="0 0 88px 0" lg-padding="56px 0 56px 0" sm-padding="32px 0 32px 0">
+            <div marginRight="10px">
                 <Box
-                    display="flex"
-                    margin="0px 0px 49px 0px"
-                    md-flex-direction="column"
-                    md-align-items="center"
-                    md-justify-content="center"
+                padding="50px 55px 50px 55px"
+                border-width="1px"
+                border-style="solid"
+                border-radius="30px"
+                border-color="--color-lightD2"
+                flex-direction="column"
+                marginRight="10px"
+                margin="10px"
+                height="300px"
                 >
-                    <Box
-                        width="30%"
-                        padding="48px 15px 15px 15px"
-                        align-items="flex-start"
-                        display="flex"
-                        justify-content="center"
-                        border-style="solid"
-                        border-width="2px 0px 0px 0px"
-                        border-color="--color-lightD2"
-                        margin="0px 10% 0px 0px"
-                        lg-margin="0px 30px 0px 0px"
-                        md-width="100%"
-                        sm-padding="24px 15px 15px 15px"
-                        md-justify-content="flex-start"
-                        md-margin="0px 0px 0px 0px"
-                        sm-justify-content="center"
+                    <Text
+                        justifyContent="center"
+                        alignItems="center"
+                        margin="25px 10px 35px 40px"
+                        color="--dark"
+                        font="--lead"
+                        lg-margin="0px 0px 50px 0px"
+                        sm-margin="0px 0px 30px 0px"
+                        marginRight="10px"
+                        position="relative"
+                        top="-60px"
+                        font-weight="bold"
                     >
-                        <Text margin="0px 0px 0px 0px" font="--headline3" color="--darkL2">
-                            {item.hour}
-                        </Text>
-                    </Box>
-                    <Box
-                        width="70%"
-                        padding="48px 15px 15px 15px"
-                        display="flex"
-                        align-items="flex-start"
-                        justify-content="flex-start"
-                        border-style="solid"
-                        border-width="2px 0px 0px 0px"
-                        border-color="--color-lightD2"
-                        md-width="100%"
-                        md-border-width="0px"
-                        sm-align-items="center"
-                        sm-flex-direction="column"
-                        sm-justify-content="center"
-                        sm-padding="25px 15px 15px 15px"
-                        md-padding="33px 15px 15px 15px"
+                        Hour :
+                    </Text>
+                    <Text
+                        justifyContent="center"
+                        alignItems="center"
+                        margin="25px 10px 35px 40px"
+                        color="--dark"
+                        font="--lead"
+                        lg-margin="0px 0px 50px 0px"
+                        sm-margin="0px 0px 30px 0px"
+                        marginRight="10px"
+                        position="relative"
+                        top="-90px"
                     >
-                        <Image
-                            width="217px"
-                            height="217px"
-                            margin="0px 64px 0px 0px"
-                            src="https://images.unsplash.com/photo-1554651802-57f1d69a4944?auto=format&fit=crop&w=400&q=80"
-                            object-fit="cover"
-                            border-radius="100%"
-                            lg-width="124px"
-                            lg-height="124px"
-                            lg-margin="0px 24px 0px 0px"
-                            sm-margin="0px 0px 24px 0px"
-                        />
-                        <Box
-                            padding="0px 0px 0px 0px"
-                            width="50%"
-                            lg-width="70%"
-                            sm-width="100%"
-                            sm-align-items="center"
-                            sm-display="flex"
-                            sm-flex-direction="column"
-                            sm-justify-content="center"
-                        >
-                            <Text margin="80px 0px 8px 0px" font="--headline3" color="--dark">
-                                {item.clients}
-                            </Text>
-                        </Box>
-                    </Box>
+                        {item.hour}
+                    </Text>
+                    <Text 
+                        justifyContent="center"
+                        alignItems="center"
+                        margin="-100px 0px 100px 550px"
+                        color="--dark"
+                        font="--lead"
+                        lg-margin="0px 0px 50px 0px"
+                        sm-margin="0px 0px 30px 0px"
+                        flex="1 0 auto"
+                        position="relative"
+                        left="-260px"
+                        font-weight="bold"
+                    >
+                        Email: 
+                    </Text>
+                    <Text 
+                        justifyContent="center"
+                        alignItems="center"
+                        margin="-100px 0px 100px 200px"
+                        color="--dark"
+                        font="--lead"
+                        lg-margin="0px 0px 50px 0px"
+                        sm-margin="0px 0px 30px 0px"
+                        flex="1 0 auto"
+                        overflow="hidden"
+                        white-space="normal"
+                        word-wrap= "break-word"
+                        position="relative"
+                        left="-80px"
+                    >
+                        {item.clients}
+                    </Text>
+                    <Text 
+                        justifyContent="center"
+                        alignItems="center"
+                        margin="-100px 0px 100px 550px"
+                        color="--dark"
+                        font="--lead"
+                        lg-margin="0px 0px 50px 0px"
+                        sm-margin="0px 0px 30px 0px"
+                        flex="1 0 auto"
+                        position="relative"
+                        left="-260px"
+                        font-weight="bold"
+                    >
+                        Name: 
+                    </Text>
+                    <Text 
+                        justifyContent="center"
+                        alignItems="center"
+                        margin="-100px 0px 100px 200px"
+                        color="--dark"
+                        font="--lead"
+                        lg-margin="0px 0px 50px 0px"
+                        sm-margin="0px 0px 30px 0px"
+                        flex="1 0 auto"
+                        overflow="hidden"
+                        white-space="normal"
+                        word-wrap= "break-word"
+                        position="relative"
+                        left="-80px"
+                    >
+                        {item.name}
+                    </Text>
+                    <Text 
+                        justifyContent="center"
+                        alignItems="center"
+                        margin="-100px 0px 100px 550px"
+                        color="--dark"
+                        font="--lead"
+                        lg-margin="0px 0px 50px 0px"
+                        sm-margin="0px 0px 30px 0px"
+                        flex="1 0 auto"
+                        position="relative"
+                        left="-260px"
+                        font-weight="bold"
+                    >
+                        Surname: 
+                    </Text>
+                    <Text 
+                        justifyContent="center"
+                        alignItems="center"
+                        margin="-100px 0px 100px 200px"
+                        color="--dark"
+                        font="--lead"
+                        lg-margin="0px 0px 50px 0px"
+                        sm-margin="0px 0px 30px 0px"
+                        flex="1 0 auto"
+                        overflow="hidden"
+                        white-space="normal"
+                        word-wrap= "break-word"
+                        position="relative"
+                        left="-80px"
+                    >
+                        {item.surname}
+                    </Text>
+                    
                 </Box>
-            </Section>
+            </div>
         );
         return Filtered;
     }

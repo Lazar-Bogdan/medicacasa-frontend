@@ -101,7 +101,7 @@ export default (() => {
 		console.log(List);
 		if(!List){List=[];}
 		const Filtered = List.slice(0, visible).map((item) =>
-				<div marginRight="10px">
+			<div marginRight="10px">
 					<Box
 					padding="50px 55px 50px 55px"
 					border-width="1px"

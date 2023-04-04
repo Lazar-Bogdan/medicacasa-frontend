@@ -93,7 +93,7 @@ class MyClientsService{
         return x;
     }
 
-    async addApp(doctoremail,clients,day,hour,month,year){
+    async addApp(doctoremail,clients,day,hour,month,year,name,surname){
         // try{
         //     const response = await axios.post(URL + "App/addApp", {doctoremail:doctoremail,clients:clients,day:day,hour:hour, month:month, year:year})
         //     return response.data;
@@ -101,7 +101,7 @@ class MyClientsService{
         //     console.error("Error", err.response);
         //     return false;
         // }
-        console.log("Beggining of the function addApp from myClientService");
+        //console.log("Beggining of the function addApp from myClientService");
         let x;
         await fetch(URL + "App/addApp", {
             method: 'POST',
@@ -111,7 +111,9 @@ class MyClientsService{
                 day:day,
                 hour:hour, 
                 month:month, 
-                year:year
+                year:year,
+                name:name,
+                surname:surname
             },
             body: {
                 doctoremail:doctoremail,
@@ -119,7 +121,9 @@ class MyClientsService{
                 day:day,
                 hour:hour, 
                 month:month, 
-                year:year
+                year:year,
+                name:name,
+                surname:surname
             }
         })
         .then(response => response.json())

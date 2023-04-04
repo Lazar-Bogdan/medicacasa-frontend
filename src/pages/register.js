@@ -44,6 +44,7 @@ export default (() => {
 	const [password,setPassword] = useState(" ");
 	const [age, setAge] = useState(0);
 	const [img,setImg] = useState(null);
+	const [phone, setPhone] = useState(" ");
 	const [loginFalse, setLoginFalse] = useState(false);
 	const [registeFalse,setRegisterFalse] = useState(false);
 	const history = useHistory();
@@ -77,7 +78,7 @@ export default (() => {
 			})
 		const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
 		console.log(uid);
-		const response = await AuthService.registerUser(username, email,password,1011, age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid,valueRank);
+		const response = await AuthService.registerUser(username, email,password,1011, age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid,valueRank,phone);
 		console.log(response);
 		if(response){
 			console.log("user logged");
@@ -216,6 +217,10 @@ export default (() => {
 										Image
 									</Text>
 									<Input width="100%" type="file" onChange={handleFileInput} />
+									<Text font="--base" margin="0 0 4px 0">
+										Phone
+									</Text>
+									<Input width="100%" type="text" onChange={(event) => setPhone(event.target.value) }  />
 									<Text font="--base" margin="0 0 4px 0">
 										Plan & Bills
 									</Text>

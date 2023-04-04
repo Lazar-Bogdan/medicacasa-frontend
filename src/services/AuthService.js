@@ -121,7 +121,7 @@ class AuthService {
         CookieService.remove("rank");
     }
 
-    async registerUser(username,email,password,role,age,img,uid,rank){
+    async registerUser(username,email,password,role,age,img,uid,rank,phone){
         // try{
         //     // de hardcodat link ul
         //     const response = await axios.post(URL + "auth/register", {username:username, email:email, password:password, role:role, age:age, img:img, uid:uid});
@@ -141,7 +141,8 @@ class AuthService {
                 age:age, 
                 img:img, 
                 uid:uid,
-                rank:rank
+                rank:rank,
+                phone:phone
             },
             body: {
                 username:username, 
@@ -151,7 +152,8 @@ class AuthService {
                 age:age, 
                 img:img, 
                 uid:uid,
-                rank:rank
+                rank:rank,
+                phone:phone
             }
         })
         .then(response => response.json())

@@ -63,6 +63,10 @@ export default(()=>{
 					<Override slot="Cell 6th" grid-column="1 / span 4" sm-grid-column="auto" />
 					<Override slot="Cell 7th" grid-column="5 / span 4" sm-grid-column="auto" />
 					<Override slot="Cell 8th" grid-column="9 / span 4" sm-grid-column="auto" />
+					<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
+						Last update: {item.update}
+						<p></p>
+					</Text>
 					<Box 
 						padding="50px 55px 50px 55px"
 						border-width="1px"
@@ -91,13 +95,10 @@ export default(()=>{
 								Weight:{item.weight}
 							</Text>
 							<Text margin="0px 0px 0px 0px" position="relative" top="-275px" right="-700px">
-								No. Hearts beat:{item.numberHeart}
+								No. Hearts beat:{item.pulse}
 							</Text>
 							<Text margin="0px 0px 0px 0px" position="relative" top="-205px" right="-700px">
 								Phone number:{item.phone}
-							</Text>
-							<Text margin="0px 0px 0px 0px" position="relative" top="-125px" right="-700px">
-								Other diseases: {item.diseases}
 							</Text>
 					</Box>																		
 
@@ -281,10 +282,6 @@ export default(()=>{
 			</Section>
 		</motion.div>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
-		<Text margin="0px 0px 0px 0px" position="relative" right="-100px">
-			Last update:
-			<p></p>
-		</Text>
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
 		{MapClient(client)}
 		<Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />

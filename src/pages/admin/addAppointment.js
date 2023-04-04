@@ -39,6 +39,8 @@ export default (() => {
   const [valueYear,setValueYear] = useState('');
   const[doctoremail,setDoctorEmail]=useState();
   const[clientEmail,setClientEmail]=useState();
+  const[clientName, setClientName]=useState();
+  const[clientSurname, setClientSurname]=useState();
   const [finalValueDay, setFinalValueDay] = useState();
   const [finalYearValue, setFinalValueYear] = useState();
   const [finalMonthValue, setFinalValueMonth] = useState();
@@ -120,7 +122,7 @@ export default (() => {
   }
 
   async function handleAddClient(){
-    const response = await MyClientsService.addApp(doctoremail,clientEmail,finalValueDay,valueHour,finalMonthValue,finalYearValue);
+    const response = await MyClientsService.addApp(doctoremail,clientEmail,finalValueDay,valueHour,finalMonthValue,finalYearValue,clientName,clientSurname);
     if(response){
       alert("App added");
       console.log("pana aici1");
@@ -400,6 +402,28 @@ export default (() => {
                         position="relative"
                         placeholder='Client Email'
                         onChange={handleChangeClientEmail}
+                      />
+                      <Text margin="0px 0px 0px 0px" position="relative">
+                        Client Name:
+                      </Text>
+                      <Input
+                        display="block"
+                        placeholder-color="LightGray"
+                        background="white"
+                        position="relative"
+                        placeholder='Client Name'
+                        onChange={(event)=> setClientName(event.target.value)}
+                      />
+                      <Text margin="0px 0px 0px 0px" position="relative">
+                        Client Surname:
+                      </Text>
+                      <Input
+                        display="block"
+                        placeholder-color="LightGray"
+                        background="white"
+                        position="relative"
+                        placeholder='Client Surname'
+                        onChange={(event)=> setClientSurname(event.target.value)}
                       />
                     </Box>
                     <p></p>
