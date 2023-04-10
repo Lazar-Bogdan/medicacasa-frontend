@@ -72,14 +72,6 @@ export default (() => {
     const showMoreItems = () => {
         setVisible((prevValue) => prevValue + 3);
     };
-	function FilterByCategory(cathegory) {
-        const Filtered = product_card.filter((item) => {
-            if(item.cathegory.toLowerCase()==cathegory) {
-                return item;
-            }
-        });
-        return Filtered;
-    }
 	const Books = product_card;
 	function MapBooks(List) {
         if(!List){List=[];}
@@ -93,10 +85,10 @@ export default (() => {
 			>
 				<Box display="flex" flex-direction="column">
 					<Text as="h3" font="--headline3" margin="12px 0">
-						{item.product_name}
+						{item.question}
 					</Text>
 					<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-						Raspuns medical 1
+						{item.answer}
 					</Text>
 				</Box>
 			</Box>
@@ -352,7 +344,7 @@ export default (() => {
 				</Box>
 				<Box padding="16px 16px 16px 16px" width="66.66%">
 					<Box display="flex" flex-direction="row" flex-wrap="wrap">
-						{MapBooks(FilterByCategory("sf"))}
+						{MapBooks(product_card)}
 					</Box>
 				</Box>
 			</Box>

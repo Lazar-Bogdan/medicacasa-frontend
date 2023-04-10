@@ -317,6 +317,7 @@ export default (() => {
 					lg-grid-template-columns="repeat(2, 1fr)"
 					sm-grid-template-columns="1fr"
 					width="100%"
+					position="center"
 				>
 					<Box
 						position="relative"
@@ -328,7 +329,7 @@ export default (() => {
 					>
 						<motion.div
 							initial={{
-								x: 100,
+								x: 0,
 								opacity:0
 							}}
 							animate={{
@@ -361,7 +362,7 @@ export default (() => {
 							>
 								<Image
 									border-radius="50%"
-									src="https://images.unsplash.com/photo-1554651802-57f1d69a4944?auto=format&fit=crop&w=500&q=80"
+									src="https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/b98a59c0-bf39-4c2e-9a64-2f990ae7d5ed.jpeg"
 									object-fit="cover"
 									position="absolute"
 									top={0}
@@ -374,7 +375,7 @@ export default (() => {
 								/>
 							</Box>
 						
-							<Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
+							<Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px" position="center">
 								<Text
 									margin="21px 0px 0px 0px"
 									font="--headline3"
@@ -382,7 +383,7 @@ export default (() => {
 									text-align="center"
 									color="--darkL1"
 								>
-									Sam Smith
+									Bogdan Lazar
 								</Text>
 								<Text
 									margin="16px 0px 26px 0px"
@@ -391,238 +392,7 @@ export default (() => {
 									text-align="center"
 									color="--greyD2"
 								>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit
-								</Text>
-							</Box>
-						</motion.div>
-					</Box>
-					<Box
-						position="relative"
-						display="flex"
-						flex-direction="column"
-						align-items="center"
-						justify-content="flex-start"
-						padding="24px 24px 0px 24px"
-					>
-						<motion.div
-							initial={{
-								x: 100,
-								opacity:0
-							}}
-							animate={{
-								x: 0,
-								opacity:1,
-								transition: {
-									delay:0.2,
-									duration:0.3
-								}
-							}}
-							exit={{
-								x:70,
-								opacity:0,
-								transition: {
-									duration: 0.3
-								}
-							}}
-							ref={ref}
-							initial="hidden"
-							animate={control}
-							variants={TestVariant1}
-						>
-							<Box
-								width="100%"
-								height="auto"
-								overflow-x="hidden"
-								overflow-y="hidden"
-								position="relative"
-								padding="100% 0px 0px 0px"
-							>
-								<Image
-									border-radius="50%"
-									src="https://images.unsplash.com/photo-1599870418764-c38abcfb955a?auto=format&fit=crop&w=400&q=80"
-									object-fit="cover"
-									position="absolute"
-									top={0}
-									left={0}
-									bottom={0}
-									right={0}
-									display="block"
-									width="100%"
-									max-height="100%"
-								/>
-							</Box>
-							<Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
-								<Text
-									margin="21px 0px 0px 0px"
-									font="--headline3"
-									display="block"
-									text-align="center"
-									color="--darkL1"
-								>
-									Mason Johnson
-								</Text>
-								<Text
-									margin="16px 0px 26px 0px"
-									font="--base"
-									display="block"
-									text-align="center"
-									color="--greyD2"
-								>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit
-								</Text>
-							</Box>
-						</motion.div>
-					</Box>
-					<Box
-						position="relative"
-						display="flex"
-						flex-direction="column"
-						align-items="center"
-						justify-content="flex-start"
-						padding="24px 24px 0px 24px"
-					>
-						<motion.div
-							initial={{
-								x: 100,
-								opacity:0
-							}}
-							animate={{
-								x: 0,
-								opacity:1,
-								transition: {
-									delay:0.2,
-									duration:0.3
-								}
-							}}
-							exit={{
-								x:70,
-								opacity:0,
-								transition: {
-									duration: 0.3
-								}
-							}}
-							ref={ref}
-							initial="hidden"
-							animate={control}
-							variants={TestVariant2}
-						>
-							<Box
-								width="100%"
-								height="auto"
-								overflow-x="hidden"
-								overflow-y="hidden"
-								position="relative"
-								padding="100% 0px 0px 0px"
-							>
-								<Image
-									border-radius="50%"
-									src="https://images.unsplash.com/photo-1602480370486-ddc38af362cb?auto=format&fit=crop&w=500&q=80"
-									object-fit="cover"
-									position="absolute"
-									top={0}
-									left={0}
-									bottom={0}
-									right={0}
-									display="block"
-									width="100%"
-									max-height="100%"
-								/>
-							</Box>
-							<Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
-								<Text
-									margin="21px 0px 0px 0px"
-									font="--headline3"
-									display="block"
-									text-align="center"
-									color="--darkL1"
-								>
-									Adriana Williams
-								</Text>
-								<Text
-									margin="16px 0px 26px 0px"
-									font="--base"
-									display="block"
-									text-align="center"
-									color="--greyD2"
-								>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit
-								</Text>
-							</Box>
-						</motion.div>
-					</Box>
-					<Box
-						position="relative"
-						display="flex"
-						flex-direction="column"
-						align-items="center"
-						justify-content="flex-start"
-						padding="24px 24px 0px 24px"
-					>
-						<motion.div
-							initial={{
-								x: 100,
-								opacity:0
-							}}
-							animate={{
-								x: 0,
-								opacity:1,
-								transition: {
-									delay:0.5,
-									duration:0.3
-								}
-							}}
-							exit={{
-								x:70,
-								opacity:0,
-								transition: {
-									duration: 0.3
-								}
-							}}
-							ref={ref}
-							initial="hidden"
-							animate={control}
-							variants={TestVariant3}
-						>
-							<Box
-								width="100%"
-								height="auto"
-								overflow-x="hidden"
-								overflow-y="hidden"
-								position="relative"
-								padding="100% 0px 0px 0px"
-							>
-								<Image
-									border-radius="50%"
-									src="https://images.unsplash.com/photo-1619950466709-02c2bf682442?auto=format&fit=crop&w=300&q=80"
-									object-fit="cover"
-									position="absolute"
-									top={0}
-									left={0}
-									bottom={0}
-									right={0}
-									display="block"
-									width="100%"
-									max-height="100%"
-								/>
-							</Box>
-							<Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
-								<Text
-									margin="21px 0px 0px 0px"
-									font="--headline3"
-									display="block"
-									text-align="center"
-									color="--darkL1"
-								>
-									Ethan Tremblay
-								</Text>
-								<Text
-									margin="16px 0px 26px 0px"
-									font="--base"
-									display="block"
-									text-align="center"
-									color="--greyD2"
-								>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit
+									CEO & Developer of Doctor4You
 								</Text>
 							</Box>
 						</motion.div>

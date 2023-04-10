@@ -1,155 +1,23 @@
 const product_card = [
     {
         id: 1,
-        product_name: "Book Name 1",
-        price: 350,
-        cathegory: "drama",
-        currency: "$",
-        image:"1"
+        question: "Should I worry about my cholesterol?",
+        answer: "Cholesterol is a necessary fat substance that helps our bodies build cells and make hormones. However, excess cholesterol can clog arteries and lead to heart disease."
     },
     {
         id: 2,
-        product_name: "Book Name 2",
-        price: 350,
-        cathegory: "drama",
-        currency: "$",
-        image: "2"
+        question: "What can I do to prevent cancer?",
+        answer: "There's no certain treatment to prevent cancer, but there are habits that increase your risk of cancer. Avoiding habits like smoking, which contains harmful chemicals, can reduce your risk for cancer."
     },
     {
         id: 3,
-        product_name: "Book Name 3",
-        price: 350,
-        cathegory: "drama",
-        currency: "$",
-        image: "1"
+        question: "Why can't I sleep?",
+        answer: "The most common reasons people can’t sleep are caffeine, nicotine, or certain medications. Eliminating caffeinated drinks after noon can be beneficial toward your sleep routine."
     },
     {
-        id: 1,
-        product_name: "Book Name 4",
-        price: 350,
-        cathegory: "drama",
-        currency: "$",
-        image:"1"
-    },
-    {
-        id: 2,
-        product_name: "Book Name 5",
-        price: 350,
-        cathegory: "drama",
-        currency: "$",
-        image: "2"
-    },
-    {
-        id: 3,
-        product_name: "Book Name 6",
-        price: 350,
-        cathegory: "drama",
-        currency: "$",
-        image: "1"
-    },
-    {
-        id: 1,
-        product_name: "Book Name 7",
-        price: 350,
-        cathegory: "romance",
-        currency: "$",
-        image:"1"
-    },
-    {
-        id: 2,
-        product_name: "Book Name 8",
-        price: 350,
-        cathegory: "romance",
-        currency: "$",
-        image: "2"
-    },
-    {
-        id: 3,
-        product_name: "Book Name 9",
-        price: 350,
-        cathegory: "romance",
-        currency: "$",
-        image: "1"
-    },
-    {
-        id: 1,
-        product_name: "Book Name 10",
-        price: 350,
-        cathegory: "fantasy",
-        currency: "$",
-        image:"1"
-    },
-    {
-        id: 2,
-        product_name: "Book Name 11",
-        price: 350,
-        cathegory: "fantasy",
-        currency: "$",
-        image: "2"
-    },
-    {
-        id: 3,
-        product_name: "Book Name 12",
-        price: 350,
-        cathegory: "fantasy",
-        currency: "$",
-        image: "1"
-    },
-    {
-        id: 1,
-        product_name: "Book Name 13",
-        price: 350,
-        cathegory: "sf",
-        currency: "$",
-        image:"1"
-    },
-    {
-        id: 2,
-        product_name: "Book Name 14",
-        price: 350,
-        cathegory: "sf",
-        currency: "$",
-        image: "2"
-    },
-    {
-        id: 3,
-        product_name: "Book Name 15",
-        price: 350,
-        cathegory: "sf",
-        currency: "$",
-        image: "1"
-    },
-    {
-        id: 3,
-        product_name: "Book Name 15",
-        price: 350,
-        cathegory: "sf",
-        currency: "$",
-        image: "1"
-    },
-    {
-        id: 1,
-        product_name: "Book Name 16",
-        price: 350,
-        cathegory: "mistery",
-        currency: "$",
-        image:"1"
-    },
-    {
-        id: 2,
-        product_name: "Book Name 17",
-        price: 350,
-        cathegory: "mistery",
-        currency: "$",
-        image: "2"
-    },
-    {
-        id: 3,
-        product_name: "Book Name 18",
-        price: 350,
-        cathegory: "mistery",
-        currency: "$",
-        image: "1"
+        id: 4,
+        question: "Should I see my provider for a cold?",
+        answer: "Viruses cause colds, and there’s no treatment for viruses. However, there are over-the-counter medicines, like decongestants, that can provide relief from symptoms."
     }
 ]
 export default product_card;
