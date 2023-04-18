@@ -205,7 +205,7 @@ export default (() => {
 										Email
 									</Text>
 									<Input width="100%" type="email" name="email" onChange={(event)=> setEmail(event.target.value) } />
-									<Text font="--base" margin="0 0 4px 0">
+									<Text font="--base" margin="0 0 4px 0" autocomplete="off">
 										Password
 									</Text>
 									<Input width="100%" type="password" onChange={(event) => setPassword(event.target.value) } />

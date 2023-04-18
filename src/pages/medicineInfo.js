@@ -232,7 +232,17 @@ export default(()=>{
 			justifyContent: 'center',
 			height: '70vh'
 		}}>
-			<Box width="350px" height="auto" >
+			<Box width="350px" 
+				height="auto" 				
+				border-width="1px"
+				border-style="solid"
+				border-radius="30px"
+				border-color="--color-lightD2"
+				display="flex"
+				flex-direction="column"
+				marginRight="10px"
+				margin="10px" 
+			>
 				<Image src={medicine.img} width="100%" height="auto" />
 				<Text fontSize="20px" fontWeight="600" margin="10px 0"><b>Name: </b>{medicine.name}</Text>
 				<Text fontSize="16px" margin="10px 0"><b>Description: </b>{medicine.description}</Text>

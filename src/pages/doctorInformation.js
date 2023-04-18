@@ -55,7 +55,7 @@ export default (() => {
                 <Box margin="-16px -16px -16px -16px" padding="16px 16px 16px 16px" display="flex" flex-wrap="wrap">
                     <Box padding="16px 16px 16px 16px" width="50%" lg-width="100%">
                         <Box
-                            background="url(https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80) 50% 15%/cover"
+                            background={"url(" + item.img + ") 50% 50%/cover"}
                             padding="0px 0px 672px 0px"
                             margin="0px -112px 0px 0px"
                             lg-margin="0px 0px 0px 0px"
@@ -66,7 +66,7 @@ export default (() => {
                         <Box
                             padding="98px 64px 98px 64px"
                             mix-blend-mode="lighten"
-                            background="--color-red"
+                            background="--color-black"
                             margin="36px 0px -20px -112px"
                             display="flex"
                             flex-direction="column"
@@ -74,6 +74,7 @@ export default (() => {
                             lg-margin="0px 0px 0px 0px"
                             lg-width="100%"
                             sm-padding="64px 32px 64px 32px"
+							border="2.5px solid black"
                         >
                             <Text
                                 as="h4"

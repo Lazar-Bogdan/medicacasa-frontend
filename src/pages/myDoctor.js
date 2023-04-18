@@ -124,7 +124,7 @@ export default (() => {
 							sm-margin="0px 0px 30px 0px"
 							marginRight="10px"
 						>
-							{item[0].username}
+							Dr.{item[0].username}
 						</Text>
 						<Text
 							justifyContent="center"
@@ -142,14 +142,17 @@ export default (() => {
 						<Text 
 							justifyContent="center"
 							alignItems="center"
-							margin="-100px 0px 100px 500px"
+							margin="-100px 0px 100px 200px"
 							color="--dark"
 							font="--lead"
 							lg-margin="0px 0px 50px 0px"
 							sm-margin="0px 0px 30px 0px"
 							flex="1 0 auto"
+							overflow="hidden"
+							white-space="normal"
+							word-wrap= "break-word"
 						>
-							test {item[0].doctorFirstDescription}
+							{item[0].doctorFirstDescription}
 						</Text>
 						<Text 
 							justifyContent="center"
@@ -177,7 +180,7 @@ export default (() => {
 							white-space="normal"
 							word-wrap= "break-word"
 						>
-							Second aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: {item[0].doctorSecondDescription} 
+							{item[0].doctorSecondDescription} 
 						</Text>
 					</Box>
 			</div>

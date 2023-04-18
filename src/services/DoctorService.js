@@ -66,19 +66,6 @@ class DoctorService{
                 imgName:imgName,
                 rank:rank,
                 phone:phone
-            },
-            body: {
-                username:username,
-                email:email,
-                password:password,
-                role:role,
-                age:age,
-                img:img, 
-                doctorFirstDescription:FirstDesc, 
-                doctorSecondDescription:SecondDesc,
-                imgName:imgName,
-                rank:rank,
-                phone:phone
             }
         })
         .then(response => response.json())

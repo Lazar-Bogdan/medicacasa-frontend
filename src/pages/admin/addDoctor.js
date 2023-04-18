@@ -253,7 +253,7 @@ export default (() => {
                   Email:
                 </Text>
                 <Input width="100%" type="email" name="email" placeHolder="Email" onChange={(event) => setEmail(event.target.value) } />
-                <Text margin="0px 0px 0px 0px" position="relative" >
+                <Text margin="0px 0px 0px 0px" position="relative" autocomplete="off">
                   Password:
                 </Text>
                 <Input width="100%" type="password" name="password" placeHolder="Password" onChange={(event) => setPassword(event.target.value) } />

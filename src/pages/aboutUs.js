@@ -236,7 +236,8 @@ export default (() => {
 				About Us
 			</Text>
 			<Text as="p" font="--lead" margin="20px 0 20px 0" text-align="center">
-				Aici text despre cine suntem noi si ce facem
+				We are a small company that tries to help doctos and clients to have a better experience together.
+				Our main goal is to make sure that clients can and will come back to our clinics without any problems and always with good news!
 			</Text>
 		</Section>
 		<Section padding="80px 0 80px 0">
@@ -304,7 +305,7 @@ export default (() => {
 							lg-width="100%"
 							
 						>
-							Echipa administrativa
+							Administrative Team
 						</Text>
 					</motion.div>
 				</Box>

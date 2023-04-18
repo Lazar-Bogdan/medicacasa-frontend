@@ -70,14 +70,14 @@ export default (() => {
                 padding="10px 10px 0px 10px"
                 border="2.5px solid black"
                 transform={hoveredBox === item._id ? "scale(1.2)" : "scale(1)"}
-                width="250px"
-                height="300px"
+                width="300px"
+                height="400px"
             >
                 <Box
                     onMouseEnter={() => handleMouseEnter(item._id)}
                     onMouseLeave={handleMouseLeave}
                     width="200px"
-                    height="300px"
+                    height="400px"
                 >
                     <Box
                         width="100%"
@@ -103,18 +103,27 @@ export default (() => {
                             />
                         </button>
                     </Box>
-                    <Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
-                        <Text
+                    <Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px" >
+						<Text
                             margin="21px 0px 0px 0px"
                             font="--headline3"
                             display="block"
                             text-align="center"
                             color="--darkL1"
                         >
-                            Dr. {item.username}
+                            Dr.
                         </Text>
                         <Text
-                            margin="16px 0px 26px 0px"
+                            margin="0px 0px 0px 0px"
+                            font="--headline3"
+                            display="block"
+                            text-align="center"
+                            color="--darkL1"
+                        >
+                            {item.username}
+                        </Text>
+                        <Text
+                            margin="5px 0px 26px 0px"
                             font="--base"
                             display="block"
                             text-align="center"

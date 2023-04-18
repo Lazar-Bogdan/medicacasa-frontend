@@ -317,7 +317,7 @@ export default (() => {
 									color="--light"
 									sm-width="100%"
 								>
-									main1@gmail.com
+									doctorforyouservice@gmail.com
 								</Link>
 							</Text>
 						</Box>
@@ -345,9 +345,8 @@ export default (() => {
 								Call us
 							</Text>
 							<Text as="p" margin="6px 0" font="--headline3" sm-width="100%">
-								phone1
+								+04 0769428601
 								<br />
-								phone2
 							</Text>
 						</Box>
 						<Box

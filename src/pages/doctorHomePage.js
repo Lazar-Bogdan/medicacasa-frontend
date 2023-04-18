@@ -12,9 +12,11 @@ import CometChat from "services/CometChat";
 import NavbarLink from "./NavbarLink";
 import NavBarLinkOnPage from "./NavBarLinkOnPage.js"; 
 import {motion, useAnimation, AnimatePresence} from "framer-motion";
+import product_card from "./product_data";
 
 export default (() => {
 	const history = useHistory();
+	const[visible, setVisible] = useState(4);
 
 	if(AuthService.handleGetLoginStatus() && AuthService.handleGetRole() == 1011){
 		history.push("/client")
@@ -28,6 +30,29 @@ export default (() => {
 		history.push("/");
 	}
 	const [typeButton,setTypeButton] = useState(0);
+
+	function MapBooks(List) {
+        if(!List){List=[];}
+        const Filtered = List.slice(0, visible).map((item) =>
+			<Box
+				display="flex"
+				flex-direction="column"
+				width="50%"
+				padding="16px 16px 16px 16px"
+				sm-width="100%"
+			>
+				<Box display="flex" flex-direction="column">
+					<Text as="h3" font="--headline3" margin="12px 0">
+						{item.question}
+					</Text>
+					<Text as="p" font="--base" margin="12px 0" color="--greyD2">
+						{item.answer}
+					</Text>
+				</Box>
+			</Box>
+        );
+        return Filtered;
+    }
 
 	return <Theme theme={theme}>
 		<GlobalQuarklyPageStyles pageUrl={"index"} />
@@ -244,70 +269,7 @@ export default (() => {
 				</Box>
 				<Box padding="16px 16px 16px 16px" width="66.66%" md-width="100%">
 					<Box display="flex" flex-direction="row" flex-wrap="wrap">
-						<Box
-							display="flex"
-							flex-direction="column"
-							width="50%"
-							padding="16px 16px 16px 16px"
-							sm-width="100%"
-						>
-							<Box display="flex" flex-direction="column">
-								<Text as="h3" font="--headline3" margin="12px 0">
-									Intrebare medicala 1
-								</Text>
-								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									Raspuns medical 1
-								</Text>
-							</Box>
-						</Box>
-						<Box
-							display="flex"
-							flex-direction="column"
-							width="50%"
-							padding="16px 16px 16px 16px"
-							sm-width="100%"
-						>
-							<Box display="flex" flex-direction="column">
-								<Text as="h3" font="--headline3" margin="12px 0">
-									Intrebare medicala 2
-								</Text>
-							</Box>
-							<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									Raspuns medical 2
-							</Text>
-						</Box>
-						<Box
-							display="flex"
-							flex-direction="column"
-							width="50%"
-							padding="16px 16px 16px 16px"
-							sm-width="100%"
-						>
-							<Box display="flex" flex-direction="column">
-								<Text as="h3" font="--headline3" margin="12px 0">
-									Intrebare medicala 3
-								</Text>
-								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									Raspuns medical 3							
-								</Text>
-							</Box>
-						</Box>
-						<Box
-							display="flex"
-							flex-direction="column"
-							width="50%"
-							padding="16px 16px 16px 16px"
-							sm-width="100%"
-						>
-							<Box display="flex" flex-direction="column">
-								<Text as="h3" font="--headline3" margin="12px 0">
-									Intrebare medicala 4
-								</Text>
-								<Text as="p" font="--base" margin="12px 0" color="--greyD2">
-									Raspuns medical 4
-								</Text>
-							</Box>
-						</Box>
+						{MapBooks(product_card)}
 					</Box>
 				</Box>
 			</Box>

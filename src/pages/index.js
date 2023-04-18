@@ -377,9 +377,6 @@ export default (() => {
 					>
 						Our Doctors opinions
 					</Text>
-					<Text margin="0px 0px 0px 0px" color="--grey" text-align="center" font="--lead">
-						Sign up with your email address to receive news and updates.
-					</Text>
 				</Box>
 				<Box
 					display="grid"
@@ -400,7 +397,7 @@ export default (() => {
 						align-items="flex-start"
 					>
 						<Text margin="0px 0px 0px 0px">
-							medicament 1
+							Paracetamol
 						</Text>
 						<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/favourite-31.png?v=2021-08-30T20:05:47.446Z" margin="0px 0px 33px 0px" padding="15px 0px 0px 0px" />
 						<Text
@@ -443,7 +440,7 @@ export default (() => {
 						align-items="flex-start"
 					>
 						<Text margin="0px 0px 0px 0px">
-							medicament 1
+							Brufen
 						</Text>
 						<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/startfavorite.png?v=2021-08-30T20:09:22.144Z" margin="0px 0px 33px 0px" padding="15px 0px 0px 0px" />
 						<Text
@@ -486,7 +483,7 @@ export default (() => {
 						align-items="flex-start"
 					>
 						<Text margin="0px 0px 0px 0px">
-							medicament 1
+							Nurofen
 						</Text>
 						<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/favourite-31.png?v=2021-08-30T20:05:47.446Z" margin="0px 0px 33px 0px" padding="15px 0px 0px 0px" />
 						<Text
