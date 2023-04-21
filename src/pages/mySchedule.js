@@ -575,8 +575,8 @@ const MySchedule = () => {
                         <button
                             style={{
                                 fontSize: '50px',
-                                top: '57%',
-                                left: '43%',
+                                top: '45%',
+                                left: '45%',
                                 transform: 'translate(-50%, -50%) rotate(180deg)',
                                 padding: '10px',
                                 position: 'absolute',
@@ -593,8 +593,8 @@ const MySchedule = () => {
                         <button
                             style={{
                                 fontSize: '50px',
-                                top: '50.55%',
-                                left: '54%',
+                                top: '39.9%',
+                                left: '53%',
                                 padding: '10px',
                                 position: 'absolute',
                                 border: 'none',
@@ -610,8 +610,8 @@ const MySchedule = () => {
                         <button
                             style={{
                                 fontSize: '50px',
-                                top: '67%',
-                                left: '43%',
+                                top: '54.5%',
+                                left: '45%',
                                 transform: 'translate(-50%, -50%) rotate(180deg)',
                                 padding: '10px',
                                 position: 'absolute',
@@ -628,8 +628,8 @@ const MySchedule = () => {
                         <button
                             style={{
                                 fontSize: '50px',
-                                top: '60.55%',
-                                left: '54%',
+                                top: '49.5%',
+                                left: '53%',
                                 padding: '10px',
                                 position: 'absolute',
                                 border: 'none',
@@ -645,8 +645,8 @@ const MySchedule = () => {
                         <button
                             style={{
                                 fontSize: '50px',
-                                top: '81%',
-                                left: '43%',
+                                top: '65%',
+                                left: '45%',
                                 transform: 'translate(-50%, -50%) rotate(180deg)',
                                 padding: '10px',
                                 position: 'absolute',
@@ -665,8 +665,8 @@ const MySchedule = () => {
                         <button
                             style={{
                                 fontSize: '50px',
-                                top: '74.55%',
-                                left: '54%',
+                                top: '59.5%',
+                                left: '53%',
                                 padding: '10px',
                                 position: 'absolute',
                                 border: 'none',

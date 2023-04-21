@@ -82,6 +82,36 @@ class AuthService {
         return x;
     }
 
+    async doEmailUserExist(email)
+    {
+        let x;
+        await fetch(URL + "users/checkUserAlreadyExists", {
+            method: 'GET',
+            headers: {
+                email: email
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
+    }
+
+    async doEmailDoctorExist(email)
+    {
+        let x;
+        await fetch(URL + "doctor/checkDoctorAlreadyExists", {
+            method: 'GET',
+            headers: {
+                email: email
+            }
+        })
+        .then(response => response.json())
+        .then(response => { x = response; })
+        .catch(err => { x = err; console.error(err)});
+        return x;
+    }
+
     handleLoginSucces(id,role,uid,rank){
         console.log(id);
         const options = {path :"/"};

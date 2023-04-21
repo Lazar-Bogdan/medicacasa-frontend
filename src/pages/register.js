@@ -49,6 +49,9 @@ export default (() => {
 	const [registeFalse,setRegisterFalse] = useState(false);
 	const history = useHistory();
 	const [ valueRank, setValue] = useState("");
+	const [isValid, setIsValid] = useState(true);
+	const [wrongCredential, setWrongCredential] = useState(true);
+
 	useEffect(() =>{
 		const initClient = () => {
 			gapi.client.init({
@@ -61,55 +64,67 @@ export default (() => {
 	const [progress , setProgress] = useState(0);
 
 	async function handleSubmitRegister(){
-		console.log(img.name);
-		const params = {
-			ACL: 'public-read',
-			Body: img,
-			Bucket: S3_BUCKET,
-			Key: img.name
-		};
-	
-		myBucket.putObject(params)
-			.on('httpUploadProgress', (evt) => {
-				setProgress(Math.round((evt.loaded / evt.total) * 100))
-			})
-			.send((err) => {
-				if (err) console.log(err)
-			})
+		// console.log(img.name);
 		const uid = "1" + (new Date().getFullYear()) + (new Date().getMonth()) + (new Date().getHours()) + (new Date().getMinutes()) + (new Date().getSeconds());
 		console.log(uid);
-		const response = await AuthService.registerUser(username, email,password,1011, age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid,valueRank,phone);
-		console.log(response);
-		if(response){
-			console.log("user logged");
-			console.log(response);
-			AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
-			if(valueRank == "Premium")
-			{
-				const stripe = await getStripe();
-				const {error} = await stripe.redirectToCheckout({
-					lineItems: [
-						{
-							price: 'price_1Mj4PFBnnFZXFBWvbLzsaSVm',
-							quantity:1,
-						}
-					],
-					mode: 'subscription',
-					successUrl: `http://localhost:3001/client`,
-					cancelUrl: `http://localhost:3000/cancel`,
-					customerEmail: email,
-				})
-			}
-			history.push("/client");
+		if(username == " " || email == " " || password == " " || age == 0 || img == null || phone == " "){
+			setIsValid(false);
+			setWrongCredential(true);
+			console.log("on else");
 		}else{
-			if(loginFalse == true && response == false){
-				setLoginFalse(false);
-				setLoginFalse(true);
-				setRegisterFalse(false);
-				setRegisterFalse(true);
+			if(username == " " || email == " " || password == " " || age == 0 || img == null || phone == " "){
+				setIsValid(false);
+				setWrongCredential(true);
+				console.log("on else");
 			}else{
-				setLoginFalse(true);
-				setRegisterFalse(true);
+				const firstResponse = await AuthService.doEmailUserExist(email);
+				console.log("Response");
+				console.log(firstResponse);
+				if(firstResponse === "user already exists")
+				{
+					console.log("user already exists");
+					setWrongCredential(false);
+					setIsValid(true);
+					setEmail(" ");
+				}else{
+					const params = {
+						ACL: 'public-read',
+						Body: img,
+						Bucket: S3_BUCKET,
+						Key: img.name
+					};
+					myBucket.putObject(params)
+					.on('httpUploadProgress', (evt) => {
+						setProgress(Math.round((evt.loaded / evt.total) * 100))
+					})
+					.send((err) => {
+						if (err) console.log(err)
+					})
+					const response = await AuthService.registerUser(username, email,password,1011, age,"https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/" + img.name,uid,valueRank,phone);
+					console.log(response);
+					if(response){
+						console.log("user logged");
+						console.log(response);
+						AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
+						if(valueRank == "Premium")
+						{
+							const stripe = await getStripe();
+							const {error} = await stripe.redirectToCheckout({
+								lineItems: [
+									{
+										price: 'price_1Mj4PFBnnFZXFBWvbLzsaSVm',
+										quantity:1,
+									}
+								],
+								mode: 'subscription',
+								successUrl: `http://localhost:3001/client`,
+								cancelUrl: `http://localhost:3000/cancel`,
+								customerEmail: email,
+							})
+						}
+						history.push("/client");
+					}
+				}
 			}
 		}
 	}
@@ -190,49 +205,57 @@ export default (() => {
 							>
 								<Box
 									gap="16px"
-									display="grid"
+									display="solid"
 									margin="40px"
 									flex-direction="row"
 									flex-wrap="wrap"
-									grid-template-columns="repeat(2, 1fr)"
+									grid-template-columns="repeat(2, fr)"
 									grid-gap="16px"
 								>
-									<Text font="--base" margin="0 0 4px 0">
+									<Text font="--base" margin="0 0 0 0">
 										Username
 									</Text>
-									<Input width="100%" type="email" name="email" onChange={(event)=> setUsername(event.target.value) } />
-									<Text font="--base" margin="0 0 4px 0">
+									<Input width="60%" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} type="email" name="email" onChange={(event)=> setUsername(event.target.value) } />
+									{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
+									<Text font="--base" margin="0 0 0 0">
 										Email
 									</Text>
-									<Input width="100%" type="email" name="email" onChange={(event)=> setEmail(event.target.value) } />
-									<Text font="--base" margin="0 0 4px 0" autocomplete="off">
+									<Input width="60%" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} type="email" name="email" onChange={(event)=> setEmail(event.target.value) } />
+									{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
+									{!wrongCredential && <p style={{ color: 'red' }}>Email already exists!</p>}
+									<Text font="--base" margin="0 0 0 0" autocomplete="off">
 										Password
 									</Text>
-									<Input width="100%" type="password" onChange={(event) => setPassword(event.target.value) } />
-									<Text font="--base" margin="0 0 4px 0">
+									<Input width="60%" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} type="password" onChange={(event) => setPassword(event.target.value) } />
+									{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
+									<Text font="--base" margin="0 0 0 0">
 										Age
 									</Text>
-									<Input width="100%" type="number" onChange={(event) => setAge(event.target.value) }  />
-									<Text font="--base" margin="0 0 4px 0">
+									<Input width="60%" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} type="number" onChange={(event) => setAge(event.target.value) }  />
+									{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
+									<Text font="--base" margin="0 0 0 0">
 										Image
 									</Text>
-									<Input width="100%" type="file" onChange={handleFileInput} />
-									<Text font="--base" margin="0 0 4px 0">
+									<Input width="60%"  style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} type="file" onChange={handleFileInput} />
+									{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
+									<Text font="--base" margin="0 0 0 0">
 										Phone
 									</Text>
-									<Input width="100%" type="text" onChange={(event) => setPhone(event.target.value) }  />
-									<Text font="--base" margin="0 0 4px 0">
+									<Input width="60%" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} type="text" onChange={(event) => setPhone(event.target.value) }  />
+									{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
+									<Text font="--base" margin="0 0 0 0">
 										Plan & Bills
 									</Text>
-									<select  onChange={(e) => { setValue(e.target.value) }}>
+									<select style={{ borderColor: isValid && wrongCredential ? 'initial':'red', width: '60%' }}  onChange={(e) => { setValue(e.target.value) }}>
 										<option></option>
 										<option>Standard</option>
 										<option>Premium</option>
 									</select>
+									{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
 									<p></p>
 								</Box>
 								<Box
-									display="flex"
+									display="solid"
 									grid-template-columns="repeat(3, 1fr)"
 									grid-gap="16px"
 									lg-grid-template-columns="repeat(2, 1fr)"
@@ -271,7 +294,7 @@ export default (() => {
 									</Box>
 								</Box>
 								<Box
-									display="flex"
+									display="solid"
 									grid-template-columns="repeat(3, 1fr)"
 									grid-gap="16px"
 									lg-grid-template-columns="repeat(2, 1fr)"

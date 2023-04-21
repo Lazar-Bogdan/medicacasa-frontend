@@ -21,7 +21,8 @@ const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleuserc
 function Login() {
 	const [loginFalse,setLoginFalse] = useState(false);
 	const history = useHistory();
-
+	const [isValid, setIsValid] = useState(true);
+	const [wrongCredential, setWrongCredential] = useState(true);
 	useEffect(() =>{
 		console.log(loginFalse);
 	},[loginFalse]);
@@ -44,30 +45,37 @@ function Login() {
 	const [password,setPassword] = useState(" ");
 
 	async function handleSubmitLogin(){
-		let response = await AuthService.doUserLogin(email,password,);
-		if(response === "wrong credential" ){
-			response = await AuthService.doDoctorLogin(email,password);
-		}
-		if(response !== "wrong credential"){
-			console.log("response output");
-			console.log(response);
-			AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
-			// this.props.history.push("/home");
-			if(response.role == 1011){
-				history.push("/client");
+		if(email==" " || password ==" ")
+		{
+			setIsValid(false);
+			setWrongCredential(true);
+		}else
+		{
+			let response = await AuthService.doUserLogin(email,password,);
+			if(response === "wrong credential" ){
+				response = await AuthService.doDoctorLogin(email,password);
+				if(response === "wrong credential")
+				{
+					setWrongCredential(false);
+					setIsValid(true);
+					setEmail(" ");
+					setPassword(" ");
+				}
 			}
-			if(response.role == 2011){
-				history.push("/doctor")
-			}
-			if(response.role == 3011){
-				history.push("/adminpage")
-			}
-		}else{
-			if(loginFalse == true && response == false){
-				setLoginFalse(false);
-				setLoginFalse(true);
-			}else{
-				setLoginFalse(true);
+			if(response !== "wrong credential"){
+				console.log("response output");
+				console.log(response);
+				AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
+				// this.props.history.push("/home");
+				if(response.role == 1011){
+					history.push("/client");
+				}
+				if(response.role == 2011){
+					history.push("/doctor")
+				}
+				if(response.role == 3011){
+					history.push("/adminpage")
+				}
 			}
 		}
 	}
@@ -290,17 +298,22 @@ function Login() {
 								display="grid"
 								flex-direction="row"
 								flex-wrap="wrap"
-								grid-template-columns="repeat(2, 1fr)"
+								grid-template-columns="repeat(2, fr)"
 								grid-gap="16px"
 							>
 								<Text font="--base" margin="0 0 4px 0">
-									Email
+									Email:
 								</Text>
-								<Input width="100%" type="email" name="email" onChange={(event) => setEmail(event.target.value) } />
+								<Input width="30%" type="email" name="email" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} onChange={(event) => setEmail(event.target.value) } />
+								{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
+								{!wrongCredential && <p style={{ color: 'red' }}>Please enter a correct email</p>}
 								<Text font="--base" margin="0 0 4px 0" autocomplete="off">
-									Password
+									Password:
 								</Text>
-								<Input width="100%" type="password" name="password" onChange={(event) => setPassword(event.target.value) } autocomplete="off"/>
+								<Input width="30%" type="password" name="password" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} onChange={(event) => setPassword(event.target.value) } autocomplete="off"/>
+								{!isValid && <Text style={{ color: 'red' }}>Please enter a input</Text>}
+								{!wrongCredential && <p style={{ color: 'red' }}>Please enter a correct password</p>}
+								<p></p>
 							</Box>
 						</Formspree>
 					</Box>
