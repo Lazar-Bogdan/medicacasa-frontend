@@ -9,6 +9,7 @@ import clientHome from "pages/clientHome";
 import clientMedicine from "pages/clientMedicine";
 import myDoctor from "pages/myDoctor";
 // import history from "pages/history";
+import calculatorMedicine from "pages/calculatorMedicine"
 import doctorHomePage from "pages/doctorHomePage";
 import myClient from "pages/myClient";
 import addReview from "pages/addReview";
@@ -85,6 +86,7 @@ export default () => (
             <Route exact path='/schedule' component={MySchedule} />
             <Route exact path="/logout" component={logout} />
             <Route exact path='/medicineInfo/:id' component={medicineInfo} />
+            <Route exact path='/calculator' component={calculatorMedicine} />
 			<Route component={Page404}/>
         </Switch>
     </Router>
