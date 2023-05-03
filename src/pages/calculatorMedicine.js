@@ -16,6 +16,8 @@ import {motion, useAnimation, AnimatePresence} from "framer-motion";
 import NavbarLink from "./NavbarLink";
 import NavbarButton from "./Button"
 
+import CalculatorSerivice from "services/CalculatorSerivice";
+
 
 export default(() => {
     const city = [
@@ -39,7 +41,13 @@ export default(() => {
         }
     ]
     const[visible, setVisible] = useState(40);
-    
+
+	const[outputCountry,setOutputCountry] = useState("");
+    const[outputCity,setoutputCity] = useState("");
+	const[outputCardiology,setoutputCardiology] = useState([{place:"",price:""}]);
+    const[outputSurgery,setoutputSurgery] = useState([{place:"",price:""}]);
+	const[outputInternal,setoutputInternal] = useState([{place:"",price:""}]);
+
     function getCity()
     {
         const Filtered = city.slice(0, visible).map((item)=>
@@ -50,6 +58,42 @@ export default(() => {
     
         return Filtered;
     }
+
+	async function getCalculatorCardiology(cardiologyType)
+	{
+		if(outputCity === "" || outputCountry === "")
+		{
+			return;
+		}else{
+			let response = await CalculatorSerivice.getCalculatorUnderCountryCityCardiology(outputCountry,outputCity,cardiologyType);
+			console.log(response);
+			setoutputCardiology(response);
+		}
+	}
+
+	async function getCalculatorGeneralSurgery(generalsurgerytype)
+	{
+		if(outputCity === "" || outputCountry === "")
+		{
+			return;
+		}else{
+			let response = await CalculatorSerivice.getCalculatorUnderCountryCityGeneralSurgery(outputCountry,outputCity,generalsurgerytype);
+			console.log(response);
+			setoutputSurgery(response);
+		}
+	}
+
+	async function getCalculatorInternalMedicine(internalmedicinetype)
+	{
+		if(outputCity === "" || outputCountry === "")
+		{
+			return;
+		}else{
+			let response = await CalculatorSerivice.getCalculatorUnderCountryCityInternalMedicine(outputCountry,outputCity,internalmedicinetype);
+			console.log(response);
+			setoutputInternal(response);
+		}
+	}
 
     const history = useHistory();
 
@@ -297,14 +341,14 @@ export default(() => {
                                 <Text font="--base" margin="0 0 4px 0">
 									Country:
 								</Text>
-                                <select width="100%"   onChange={(e) => {  }}>
+                                <select width="100%"   onChange={(e) => { setOutputCountry(e.target.value);  }}>
                                     <option>Select...</option>
 									<option value="Romania">Romania</option>
 								</select>
                                 <Text font="--base" margin="0 0 4px 0">
 									City:
 								</Text>
-                                <select width="100%"   onChange={(e) => {  }}>
+                                <select width="100%"   onChange={(e) => { setoutputCity(e.target.value); }}>
                                     <option>Select...</option>
 									{getCity()}
 								</select>
@@ -313,10 +357,10 @@ export default(() => {
                                 <Text font="--base" margin="0 0 4px 0">
                                     Cardiology:
 								</Text>
-                                <select width="100%"   onChange={(e) => {  }}>
-                                    <option>Select...</option>
+                                <select width="100%"   onChange={(e) => { getCalculatorCardiology(e.target.value) }}>
 									<option>Select...</option>
-                                    <option>Select...</option>
+                                    <option>Monthly Control</option>
+                                    <option>Special Consult</option>
 									<option>Select...</option>
                                     <option>Select...</option>
 									<option>Select...</option>
@@ -326,9 +370,9 @@ export default(() => {
                                 <Text font="--base" margin="0 0 4px 0">
                                     General Surgery:
 								</Text>
-                                <select width="100%"   onChange={(e) => {  }}>
+                                <select width="100%"   onChange={(e) => { getCalculatorGeneralSurgery(e.target.value); }}>
                                     <option>Select...</option>
-									<option>Select...</option>
+									<option>Monthly Control</option>
                                     <option>Select...</option>
 									<option>Select...</option>
                                     <option>Select...</option>
@@ -339,9 +383,9 @@ export default(() => {
                                 <Text font="--base" margin="0 0 4px 0">
                                     Internal Medicine:
 								</Text>
-                                <select width="100%"   onChange={(e) => {  }}>
+                                <select width="100%"   onChange={(e) => { getCalculatorInternalMedicine(e.target.value); }}>
                                     <option>Select...</option>
-									<option>Select...</option>
+									<option>Monthly Control</option>
                                     <option>Select...</option>
 									<option>Select...</option>
                                     <option>Select...</option>
@@ -366,7 +410,73 @@ export default(() => {
 					border-color="--color-lightD2"
 					flex-direction="column"
                 >
-
+					<Formspree endpoint="xeqpgrlv">
+							<Box
+								gap="16px"
+								display="grid"
+								flex-direction="row"
+								flex-wrap="wrap"
+								grid-template-columns="repeat(2, 1fr)"
+								grid-gap="16px"
+							>
+								<Text font="--base" margin="0 0 4px 0">
+									Country:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{outputCountry}
+								</Text>
+								
+								<Text font="--base" margin="0 0 4px 0">
+									City:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{outputCity}
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									Cardiology:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{outputCardiology[0].place}
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									Price:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{outputCardiology[0].price} $
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									General Surgery:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{outputSurgery[0].place}
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									Price:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{outputSurgery[0].price} $
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									Internal Medicine:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{outputInternal[0].place}
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									Price:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{outputInternal[0].price} $
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									Total:
+								</Text>
+								<Text font="--base" margin="0 0 4px 0">
+									{ parseInt(outputCardiology[0].price)+ parseInt(outputSurgery[0].price)+ parseInt(outputInternal[0].price)} $
+								</Text>
+							</Box>
+					</Formspree>
+					
                 </Box>
             </div>
 		</Section>

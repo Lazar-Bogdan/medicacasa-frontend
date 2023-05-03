@@ -333,6 +333,29 @@ export default (() => {
 								}
 							}}
 						>
+							<NavbarLink href="/calculator">Calculator</NavbarLink>
+						</motion.div>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.5,
+									duration:0.6
+								}
+							}}
+							exit={{
+								x:100,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+						>
 							<NavBarLinkOnPage style={{"background-color": "white" }} href="/mydoctor">My Doctor</NavBarLinkOnPage>
 						</motion.div>
 						<motion.div
