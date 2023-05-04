@@ -398,6 +398,83 @@ export default (() => {
 							</Box>
 						</motion.div>
 					</Box>
+					<Box
+						position="relative"
+						display="flex"
+						flex-direction="column"
+						align-items="center"
+						justify-content="flex-start"
+						padding="24px 24px 0px 24px"
+					>
+						<motion.div
+							initial={{
+								x: 100,
+								opacity:0
+							}}
+							animate={{
+								x: 0,
+								opacity:1,
+								transition: {
+									delay:0.2,
+									duration:0.3
+								}
+							}}
+							exit={{
+								x:70,
+								opacity:0,
+								transition: {
+									duration: 0.3
+								}
+							}}
+							ref={ref}
+							initial="hidden"
+							animate={control}
+							variants={TestVariant1}
+						>
+							<Box
+								width="100%"
+								height="auto"
+								overflow-x="hidden"
+								overflow-y="hidden"
+								position="relative"
+								padding="100% 0px 0px 0px"
+							>
+								<Image
+									border-radius="50%"
+									src="https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/user_318-804790.avif"
+									object-fit="cover"
+									position="absolute"
+									top={0}
+									left={0}
+									bottom={0}
+									right={0}
+									display="block"
+									width="100%"
+									max-height="100%"
+								/>
+							</Box>
+							<Box padding="0px 20px 0px 20px" margin="0px 0px 0px 0px">
+								<Text
+									margin="21px 0px 0px 0px"
+									font="--headline3"
+									display="block"
+									text-align="center"
+									color="--darkL1"
+								>
+									Cristian Apostol
+								</Text>
+								<Text
+									margin="16px 0px 26px 0px"
+									font="--base"
+									display="block"
+									text-align="center"
+									color="--greyD2"
+								>
+									CEO & Support of Doctor4You
+								</Text>
+							</Box>
+						</motion.div>
+					</Box>
 				</Box>
 			</motion.div>
 		</Section>

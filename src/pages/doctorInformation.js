@@ -3,7 +3,7 @@ import theme from "theme";
 import { Theme, Link,Text, Box, Section, Image } from "@quarkly/widgets";
 import { Helmet } from "react-helmet";
 import { GlobalQuarklyPageStyles } from "global-page-styles";
-import { RawHtml, Override, Menu, SocialMedia } from "@quarkly/components";
+import { RawHtml, Override, Menu, SocialMedia, Formspree } from "@quarkly/components";
 
 import AuthService from "services/AuthService";
 import { useHistory } from "react-router-dom";
@@ -53,49 +53,62 @@ export default (() => {
 		const Filtered = List.slice(0, visible).map((item) =>
             <Section background="--color-darkL2" padding="60px 0" sm-padding="40px 0">
                 <Box margin="-16px -16px -16px -16px" padding="16px 16px 16px 16px" display="flex" flex-wrap="wrap">
-                    <Box padding="16px 16px 16px 16px" width="50%" lg-width="100%">
-                        <Box
-                            background={"url(" + item.img + ") 50% 50%/cover"}
-                            padding="0px 0px 672px 0px"
-                            margin="0px -112px 0px 0px"
-                            lg-margin="0px 0px 0px 0px"
-                            sm-padding="0px 0px 400px 0px"
-                        />
-                    </Box>
-                    <Box width="50%" display="flex" padding="16px 16px 0px 16px" lg-width="100%">
-                        <Box
-                            padding="98px 64px 98px 64px"
-                            mix-blend-mode="lighten"
-                            background="--color-black"
-                            margin="36px 0px -20px -112px"
-                            display="flex"
-                            flex-direction="column"
-                            color="--light"
-                            lg-margin="0px 0px 0px 0px"
-                            lg-width="100%"
-                            sm-padding="64px 32px 64px 32px"
-							border="2.5px solid black"
-                        >
-                            <Text
-                                as="h4"
-                                margin="0"
-                                font="--base"
-                                letter-spacing="1px"
-                                text-transform="uppercase"
-                            >
-                                About me
-                            </Text>
-                            <Text as="h1" margin="0 0 16px 0" font="--headline1" lg-font="--headline2">
-                                Hey I’m {item.username}
-                            </Text>
-                            <Text as="h1" margin="0 0 16px 0" font="--headline1" lg-font="--headline2">
-                                {item.doctorFirstDescription}
-                            </Text>
-                            <Text as="p" margin="16px 0" font="--base" max-width="400px">
-                                {item.doctorSecondDescription}
-                            </Text>
-                        </Box>
-                    </Box>
+
+					<Formspree endpoint="xeqpgrlv">
+							<Box
+								gap="16px"
+								display="grid"
+								flex-direction="row"
+								flex-wrap="wrap"
+								grid-template-columns="repeat(2, 1fr)"
+								grid-gap="16px"
+							>
+								<Box padding="16px 16px 16px 16px" width="50%" lg-width="100%">
+									<Box
+										background={"url(" + item.img + ") 50% 50%/cover"}
+										padding="0px 0px 672px 0px"
+										margin="0px -112px 0px 0px"
+										lg-margin="0px 0px 0px 0px"
+										sm-padding="0px 0px 400px 0px"
+									/>
+								</Box>
+								<Box width="50%" display="flex" padding="16px 16px 0px 16px" lg-width="100%">
+									<Box
+										padding="98px 64px 98px 64px"
+										mix-blend-mode="lighten"
+										background="--color-black"
+										margin="36px 0px -20px -112px"
+										display="flex"
+										flex-direction="column"
+										color="--light"
+										lg-margin="0px 0px 0px 0px"
+										lg-width="100%"
+										sm-padding="64px 32px 64px 32px"
+										border="2.5px solid black"
+									>
+										<Text
+											as="h4"
+											margin="0"
+											font="--base"
+											letter-spacing="1px"
+											text-transform="uppercase"
+										>
+											About me
+										</Text>
+										<Text as="h1" margin="0 0 16px 0" font="--headline1" lg-font="--headline2">
+											Hey I’m {item.username}
+										</Text>
+										<Text as="h1" margin="0 0 16px 0" font="--headline1" lg-font="--headline2">
+											{item.doctorFirstDescription}
+										</Text>
+										<Text as="p" margin="16px 0" font="--base" max-width="400px">
+											{item.doctorSecondDescription}
+										</Text>
+									</Box>
+								</Box>
+							</Box>
+					</Formspree>
+                    
                 </Box>
             </Section>
 		);

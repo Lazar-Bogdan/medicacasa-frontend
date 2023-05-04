@@ -18,6 +18,11 @@ import NavbarButton from "./Button"
 
 import CalculatorSerivice from "services/CalculatorSerivice";
 
+import Modal from "./popups/model"
+import getStripe from "./getStripe";
+
+const clientId = '201032838761-8q1ri414vi1lq8ve4bdvs8bfjeuda7bk.apps.googleusercontent.com';
+
 
 export default(() => {
     const city = [
@@ -47,7 +52,7 @@ export default(() => {
 	const[outputCardiology,setoutputCardiology] = useState([{place:"",price:""}]);
     const[outputSurgery,setoutputSurgery] = useState([{place:"",price:""}]);
 	const[outputInternal,setoutputInternal] = useState([{place:"",price:""}]);
-
+	const[email,setEmail] = useState("");
     function getCity()
     {
         const Filtered = city.slice(0, visible).map((item)=>
@@ -66,8 +71,11 @@ export default(() => {
 			return;
 		}else{
 			let response = await CalculatorSerivice.getCalculatorUnderCountryCityCardiology(outputCountry,outputCity,cardiologyType);
-			console.log(response);
-			setoutputCardiology(response);
+			if(response)
+			{
+				console.log(response);
+				setoutputCardiology(response);
+			}
 		}
 	}
 
@@ -78,8 +86,11 @@ export default(() => {
 			return;
 		}else{
 			let response = await CalculatorSerivice.getCalculatorUnderCountryCityGeneralSurgery(outputCountry,outputCity,generalsurgerytype);
-			console.log(response);
-			setoutputSurgery(response);
+			if(response)
+			{
+				console.log(response);
+				setoutputSurgery(response);
+			}
 		}
 	}
 
@@ -90,8 +101,11 @@ export default(() => {
 			return;
 		}else{
 			let response = await CalculatorSerivice.getCalculatorUnderCountryCityInternalMedicine(outputCountry,outputCity,internalmedicinetype);
-			console.log(response);
-			setoutputInternal(response);
+			if(response)
+			{
+				console.log(response);
+				setoutputInternal(response);
+			}
 		}
 	}
 
@@ -106,6 +120,36 @@ export default(() => {
 	}
 	if(!AuthService.handleGetLoginStatus()){
 		history.push("/");
+	}
+
+	async function handleSubmitPayment()
+	{
+		const stripe = await getStripe();
+		const priceAmm = (parseInt(outputCardiology[0].price)+ parseInt(outputSurgery[0].price)+ parseInt(outputInternal[0].price)).toString();
+		console.log("Price amm");
+		console.log(outputCardiology[0].price);
+		console.log(priceAmm);
+		const stripePrice = await stripe.prices.create({
+			unit_amount: priceAmm, // Replace with the amount in cents that you want to charge
+			currency: 'usd', // Replace with the currency you want to charge in
+			product_data: {
+				name: 'My Product', // Replace with the name of your product
+				description: 'This is my product', // Replace with the description of your product
+			},
+		});
+
+		const {error} = await stripe.redirectToCheckout({
+			lineItems: [
+				{
+					price: stripePrice.id,
+					quantity:1,
+				}
+			],
+			mode: 'subscription',
+			successUrl: `http://localhost:3001/client`,
+			cancelUrl: `http://localhost:3000/cancel`,
+			customerEmail: email,
+		})
 	}
 
     const [typeButton,setTypeButton] = useState(0);
@@ -331,13 +375,17 @@ export default(() => {
 								grid-gap="16px"
 							>
 								<Text font="--base" margin="0 0 4px 0">
+									Email:
+								</Text>
+								<Input width="100%" type="email" name="email" onChange={(event) => setEmail(event.target.value) } />
+								<Text font="--base" margin="0 0 4px 0">
 									Name:
 								</Text>
 								<Input width="100%" type="email" name="email" onChange={(event) => console.log("") } />
 								<Text font="--base" margin="0 0 4px 0" autocomplete="off">
 									Surname:
 								</Text>
-								<Input width="100%" type="password" name="password" onChange={(event) => console.log("") } autocomplete="off"/>
+								<Input width="100%" type="email" name="email" onChange={(event) => console.log("") } autocomplete="off"/>
                                 <Text font="--base" margin="0 0 4px 0">
 									Country:
 								</Text>
@@ -361,9 +409,8 @@ export default(() => {
 									<option>Select...</option>
                                     <option>Monthly Control</option>
                                     <option>Special Consult</option>
-									<option>Select...</option>
-                                    <option>Select...</option>
-									<option>Select...</option>
+									<option>Abdominal ecography</option>
+                                    <option>EKG with interpretation</option>
 								</select>
                                 <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
                                 <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
@@ -373,10 +420,9 @@ export default(() => {
                                 <select width="100%"   onChange={(e) => { getCalculatorGeneralSurgery(e.target.value); }}>
                                     <option>Select...</option>
 									<option>Monthly Control</option>
-                                    <option>Select...</option>
-									<option>Select...</option>
-                                    <option>Select...</option>
-									<option>Select...</option>
+                                    <option>Control</option>
+									<option>Local Anesthesia</option>
+                                    <option>Consultation + proctological examination</option>
 								</select>
                                 <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
                                 <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
@@ -386,14 +432,11 @@ export default(() => {
                                 <select width="100%"   onChange={(e) => { getCalculatorInternalMedicine(e.target.value); }}>
                                     <option>Select...</option>
 									<option>Monthly Control</option>
-                                    <option>Select...</option>
-									<option>Select...</option>
-                                    <option>Select...</option>
-									<option>Select...</option>
+                                    <option>Special Consult</option>
+									<option>EKG with interpretation</option>
+									<option>Cardiac doppler ultrasound</option>
 								</select>
-                                <NavbarButton variant="btn btn-success" type="submit" onClick={() => { console.log(""); }}>
-                                    Calculate
-                                </NavbarButton>
+                                
 							</Box>
 						</Formspree>
 					</Box>
@@ -409,8 +452,10 @@ export default(() => {
 					border-radius="30px"
 					border-color="--color-lightD2"
 					flex-direction="column"
+					height="100%"
                 >
-					<Formspree endpoint="xeqpgrlv">
+					<Box>
+						<Formspree endpoint="xeqpgrlv">
 							<Box
 								gap="16px"
 								display="grid"
@@ -474,8 +519,14 @@ export default(() => {
 								<Text font="--base" margin="0 0 4px 0">
 									{ parseInt(outputCardiology[0].price)+ parseInt(outputSurgery[0].price)+ parseInt(outputInternal[0].price)} $
 								</Text>
+								<NavbarButton  onClick={() => handleSubmitPayment()}>
+									Payment
+								</NavbarButton>
 							</Box>
-					</Formspree>
+						</Formspree>
+						
+					</Box>
+				
 					
                 </Box>
             </div>
