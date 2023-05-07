@@ -56,13 +56,6 @@ class GetMedicineService{
     }
 
     async deleteMeds(id){
-        // try{
-        //     const response = await axios.delete(URL + "meds/removeMeds", {headers:{_id:id}})
-        //     return response.data;
-        // }catch(err){
-        //     console.error("Error", err.response);
-        //     return false;
-        // }
         let x;
         await fetch(URL + "meds/removeMeds", {
             method: 'DELETE',

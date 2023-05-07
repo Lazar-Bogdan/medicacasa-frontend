@@ -36,6 +36,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { createBrowserHistory  as createHistory} from 'history';
 import medicineInfo from "pages/medicineInfo";
+import calculatorList from "pages/admin/calculatorList";
+import addCalculator from "pages/admin/addCalculator";
 
 import CookieService from "./services/CookieService";
 
@@ -87,6 +89,8 @@ export default () => (
             <Route exact path="/logout" component={logout} />
             <Route exact path='/medicineInfo/:id' component={medicineInfo} />
             <Route exact path='/calculator' component={calculatorMedicine} />
+            <Route exact path='/admincalculator' component={calculatorList} />
+            <Route exact path='/addCalculator' component={addCalculator} />
 			<Route component={Page404}/>
         </Switch>
     </Router>

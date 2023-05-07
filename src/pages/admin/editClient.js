@@ -163,6 +163,16 @@ export default (() => {
                     slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
                 >Appointments</Link>
                 <Link
+                    href="/admincalculator"
+                    display="flex"
+                    justify-content="center"
+                    font="--base"
+                    font-weight="700"
+                    md-flex-direction="column"
+                    md-align-items="center"
+                    slot="link-active" text-decoration="none" color="--dark" padding="6px 2px 6px 2px"
+                >Calculator</Link>
+                <Link
                     href="/forms"
                     display="flex"
                     justify-content="center"
