@@ -66,14 +66,19 @@ export default(() => {
 
 	async function getCalculatorCardiology(cardiologyType)
 	{
-		if(outputCity === "" || outputCountry === "")
+		if(outputCity === "" || outputCountry === "" || cardiologyType === "Select...")
 		{
+			setoutputCardiology(" ")
 			return;
 		}else{
 			let response = await CalculatorSerivice.getCalculatorUnderCountryCityCardiology(outputCountry,outputCity,cardiologyType);
-			if(response)
+			console.log(response);
+			if(response === "nothing from database")
 			{
-				console.log(response);
+				alert("Check Cardiology Select!");
+				setoutputCardiology([{place:"",price:""}]);
+			}else
+			{
 				setoutputCardiology(response);
 			}
 		}
@@ -81,14 +86,19 @@ export default(() => {
 
 	async function getCalculatorGeneralSurgery(generalsurgerytype)
 	{
-		if(outputCity === "" || outputCountry === "")
+		if(outputCity === "" || outputCountry === "" || generalsurgerytype === "Select...")
 		{
+			setoutputSurgery(" ")
 			return;
 		}else{
 			let response = await CalculatorSerivice.getCalculatorUnderCountryCityGeneralSurgery(outputCountry,outputCity,generalsurgerytype);
-			if(response)
+			console.log(response);
+			if(response === "nothing from database")
 			{
-				console.log(response);
+				alert("Check General Surgery Select!");
+				setoutputSurgery([{place:"",price:""}]);
+			}else
+			{
 				setoutputSurgery(response);
 			}
 		}
@@ -96,14 +106,19 @@ export default(() => {
 
 	async function getCalculatorInternalMedicine(internalmedicinetype)
 	{
-		if(outputCity === "" || outputCountry === "")
+		if(outputCity === "" || outputCountry === "" || internalmedicinetype === "Select...")
 		{
+			setoutputInternal(" ")
 			return;
 		}else{
 			let response = await CalculatorSerivice.getCalculatorUnderCountryCityInternalMedicine(outputCountry,outputCity,internalmedicinetype);
-			if(response)
+			console.log(response);
+			if(response === "nothing from database")
 			{
-				console.log(response);
+				alert("Check Interla Medicine Select!");
+				setoutputInternal([{place:"",price:""}]);
+			}else
+			{
 				setoutputInternal(response);
 			}
 		}
@@ -389,14 +404,14 @@ export default(() => {
                                 <Text font="--base" margin="0 0 4px 0">
 									Country:
 								</Text>
-                                <select width="100%"   onChange={(e) => { setOutputCountry(e.target.value);  }}>
+                                <select width="100%"   onChange={(e) => { if(e.target.value==="Select..."){setOutputCountry(" ");}else{ setOutputCountry(e.target.value);  }}}>
                                     <option>Select...</option>
 									<option value="Romania">Romania</option>
 								</select>
                                 <Text font="--base" margin="0 0 4px 0">
 									City:
 								</Text>
-                                <select width="100%"   onChange={(e) => { setoutputCity(e.target.value); }}>
+                                <select width="100%"   onChange={(e) => { if(e.target.value==="Select..."){setoutputCity(" ");}else{ setoutputCity(e.target.value);  } setoutputCity(e.target.value); }}>
                                     <option>Select...</option>
 									{getCity()}
 								</select>

@@ -22,7 +22,9 @@ function Login() {
 	const [loginFalse,setLoginFalse] = useState(false);
 	const history = useHistory();
 	const [isValid, setIsValid] = useState(true);
+	const [isValidPassword, setIsValidPassword] = useState(true);
 	const [wrongCredential, setWrongCredential] = useState(true);
+	const [wrongCredentialPassword,setWrongCredentialPassword] = useState(true);
 	useEffect(() =>{
 		console.log(loginFalse);
 	},[loginFalse]);
@@ -47,24 +49,48 @@ function Login() {
 	async function handleSubmitLogin(){
 		if(email==" " || password ==" ")
 		{
-			setIsValid(false);
-			setWrongCredential(true);
+
+			if(email === " ")
+			{
+				setIsValid(false);
+			}
+			if(password === " ")
+			{
+				setIsValidPassword(false);
+			}
+			return;
 		}else
 		{
-			let response = await AuthService.doUserLogin(email,password,);
-			if(response === "wrong credential" ){
+			let response = await AuthService.doUserLogin(email,password);
+			console.log("first res");
+			console.log(response)
+			if(response === "wrong email" ){
 				response = await AuthService.doDoctorLogin(email,password);
-				if(response === "wrong credential")
+				console.log("second res");
+				console.log(response)
+				if(response === "wrong email")
 				{
+					console.log("in if");
 					setWrongCredential(false);
-					setIsValid(true);
 					setEmail(" ");
 					setPassword(" ");
+					return;
+				}else{
+					console.log("in else");
+					setWrongCredentialPassword(false);
+					setWrongCredential(true);
+					setEmail(" ");
+					setPassword(" ");
+					return;
 				}
-			}
-			if(response !== "wrong credential"){
-				console.log("response output");
-				console.log(response);
+			}else{
+				if(response === "wrong password")
+				{
+					setWrongCredentialPassword(false);
+					setEmail(" ");
+					setPassword(" ");
+					return;
+				}
 				AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
 				// this.props.history.push("/home");
 				if(response.role == 1011){
@@ -77,6 +103,7 @@ function Login() {
 					history.push("/adminpage")
 				}
 			}
+			
 		}
 	}
 
@@ -305,14 +332,14 @@ function Login() {
 									Email:
 								</Text>
 								<Input width="30%" type="email" name="email" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} onChange={(event) => setEmail(event.target.value) } />
-								{!isValid && <p style={{ color: 'red' }}>Please enter a input</p>}
+								{!isValid && <p style={{ color: 'red' }}>Please enter a email</p>}
 								{!wrongCredential && <p style={{ color: 'red' }}>Please enter a correct email</p>}
 								<Text font="--base" margin="0 0 4px 0" autocomplete="off">
 									Password:
 								</Text>
-								<Input width="30%" type="password" name="password" style={{ borderColor: isValid && wrongCredential ? 'initial':'red'}} onChange={(event) => setPassword(event.target.value) } autocomplete="off"/>
-								{!isValid && <Text style={{ color: 'red' }}>Please enter a input</Text>}
-								{!wrongCredential && <p style={{ color: 'red' }}>Please enter a correct password</p>}
+								<Input width="30%" type="password" name="password" style={{ borderColor: isValidPassword && wrongCredentialPassword ? 'initial':'red'}} onChange={(event) => setPassword(event.target.value) } autocomplete="off"/>
+								{!isValidPassword && <Text style={{ color: 'red' }}>Please enter a password</Text>}
+								{!wrongCredentialPassword && <p style={{ color: 'red' }}>Please enter a correct password</p>}
 								<p></p>
 							</Box>
 						</Formspree>

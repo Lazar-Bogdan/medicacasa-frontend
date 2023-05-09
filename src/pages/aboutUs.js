@@ -441,7 +441,7 @@ export default (() => {
 							>
 								<Image
 									border-radius="50%"
-									src="https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/user_318-804790.avif"
+									src="https://mydoctorbucket.s3.eu-central-1.amazonaws.com/profilePhotos/apostol.jpeg"
 									object-fit="cover"
 									position="absolute"
 									top={0}
