@@ -408,7 +408,7 @@ export default (() => {
 							sm-margin="0px 0px 30px 0px"
 							flex="1 0 auto"
 						>
-							“Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.”
+							“Is good for headache, joint pain, back pain, tootache, I recommend this if you have those symtomps”
 						</Text>
 						<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
 							<Image
@@ -423,7 +423,7 @@ export default (() => {
 									Sam Smith
 								</Text>
 								<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-									Product Designer
+									Family Doctor
 								</Text>
 							</Box>
 						</Box>
@@ -451,7 +451,7 @@ export default (() => {
 							sm-margin="0px 0px 30px 0px"
 							flex="1 0 auto"
 						>
-							“Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.”
+							"Brufen is used by adults and teenagers to relieve pain of mild to moderate intensity, to treat rhumatic deseases and to relieve menstrual pain."
 						</Text>
 						<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
 							<Image
@@ -466,7 +466,7 @@ export default (() => {
 									Mason Johnson
 								</Text>
 								<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-									Manager
+									Family Doctor
 								</Text>
 							</Box>
 						</Box>
@@ -494,7 +494,7 @@ export default (() => {
 							sm-margin="0px 0px 30px 0px"
 							flex="1 0 auto"
 						>
-							Must have book for students, who want to be Product Designer, UX Designer, or Interaction Designer.
+							"Nurofen Forte 400 tablets effectively soothe a wide spectrum of acute pain. May be given for: Mild to moderate pain such as headache, migraine, toothache, menstrual pain."
 						</Text>
 						<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
 							<Image
@@ -509,7 +509,7 @@ export default (() => {
 									Adriana Williams
 								</Text>
 								<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-									Product Designer
+									Family Doctor
 								</Text>
 							</Box>
 						</Box>
@@ -526,7 +526,7 @@ export default (() => {
 						align-items="flex-start"
 					>
 						<Text margin="0px 0px 0px 0px">
-							medicament 1
+							Procor Forte
 						</Text>
 						<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/favourite-31.png?v=2021-08-30T20:05:47.446Z" margin="0px 0px 33px 0px" padding="15px 0px 0px 0px" />
 						<Text
@@ -537,7 +537,7 @@ export default (() => {
 							sm-margin="0px 0px 30px 0px"
 							flex="1 0 auto"
 						>
-							“You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the change and click save.”
+							"It helps the normal of the cardiovascular system. Benefits: Reduces LDL oxidation. It inhibits platelet aggregation."
 						</Text>
 						<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
 							<Image
@@ -552,7 +552,7 @@ export default (() => {
 									Ethan Tremblay
 								</Text>
 								<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-									UI/UX Designer
+									Family Doctor
 								</Text>
 							</Box>
 						</Box>
@@ -569,7 +569,7 @@ export default (() => {
 						align-items="flex-start"
 					>
 						<Text margin="0px 0px 0px 0px">
-							medicament 1
+							Xyzal
 						</Text>
 						<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/favourite-31.png?v=2021-08-30T20:05:47.446Z" margin="0px 0px 33px 0px" padding="15px 0px 0px 0px" />
 						<Text
@@ -580,7 +580,7 @@ export default (() => {
 							sm-margin="0px 0px 30px 0px"
 							flex="1 0 auto"
 						>
-							Must have book for students, who want to be Product Designer, UX Designer, or Interaction Designer.
+							"Xizal is an anti-allergic drug used for the treatment of symtomps associated with allergic conditions such as: hay fever, rhinitis, chronic urticarial rash."
 						</Text>
 						<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
 							<Image
@@ -595,7 +595,7 @@ export default (() => {
 									Adriana Williams
 								</Text>
 								<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-									Product Designer
+									Family Doctor
 								</Text>
 							</Box>
 						</Box>
@@ -612,7 +612,7 @@ export default (() => {
 						align-items="flex-start"
 					>
 						<Text margin="0px 0px 0px 0px">
-							medicament 1
+							Furazolidon
 						</Text>
 						<Image src="https://uploads.quarkly.io/612695d67f2b1f001fa06c1f/images/startfavorite.png?v=2021-08-30T20:09:22.144Z" margin="0px 0px 33px 0px" padding="15px 0px 0px 0px" />
 						<Text
@@ -623,7 +623,7 @@ export default (() => {
 							sm-margin="0px 0px 30px 0px"
 							flex="1 0 auto"
 						>
-							“Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.”
+							"It's used for the treatment of intestinal infections caused by some bacteria (enteritis, food poisoning giardiasis) and cholera."
 						</Text>
 						<Box display="flex" margin="0px 17px 0px 0px" align-items="flex-start" flex-direction="column">
 							<Image
@@ -638,7 +638,7 @@ export default (() => {
 									Mason Johnson
 								</Text>
 								<Text color="--greyD1" font="--base" margin="0px 0px 0px 0px">
-									Manager
+									Family Doctor
 								</Text>
 							</Box>
 						</Box>

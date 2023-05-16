@@ -284,7 +284,7 @@ export default (() => {
 								Visit us
 							</Text>
 							<Text as="p" margin="6px 0" font="--headline3" sm-width="100%">
-								street
+								Strada Principala Peciu Nou, NR. 794
 							</Text>
 						</Box>
 						<Box

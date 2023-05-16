@@ -75,13 +75,26 @@ function Login() {
 					setEmail(" ");
 					setPassword(" ");
 					return;
-				}else{
+				}
+				if(response === "wrong password")
+				{
 					console.log("in else");
 					setWrongCredentialPassword(false);
 					setWrongCredential(true);
 					setEmail(" ");
 					setPassword(" ");
 					return;
+				}
+				AuthService.handleLoginSucces(response._id,response.role,response.uid,response.rank);
+				// this.props.history.push("/home");
+				if(response.role == 1011){
+					history.push("/client");
+				}
+				if(response.role == 2011){
+					history.push("/doctor")
+				}
+				if(response.role == 3011){
+					history.push("/adminpage")
 				}
 			}else{
 				if(response === "wrong password")
