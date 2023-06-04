@@ -63,7 +63,9 @@ export default (() => {
 		const Filtered = List.slice(0, visible).map((item) =>
 			<div marginRight="10px">
 				<Box
-				padding="50px 55px 50px 55px"
+				width="100px"
+				height="100px"
+				padding="100px 100px 100px 100px"
 				border-width="1px"
 				border-style="solid"
 				border-radius="30px"
@@ -121,7 +123,7 @@ export default (() => {
 		const Filtered = List.slice(0, visible).map((item) =>
 			<div marginRight="10px">
 				<Box
-				padding="50px 55px 50px 55px"
+				padding="50px 55px 50px 20px"
 				border-width="1px"
 				border-style="solid"
 				border-radius="30px"
@@ -131,11 +133,11 @@ export default (() => {
 				marginRight="10px"
 				margin="10px"
 				>
-					<Image src={item.img} margin="0px 0px 2px 0px" height="150px" width="150px" />
+					<Image src={item.img} margin="0px 0px 2px 25px" height="150px" width="150px" />
 					<Text
 						justifyContent="center"
 						alignItems="center"
-						margin="0px 0px 35px 0px"
+						margin="0px 0px 35px 25px"
 						color="--dark"
 						font="--lead"
 						lg-margin="0px 0px 50px 0px"
@@ -147,7 +149,7 @@ export default (() => {
 					<Text
 						justifyContent="center"
 						alignItems="center"
-						margin="0px 0px 35px 0px"
+						margin="0px 0px 35px 25px"
 						color="--dark"
 						font="--lead"
 						lg-margin="0px 0px 50px 0px"
@@ -164,6 +166,9 @@ export default (() => {
 							color: hover === item._id? 'black' : 'white',
 							border: '2px solid black'
 						}}
+						margin="0px 0px 0px 17px"
+						justifyContent="center"
+						alignItems="center"
 	  				>
 						More information
 					</Button>
@@ -497,7 +502,7 @@ export default (() => {
 			) : (
 				<div>
 					
-					<Section padding="80px 0 80px 0">
+					<Section padding="100px 0 100px 0">
 						<Override slot="SectionContent" flex-direction="row" flex-wrap="wrap" />
 						<Box
 							display="flex"

@@ -108,6 +108,8 @@ class UserService{
         //     console.log("err",err.response);
         //     return false;
         // }
+        console.log("RANK");
+        console.log(rank);
         const option = {
             method: 'POST',
             headers: {
@@ -139,6 +141,7 @@ class UserService{
                 img:img,
                 uid:uid,
                 imgName:imgName,
+                rank:rank
             },
             body: {
  

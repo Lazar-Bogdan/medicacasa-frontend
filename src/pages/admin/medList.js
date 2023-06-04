@@ -88,7 +88,7 @@ export default (() => {
               </Button>
             </Override>
             <Override slot="cell-2">
-              <Button position="relative" right="-90px" onClick={() => deleteMeds(item._id)}>
+              <Button position="relative" top="-30px" right="-90px" onClick={() => deleteMeds(item._id)}>
                 Remove
               </Button>
             </Override>

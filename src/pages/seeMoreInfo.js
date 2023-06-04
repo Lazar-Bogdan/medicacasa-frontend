@@ -92,7 +92,7 @@ export default(()=>{
 								Height:{item.height}
 							</Text>
 							<Text margin="0px 0px 0px 0px" position="relative" top="-50px" right="-300px">
-								Weight:{item.weight}
+								Weight:{item.width}kg
 							</Text>
 							<Text margin="0px 0px 0px 0px" position="relative" top="-275px" right="-700px">
 								No. Hearts beat:{item.pulse}
