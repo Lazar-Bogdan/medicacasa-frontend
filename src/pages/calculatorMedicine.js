@@ -144,27 +144,20 @@ export default(() => {
 		console.log("Price amm");
 		console.log(outputCardiology[0].price);
 		console.log(priceAmm);
-		const stripePrice = await stripe.prices.create({
-			unit_amount: priceAmm, // Replace with the amount in cents that you want to charge
-			currency: 'usd', // Replace with the currency you want to charge in
-			product_data: {
-				name: 'My Product', // Replace with the name of your product
-				description: 'This is my product', // Replace with the description of your product
-			},
-		});
 
 		const {error} = await stripe.redirectToCheckout({
 			lineItems: [
 				{
-					price: stripePrice.id,
+					price: 'price_1NL4BaBnnFZXFBWva4vVU7lO',
 					quantity:1,
 				}
 			],
-			mode: 'subscription',
+			mode: 'payment',
 			successUrl: `http://localhost:3001/client`,
 			cancelUrl: `http://localhost:3000/cancel`,
-			customerEmail: email,
 		})
+
+		return true;
 	}
 
     const [typeButton,setTypeButton] = useState(0);
@@ -173,7 +166,7 @@ export default(() => {
 		<GlobalQuarklyPageStyles pageUrl={"my-doctor"} />
 		<Helmet>
 			<title>
-				My Doctor
+				Calculator
 			</title>
 			<meta name={"description"} content={"Web site created using quarkly.io"} />
 			<link rel={"shortcut icon"} href={"https://uploads.quarkly.io/readme/cra/favicon-32x32.ico"} type={"image/x-icon"} />
