@@ -17,6 +17,8 @@ import NavbarLink from "./NavbarLink";
 import NavBarLinkOnPage from "./NavBarLinkOnPage.js"; 
 import {motion, useAnimation, AnimatePresence} from "framer-motion";
 import CometChat from "services/CometChat";
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Assuming you have imported the arrow icons
+
 
 let months = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -196,7 +198,7 @@ const MySchedule = () => {
     }
 
     function MonthFunctionArray(){
-        return (<Text margin="40px 0px 0px 0px" font="--headline3" color="--darkL2" text-align="center">
+        return (<Text margin="0px 0px 0px 0px" font="--headline3" color="--darkL2" text-align="center">
             {months[currentMoth[MonthArray]]}
         </Text>);
     }
@@ -572,115 +574,50 @@ const MySchedule = () => {
                         >
                             Schedule of workshop program
                         </Text>
-                        <button
-                            style={{
-                                fontSize: '50px',
-                                top: '45%',
-                                left: '45%',
-                                transform: 'translate(-50%, -50%) rotate(180deg)',
-                                padding: '10px',
-                                position: 'absolute',
-                                border: 'none',
-                                backgroundColor: 'transparent',
-                                color: '#000',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => yearSubOnClickFunction()}
-                        >
-                            &#8594;
-                        </button>                    
-                        {ArrayYear()}
-                        <button
-                            style={{
-                                fontSize: '50px',
-                                top: '39.9%',
-                                left: '53%',
-                                padding: '10px',
-                                position: 'absolute',
-                                border: 'none',
-                                backgroundColor: 'transparent',
-                                color: '#000',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => yearAddOnClickFunction()}
-                        >
-                            &#8594;
-                        </button> 
-                        <p></p>
-                        <button
-                            style={{
-                                fontSize: '50px',
-                                top: '54.5%',
-                                left: '45%',
-                                transform: 'translate(-50%, -50%) rotate(180deg)',
-                                padding: '10px',
-                                position: 'absolute',
-                                border: 'none',
-                                backgroundColor: 'transparent',
-                                color: '#000',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => MonthSubOnClickFunction()}
-                        >
-                            &#8594;
-                        </button>  
-                        {MonthFunctionArray()}
-                        <button
-                            style={{
-                                fontSize: '50px',
-                                top: '49.5%',
-                                left: '53%',
-                                padding: '10px',
-                                position: 'absolute',
-                                border: 'none',
-                                backgroundColor: 'transparent',
-                                color: '#000',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => MonthAddOnClickFunction()}
-                        >
-                            &#8594;
-                        </button>
-                        <p></p>
-                        <button
-                            style={{
-                                fontSize: '50px',
-                                top: '65%',
-                                left: '45%',
-                                transform: 'translate(-50%, -50%) rotate(180deg)',
-                                padding: '10px',
-                                position: 'absolute',
-                                border: 'none',
-                                backgroundColor: 'transparent',
-                                color: '#000',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => NumberNameSubOnClickFunction()}
-                        >
-                            &#8594;
-                        </button>  
-                        {NameFunctionArray()}
-                        <p></p>
-                        {NumberFunctionArray()}
-                        <button
-                            style={{
-                                fontSize: '50px',
-                                top: '59.5%',
-                                left: '53%',
-                                padding: '10px',
-                                position: 'absolute',
-                                border: 'none',
-                                backgroundColor: 'transparent',
-                                color: '#000',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => NumberNameAddOnClickFunction()}
-                        >
-                            &#8594;
-                        </button>
                     </Box>
                     </Section>
-                
+                    <Hr min-height="10px" min-width="100%" margin="0px 0px 0px 0px" />
+                    <Section>
+                        <div
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <button onClick={() => yearSubOnClickFunction()}>
+                                    <FiChevronLeft />
+                                </button>
+                                <span style={{ marginLeft:'5px', marginRight: '5px' }}>{ArrayYear()}</span>
+                                <button  onClick={() => yearAddOnClickFunction()}>
+                                    <FiChevronRight />
+                                </button>
+                            </div>
+                            <div style={{ marginTop:'30px', display: 'flex', alignItems: 'center' }}>
+                                <button onClick={() => MonthSubOnClickFunction()}>
+                                    <FiChevronLeft />
+                                </button>
+                                <span style={{ marginLeft:'5px', marginRight: '5px' }}>{MonthFunctionArray()}</span>
+                                <button onClick={() => MonthAddOnClickFunction()}>
+                                    <FiChevronRight />
+                                </button>
+                            </div>
+                            <div style={{ width: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <button onClick={() => NumberNameSubOnClickFunction()}>
+                                    <FiChevronLeft />
+                                </button>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <span style={{ marginLeft:'5px', marginRight: '5px' }}>{NameFunctionArray()}</span>
+                                        <span style={{ marginLeft:'5px', marginRight: '5px' }}>{NumberFunctionArray()}</span>
+                                    </div>
+                                <button onClick={() => NumberNameAddOnClickFunction()}>
+                                    <FiChevronRight />
+                                </button>
+                            </div>
+                        </div>
+                    </Section>
                     {MapApp(clientsApp)}
                 </div>
             ) : (
